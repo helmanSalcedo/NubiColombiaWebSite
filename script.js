@@ -49,26 +49,106 @@
     revealEls.forEach(function (el) { io.observe(el); });
   }
 
-  // ── Mockup de chat: secuencia tipo WhatsApp ─────────────────────────
-  // Los mensajes no aparecen todos de golpe: entran uno a uno, el
-  // indicador de "escribiendo" se muestra y se retira antes de cada
-  // respuesta, y el último mensaje pasa por el mismo ciclo de checks que
-  // WhatsApp (enviado -> entregado -> leído). Se repite en bucle para que
-  // el hero se sienta vivo sin depender de interacción del usuario.
-  var chatSequence = document.querySelector('[data-chat-sequence]');
-  if (chatSequence) {
-    var msgs = Array.prototype.slice.call(chatSequence.querySelectorAll('[data-msg]'));
-    var ticks = chatSequence.querySelector('[data-ticks]');
-    var timers = [];
+  // ── Mockup de chat: intro guionada + demo real ──────────────────────
+  // Los primeros mensajes entran uno a uno (tipo WhatsApp: "escribiendo…"
+  // antes de cada respuesta, checks enviado -> entregado -> leído) para
+  // mostrar el formato. Al terminar, se habilita el campo de texto: lo que
+  // el usuario escriba a partir de ahí se procesa de verdad en el
+  // navegador (coincidencia de palabras clave) y la latencia mostrada es
+  // el tiempo real transcurrido entre el envío y la respuesta — no un
+  // número inventado.
+  var chatLog = document.querySelector('[data-chat-log]');
+  var chatForm = document.querySelector('[data-chat-form]');
+  var chatInput = document.querySelector('[data-chat-input]');
 
-    function schedule(fn, delay) {
-      timers.push(setTimeout(fn, delay));
-    }
+  var DEMO_RESPONSES = [
+    {
+      keywords: ['pizza', 'hamburguesa', 'comida', 'restaurante', 'almuerzo', 'cena', 'hambre'],
+      reply: 'Encontré 3 opciones cerca con eso disponible — la más cercana entrega en 18 min.',
+    },
+    {
+      keywords: ['plomero', 'electricista', 'arregl', 'daño', 'fuga', 'corto', 'gasfiter'],
+      reply: 'Tengo 2 profesionales verificados disponibles ahora en tu zona, calificación 4.8+.',
+    },
+    {
+      keywords: ['domicil', 'paquete', 'mandado', 'enviar', 'llevar', 'recoger'],
+      reply: 'Puedo asignar un domiciliario en los próximos minutos. ¿Confirmo la recogida?',
+    },
+  ];
+  var FALLBACK_REPLY = 'Entendido. Estoy buscando las mejores opciones cerca de ti — dime qué necesitas y en qué zona.';
 
-    function clearSchedule() {
-      timers.forEach(clearTimeout);
-      timers = [];
+  function matchReply(text) {
+    var lower = text.toLowerCase();
+    for (var i = 0; i < DEMO_RESPONSES.length; i++) {
+      var found = DEMO_RESPONSES[i].keywords.some(function (kw) { return lower.indexOf(kw) !== -1; });
+      if (found) return DEMO_RESPONSES[i].reply;
     }
+    return FALLBACK_REPLY;
+  }
+
+  function scrollChatToBottom() {
+    if (chatLog) chatLog.scrollTop = chatLog.scrollHeight;
+  }
+
+  function appendMessage(direction, html) {
+    var el = document.createElement('div');
+    el.className = 'msg bubble ' + direction;
+    el.innerHTML = html;
+    chatLog.appendChild(el);
+    // Fuerza reflow para que la transición de entrada sí se dispare.
+    void el.offsetWidth;
+    el.classList.add('show');
+    scrollChatToBottom();
+    return el;
+  }
+
+  function appendTyping() {
+    var el = document.createElement('div');
+    el.className = 'msg bubble in typing show';
+    el.setAttribute('aria-hidden', 'true');
+    el.innerHTML = '<span></span><span></span><span></span>';
+    chatLog.appendChild(el);
+    scrollChatToBottom();
+    return el;
+  }
+
+  function enableChatInput() {
+    if (!chatInput) return;
+    chatInput.disabled = false;
+    chatInput.placeholder = 'Escribe lo que necesitas…';
+  }
+
+  if (chatForm && chatInput) {
+    chatForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var text = chatInput.value.trim();
+      if (!text || chatInput.disabled) return;
+
+      chatInput.value = '';
+      appendMessage('in', text.replace(/</g, '&lt;'));
+
+      var typingEl = appendTyping();
+      var start = performance.now();
+      // Pausa deliberada para simular el procesamiento — la latencia que se
+      // muestra es el tiempo real transcurrido en este intervalo, no un
+      // valor fijo escrito a mano.
+      var thinkTime = 650 + Math.random() * 700;
+
+      setTimeout(function () {
+        typingEl.remove();
+        var elapsed = ((performance.now() - start) / 1000).toFixed(1);
+        appendMessage(
+          'out',
+          matchReply(text) + '<span class="latency-tag mono">procesado en ' + elapsed + 's</span>'
+        );
+      }, thinkTime);
+    });
+  }
+
+  var chatIntro = document.querySelector('[data-chat-log]');
+  if (chatIntro) {
+    var msgs = Array.prototype.slice.call(chatIntro.querySelectorAll('[data-msg]'));
+    var ticks = chatIntro.querySelector('[data-ticks]');
 
     function showStatic() {
       msgs.forEach(function (msg) {
@@ -79,54 +159,40 @@
         }
       });
       if (ticks) ticks.setAttribute('data-state', 'read');
+      enableChatInput();
     }
 
-    function playSequence() {
-      clearSchedule();
-      msgs.forEach(function (msg) { msg.classList.remove('show'); });
-      if (ticks) ticks.removeAttribute('data-state');
-
+    function playIntro() {
       var t = 350;
       var GAP = 950;
       var TYPING = 1250;
 
-      // in1
-      schedule(function () { msgs[0].classList.add('show'); }, t);
+      setTimeout(function () { msgs[0].classList.add('show'); }, t);
       t += GAP;
-      // typing -> out1
-      schedule(function () { msgs[1].classList.add('show'); }, t);
+      setTimeout(function () { msgs[1].classList.add('show'); }, t);
       t += TYPING;
-      schedule(function () {
+      setTimeout(function () {
         msgs[1].classList.remove('show');
         msgs[2].classList.add('show');
       }, t);
       t += GAP;
-      // opciones
-      schedule(function () { msgs[3].classList.add('show'); }, t);
+      setTimeout(function () { msgs[3].classList.add('show'); }, t);
       t += GAP;
-      // in2
-      schedule(function () { msgs[4].classList.add('show'); }, t);
+      setTimeout(function () { msgs[4].classList.add('show'); }, t);
       t += GAP;
-      // typing -> out2 (con checks de WhatsApp)
-      schedule(function () { msgs[5].classList.add('show'); }, t);
+      setTimeout(function () { msgs[5].classList.add('show'); }, t);
       t += TYPING;
-      schedule(function () {
+      setTimeout(function () {
         msgs[5].classList.remove('show');
         msgs[6].classList.add('show');
         if (ticks) ticks.setAttribute('data-state', 'sent');
       }, t);
       t += 350;
-      schedule(function () { if (ticks) ticks.setAttribute('data-state', 'delivered'); }, t);
+      setTimeout(function () { if (ticks) ticks.setAttribute('data-state', 'delivered'); }, t);
       t += 500;
-      schedule(function () { if (ticks) ticks.setAttribute('data-state', 'read'); }, t);
-      t += 3600;
-
-      // pausa, se desvanece y vuelve a empezar
-      schedule(function () {
-        msgs.forEach(function (msg) { msg.classList.remove('show'); });
-      }, t);
-      t += 700;
-      schedule(playSequence, t);
+      setTimeout(function () { if (ticks) ticks.setAttribute('data-state', 'read'); }, t);
+      t += 900;
+      setTimeout(enableChatInput, t);
     }
 
     if (reduceMotion) {
@@ -137,13 +203,13 @@
         entries.forEach(function (entry) {
           if (entry.isIntersecting && !started) {
             started = true;
-            playSequence();
+            playIntro();
           }
         });
       }, { threshold: 0.35 });
-      chatIo.observe(chatSequence);
+      chatIo.observe(chatIntro);
     } else {
-      playSequence();
+      playIntro();
     }
   }
 

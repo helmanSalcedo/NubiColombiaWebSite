@@ -33,6 +33,7 @@
 <body>
 
   <div class="starfield" aria-hidden="true"><svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice"></svg></div>
+  <div class="grain" aria-hidden="true"></div>
 
   <nav>
     <div class="nav-inner">
@@ -88,7 +89,7 @@
 
         <div class="hero-panel reveal">
           <div class="panel-glow" aria-hidden="true"></div>
-          <div class="chatcard">
+          <div class="chatcard glass-border">
             <div class="chatcard-head">
               <img src="assets/logo-nubi-final.png" alt="" width="28" height="28" />
               <div>
@@ -96,7 +97,7 @@
                 <div class="chatcard-status"><span class="dot-live" aria-hidden="true"></span>en línea</div>
               </div>
             </div>
-            <div class="chatcard-body" data-chat-sequence>
+            <div class="chatcard-body" data-chat-log>
               <div class="msg bubble in" data-msg>Necesito dos pizzas grandes y que revisen un corto en la cocina</div>
               <div class="msg bubble typing" data-msg data-typing aria-hidden="true"><span></span><span></span><span></span></div>
               <div class="msg bubble out" data-msg>
@@ -119,6 +120,19 @@
                 </span>
               </div>
             </div>
+            <form class="chat-input-row" data-chat-form>
+              <input
+                type="text"
+                class="chat-input"
+                data-chat-input
+                placeholder="Escribe lo que necesitas (pruébalo)…"
+                autocomplete="off"
+                disabled
+              />
+              <button type="submit" class="chat-send" aria-label="Enviar">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12h16M14 6l6 6-6 6" /></svg>
+              </button>
+            </form>
           </div>
         </div>
       </div>
@@ -132,35 +146,30 @@
           <p>Nada de menús anidados ni formularios largos. La IA hace la parte difícil.</p>
         </div>
 
-        <div class="steps" data-steps>
-          <svg class="steps-track" viewBox="0 0 100 4" preserveAspectRatio="none" aria-hidden="true">
-            <line x1="0" y1="2" x2="100" y2="2" />
-            <circle class="pulse" r="1.4" cx="0" cy="2" />
-          </svg>
-
-          <div class="step">
+        <div class="steps">
+          <div class="step step-lead glass-border">
+            <span class="step-num-ghost mono" aria-hidden="true">01</span>
             <span class="step-icon">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 5h16a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H9l-5 4V6a1 1 0 0 1 1-1Z" /><path d="M8 10h8M8 13h5" /></svg>
             </span>
-            <span class="step-num mono">01</span>
             <h3>Escribes lo que necesitas</h3>
             <p>En tus palabras, como se lo dirías a un vecino. Sin comandos ni menús que memorizar.</p>
           </div>
 
-          <div class="step">
+          <div class="step glass-border">
+            <span class="step-num-ghost mono" aria-hidden="true">02</span>
             <span class="step-icon">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3v3M12 18v3M3 12h3M18 12h3" /><circle cx="12" cy="12" r="5.5" /></svg>
             </span>
-            <span class="step-num mono">02</span>
             <h3>La IA interpreta la intención</h3>
             <p>Identifica qué necesitas, con qué negocio o profesional, y arma la opción exacta en segundos.</p>
           </div>
 
-          <div class="step">
+          <div class="step glass-border">
+            <span class="step-num-ghost mono" aria-hidden="true">03</span>
             <span class="step-icon">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 13l4 4L19 7" /></svg>
             </span>
-            <span class="step-num mono">03</span>
             <h3>Confirmas con un toque</h3>
             <p>Un domiciliario o profesional queda asignado, y el código de entrega llega solo a ti.</p>
           </div>
@@ -176,7 +185,7 @@
         </div>
 
         <div class="roles">
-          <article class="role-card">
+          <article class="role-card glass-border">
             <span class="role-icon">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8" r="3.4" /><path d="M5 20c0-3.6 3.1-6.4 7-6.4s7 2.8 7 6.4" /></svg>
             </span>
@@ -189,7 +198,7 @@
             <a class="role-cta" data-wa-text="Hola, quiero pedir algo" href="#" target="_blank" rel="noopener">Escribir a NUBI →</a>
           </article>
 
-          <article class="role-card">
+          <article class="role-card glass-border">
             <span class="role-icon">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 9.5 12 4l9 5.5" /><path d="M5 10v9h14v-9" /><path d="M10 19v-5h4v5" /></svg>
             </span>
@@ -202,7 +211,7 @@
             <a class="role-cta" data-wa-text="Hola, quiero registrar mi negocio en NUBI" href="#" target="_blank" rel="noopener">Registra tu negocio →</a>
           </article>
 
-          <article class="role-card">
+          <article class="role-card glass-border">
             <span class="role-icon">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="6" cy="18" r="2.6" /><circle cx="17" cy="18" r="2.6" /><path d="M8.5 18h6l-2-9H6l1.5 5.5H14" /></svg>
             </span>
