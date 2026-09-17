@@ -55,6 +55,48 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .star { animation: twinkle 4.5s ease-in-out infinite; }
 @keyframes twinkle { 0%, 100% { opacity: .2; } 50% { opacity: .85; } }
 
+/* Estrellas fugaces: cruzan la pantalla en diagonal, aparecen y se
+   desvanecen en puntos distintos (lado y momento aleatorios por estrella). */
+.shooting-stars { position: absolute; inset: 0; overflow: hidden; }
+.shooting-star {
+  position: absolute;
+  top: var(--sy, 20%);
+  left: -6%;
+  width: 110px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #fff 65%, var(--cyan-bright));
+  border-radius: 999px;
+  opacity: 0;
+  filter: drop-shadow(0 0 4px rgba(255,255,255,.7));
+  transform: rotate(var(--sr, 16deg));
+  animation-name: shootAcross;
+  animation-timing-function: ease-in;
+  animation-iteration-count: infinite;
+}
+.shooting-star.reverse {
+  left: auto;
+  right: -6%;
+  background: linear-gradient(270deg, transparent, #fff 65%, var(--cyan-bright));
+  animation-name: shootAcrossReverse;
+}
+@keyframes shootAcross {
+  0% { transform: translate(0, 0) rotate(var(--sr, 16deg)); opacity: 0; }
+  4% { opacity: 1; }
+  14% { opacity: 1; }
+  26% { opacity: 0; }
+  100% { transform: translate(128vw, var(--sdy, 34vh)) rotate(var(--sr, 16deg)); opacity: 0; }
+}
+@keyframes shootAcrossReverse {
+  0% { transform: translate(0, 0) rotate(calc(var(--sr, 16deg) + 180deg)); opacity: 0; }
+  4% { opacity: 1; }
+  14% { opacity: 1; }
+  26% { opacity: 0; }
+  100% { transform: translate(-128vw, var(--sdy, 34vh)) rotate(calc(var(--sr, 16deg) + 180deg)); opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .shooting-star { display: none; }
+}
+
 /* ---------- grano (textura) ---------- */
 /* Ruido sutil sobre todo el sitio vía SVG feTurbulence — evita que el fondo
    oscuro se vea "plano" a pantalla completa. Puramente decorativo (z-index
@@ -220,7 +262,8 @@ nav {
 .stat-divider { width: 1px; height: 34px; background: var(--line); }
 
 /* ---------- panel de chat (hero) ---------- */
-.hero-panel { position: relative; }
+.hero-panel { position: relative; perspective: 1000px; }
+.chatcard { transition: transform .3s ease-out; transform-style: preserve-3d; }
 .panel-glow {
   position: absolute;
   inset: -40px;
@@ -370,6 +413,16 @@ nav {
 .bubble.typing span:nth-child(3) { animation-delay: .3s; }
 @keyframes typingDot { 0%, 60%, 100% { transform: translateY(0); opacity: .5; } 30% { transform: translateY(-3px); opacity: 1; } }
 
+/* ---------- banner separador ---------- */
+.banner-strip { padding: 0 32px; }
+.banner-strip .wrap { padding: 0; max-width: 1180px; }
+.banner-strip img {
+  width: 100%;
+  height: auto;
+  border-radius: 20px;
+  box-shadow: 0 30px 70px -30px rgba(0,0,0,.6), 0 0 0 1px var(--line);
+}
+
 /* ---------- secciones genéricas ---------- */
 .section { padding: 92px 32px; }
 .section-panel { background: var(--night-soft); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
@@ -405,6 +458,16 @@ nav {
   background: linear-gradient(160deg, rgba(255,255,255,.05), rgba(255,255,255,.01));
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+#como-funciona .step:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 24px 50px -28px rgba(0,0,0,.5);
+}
+.step:hover .step-icon {
+  transform: scale(1.08) translateY(-2px);
+  background: color-mix(in srgb, var(--cyan) 22%, transparent);
+  box-shadow: 0 0 24px -4px color-mix(in srgb, var(--cyan) 60%, transparent);
 }
 .step-lead { padding: 38px 32px; }
 .step:nth-child(2) { margin-top: 52px; }
@@ -432,6 +495,7 @@ nav {
   background: color-mix(in srgb, var(--cyan) 10%, transparent);
   color: var(--cyan);
   margin-bottom: 18px;
+  transition: transform .25s ease, box-shadow .25s ease, background .25s ease;
 }
 .step-lead .step-icon { width: 60px; height: 60px; }
 .step-icon svg { width: 24px; height: 24px; }
@@ -453,9 +517,9 @@ nav {
   background: linear-gradient(160deg, rgba(255,255,255,.055), rgba(255,255,255,.012));
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  transition: transform .2s, box-shadow .2s;
+  transition: transform .25s ease, box-shadow .25s ease;
 }
-.role-card:hover { transform: translateY(-3px); box-shadow: 0 24px 50px -30px rgba(0,0,0,.5); }
+#roles .role-card:hover { transform: translateY(-5px); box-shadow: 0 26px 54px -28px rgba(0,0,0,.55), 0 0 0 1px color-mix(in srgb, var(--cyan) 25%, transparent); }
 .role-icon {
   display: inline-flex;
   align-items: center;
@@ -465,6 +529,12 @@ nav {
   background: color-mix(in srgb, var(--cyan) 14%, transparent);
   color: var(--cyan);
   margin-bottom: 20px;
+  transition: transform .25s ease, box-shadow .25s ease, background .25s ease;
+}
+.role-card:hover .role-icon {
+  transform: scale(1.08) translateY(-2px);
+  background: color-mix(in srgb, var(--cyan) 24%, transparent);
+  box-shadow: 0 0 24px -4px color-mix(in srgb, var(--cyan) 65%, transparent);
 }
 .role-icon svg { width: 24px; height: 24px; }
 .role-card h3 { font-size: 20px; margin-bottom: 14px; }
@@ -510,6 +580,21 @@ nav {
 .final-cta { text-align: center; }
 .final-cta .wrap { max-width: 620px; }
 .final-cta h2 { font-size: clamp(30px, 3.8vw, 44px); margin: 6px 0 32px; }
+.final-cta-mascot {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto 18px;
+  border-radius: 50%;
+  box-shadow: 0 0 40px -6px color-mix(in srgb, var(--cyan) 55%, transparent);
+  animation: mascotFloat 3.6s ease-in-out infinite;
+}
+@keyframes mascotFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .final-cta-mascot { animation: none; }
+}
 
 /* ---------- footer ---------- */
 footer { padding: 36px 32px; border-top: 1px solid var(--line); }
@@ -520,6 +605,26 @@ footer { padding: 36px 32px; border-top: 1px solid var(--line); }
 .reveal { opacity: 0; transform: translateY(20px); transition: opacity .7s ease, transform .7s ease; }
 .reveal.is-visible { opacity: 1; transform: translateY(0); }
 
+/* Stagger de tarjetas dentro de una sección revelada: cada hijo entra un
+   poco después del anterior en vez de aparecer todos a la vez. */
+.roles .role-card,
+.why-grid .why-item,
+.steps .step {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity .6s ease, transform .6s ease;
+}
+.reveal.is-visible .role-card,
+.reveal.is-visible .why-item,
+.reveal.is-visible .step {
+  opacity: 1;
+  transform: translateY(0);
+}
+.roles .role-card:nth-child(1), .why-grid .why-item:nth-child(1), .steps .step:nth-child(1) { transition-delay: .05s; }
+.roles .role-card:nth-child(2), .why-grid .why-item:nth-child(2), .steps .step:nth-child(2) { transition-delay: .15s; }
+.roles .role-card:nth-child(3), .why-grid .why-item:nth-child(3), .steps .step:nth-child(3) { transition-delay: .25s; }
+.why-grid .why-item:nth-child(4) { transition-delay: .35s; }
+
 @media (max-width: 900px) {
   .hero-inner { grid-template-columns: 1fr; }
   .hero-panel { margin-top: 20px; }
@@ -527,5 +632,8 @@ footer { padding: 36px 32px; border-top: 1px solid var(--line); }
 
 @media (prefers-reduced-motion: reduce) {
   .star, .dot-live, .bubble.typing span, .steps-track .pulse { animation: none !important; opacity: 1; }
-  .reveal { opacity: 1; transform: none; transition: none; }
+  .reveal,
+  .roles .role-card,
+  .why-grid .why-item,
+  .steps .step { opacity: 1; transform: none; transition: none; }
 }

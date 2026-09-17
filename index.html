@@ -32,7 +32,10 @@
 </head>
 <body>
 
-  <div class="starfield" aria-hidden="true"><svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice"></svg></div>
+  <div class="starfield" aria-hidden="true">
+    <svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice"></svg>
+    <div class="shooting-stars"></div>
+  </div>
   <div class="grain" aria-hidden="true"></div>
 
   <nav>
@@ -137,6 +140,12 @@
         </div>
       </div>
     </header>
+
+    <section class="banner-strip reveal">
+      <div class="wrap">
+        <img src="assets/hero-banner.jpg" alt="NUBI — todo lo que necesitas, en un mensaje: domicilios, mercancías, pasajeros, emprendimientos y publicidad" loading="lazy" width="1600" height="596" />
+      </div>
+    </section>
 
     <section id="como-funciona" class="section reveal">
       <div class="wrap">
@@ -261,6 +270,7 @@
 
     <section class="section final-cta reveal">
       <div class="wrap">
+        <img class="final-cta-mascot" src="assets/robot-mascot.png" alt="" width="120" height="120" loading="lazy" />
         <span class="kicker">Empieza ahora</span>
         <h2>Tu próxima solicitud, resuelta en un mensaje.</h2>
         <a class="btn btn-primary" data-wa-text="Hola, quiero probar NUBI" href="#" target="_blank" rel="noopener">Escribir a NUBI</a>

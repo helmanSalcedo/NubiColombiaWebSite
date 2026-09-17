@@ -33,6 +33,25 @@
     }
   }
 
+  // ── Estrellas fugaces ────────────────────────────────────────────────
+  // Cruzan la pantalla desde un lado y desaparecen en el otro, en momentos
+  // y alturas aleatorias, para que el fondo se sienta vivo (no solo puntos
+  // fijos titilando).
+  var shootingContainer = document.querySelector('.shooting-stars');
+  if (shootingContainer && !reduceMotion) {
+    var SHOOTING_COUNT = 6;
+    for (var s = 0; s < SHOOTING_COUNT; s++) {
+      var star = document.createElement('span');
+      star.className = 'shooting-star' + (Math.random() < 0.5 ? ' reverse' : '');
+      star.style.setProperty('--sy', (Math.random() * 70).toFixed(1) + '%');
+      star.style.setProperty('--sdy', (10 + Math.random() * 40).toFixed(0) + 'vh');
+      star.style.setProperty('--sr', (8 + Math.random() * 16).toFixed(1) + 'deg');
+      star.style.animationDuration = (3.5 + Math.random() * 3).toFixed(2) + 's';
+      star.style.animationDelay = (Math.random() * 12).toFixed(2) + 's';
+      shootingContainer.appendChild(star);
+    }
+  }
+
   // ── Scroll reveal ────────────────────────────────────────────────────
   var revealEls = document.querySelectorAll('.reveal');
   if (reduceMotion || !('IntersectionObserver' in window)) {
@@ -211,6 +230,27 @@
     } else {
       playIntro();
     }
+  }
+
+  // ── Parallax sutil del panel de chat (sigue el cursor) ──────────────
+  var heroPanel = document.querySelector('.hero-panel');
+  var chatcard = document.querySelector('.chatcard');
+  if (heroPanel && chatcard && !reduceMotion && window.matchMedia('(hover: hover)').matches) {
+    var rafId = null;
+    heroPanel.addEventListener('mousemove', function (e) {
+      var rect = heroPanel.getBoundingClientRect();
+      var px = (e.clientX - rect.left) / rect.width - 0.5;
+      var py = (e.clientY - rect.top) / rect.height - 0.5;
+      if (rafId) cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(function () {
+        chatcard.style.transform =
+          'rotateX(' + (-py * 4).toFixed(2) + 'deg) rotateY(' + (px * 5).toFixed(2) + 'deg)';
+      });
+    });
+    heroPanel.addEventListener('mouseleave', function () {
+      if (rafId) cancelAnimationFrame(rafId);
+      chatcard.style.transform = '';
+    });
   }
 
   // ── Contador de latencia del hero ───────────────────────────────────
