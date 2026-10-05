@@ -7,7 +7,7 @@
   // TODO: reemplazar por el número real (con indicativo de país, ej.
   // "573001234567") antes de publicar el sitio. Todos los botones se
   // actualizan desde esta única línea.
-  var WHATSAPP_NUMBER = '573000000000';
+  var WHATSAPP_NUMBER = '573158678716';
 
   document.querySelectorAll('a[data-wa-text]').forEach(function (a) {
     var text = a.getAttribute('data-wa-text');
