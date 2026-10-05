@@ -600,6 +600,10 @@ nav {
 footer { padding: 36px 32px; border-top: 1px solid var(--line); }
 .footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px; }
 .footer-note { font-size: 13px; color: var(--ink-soft); }
+.footer-legal { display: flex; flex-direction: column; gap: 4px; }
+.footer-legal .footer-note { margin: 0; line-height: 1.5; }
+.footer-legal a { color: var(--cyan); }
+@media (max-width: 600px) { .footer-inner { flex-direction: column; align-items: flex-start; } }
 
 /* ---------- scroll reveal ---------- */
 .reveal { opacity: 0; transform: translateY(20px); transition: opacity .7s ease, transform .7s ease; }
