@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" role="img" aria-label="NUBI, asistente con IA">
+  <style>
+    .float { animation: float 3.6s ease-in-out infinite; transform-origin: 120px 120px; }
+    .pulse { animation: pulse 3.6s ease-in-out infinite; transform-origin: 120px 124px; }
+    .eye { animation: blink 4.2s infinite; transform-origin: center; transform-box: fill-box; }
+    .blink-glow { animation: antenna 1.8s ease-in-out infinite; }
+    .wave { animation: wave 1.6s ease-in-out infinite; transform-origin: 180px 170px; transform-box: view-box; }
+    @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+    @keyframes pulse { 0%,100% { opacity: .6; transform: scale(1); } 50% { opacity: 1; transform: scale(1.05); } }
+    @keyframes blink { 0%,44%,50%,100% { transform: scaleY(1); } 47% { transform: scaleY(.1); } }
+    @keyframes antenna { 0%,100% { opacity: .55; } 50% { opacity: 1; } }
+    @keyframes wave { 0%,100% { transform: rotate(0deg); } 50% { transform: rotate(-16deg); } }
+    @media (prefers-reduced-motion: reduce) { * { animation: none !important; } }
+  </style>
+  <defs>
+    <radialGradient id="glow" cx="50%" cy="45%" r="60%">
+      <stop offset="0" stop-color="#4FE3D6" stop-opacity=".55"/>
+      <stop offset="1" stop-color="#4FE3D6" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="shell" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#D6E4FA"/>
+    </linearGradient>
+    <linearGradient id="visor" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#16224A"/>
+      <stop offset="1" stop-color="#050914"/>
+    </linearGradient>
+    <linearGradient id="neon" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#4FE3D6"/>
+      <stop offset="1" stop-color="#5FA8DE"/>
+    </linearGradient>
+  </defs>
+
+  <circle cx="120" cy="124" r="108" fill="url(#glow)" class="pulse"/>
+
+  <g class="float">
+    <!-- antenas -->
+    <line x1="92" y1="58" x2="84" y2="30" stroke="#16224A" stroke-width="6" stroke-linecap="round"/>
+    <line x1="148" y1="58" x2="156" y2="30" stroke="#16224A" stroke-width="6" stroke-linecap="round"/>
+    <circle cx="84" cy="26" r="11" fill="#4FE3D6" class="blink-glow"/>
+    <circle cx="156" cy="26" r="11" fill="#4FE3D6" class="blink-glow"/>
+
+    <!-- cabeza -->
+    <rect x="58" y="56" width="124" height="98" rx="46" fill="url(#shell)"/>
+    <rect x="58" y="56" width="124" height="98" rx="46" fill="none" stroke="#4FE3D6" stroke-opacity=".35" stroke-width="2"/>
+
+    <!-- visor -->
+    <rect x="74" y="78" width="92" height="60" rx="28" fill="url(#visor)" stroke="#5FA8DE" stroke-width="3"/>
+    <!-- ojos felices -->
+    <path class="eye" d="M92 112 Q100 96 108 112" fill="none" stroke="url(#neon)" stroke-width="6" stroke-linecap="round"/>
+    <path class="eye" d="M132 112 Q140 96 148 112" fill="none" stroke="url(#neon)" stroke-width="6" stroke-linecap="round"/>
+
+    <!-- orejas laterales -->
+    <rect x="46" y="96" width="14" height="30" rx="7" fill="#5FA8DE"/>
+    <rect x="180" y="96" width="14" height="30" rx="7" fill="#5FA8DE"/>
+
+    <!-- cuerpo -->
+    <rect x="84" y="156" width="72" height="54" rx="26" fill="url(#shell)"/>
+    <path d="M104 178 c0-8 6-14 16-14 s16 6 16 14 -6 14 -16 14 -16-6-16-14z" fill="none" stroke="#4FE3D6" stroke-width="3"/>
+
+    <!-- brazo que saluda -->
+    <g class="wave">
+      <rect x="172" y="150" width="16" height="44" rx="8" fill="#16224A"/>
+      <circle cx="180" cy="144" r="13" fill="url(#shell)"/>
+      <path d="M180 138 v-16" stroke="#16224A" stroke-width="9" stroke-linecap="round"/>
+    </g>
+  </g>
+</svg>

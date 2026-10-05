@@ -14,6 +14,23 @@
     a.href = 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent(text);
   });
 
+  // ── Navegación: marca la sección visible ───────────────────────────
+  var navLinks = Array.prototype.slice.call(document.querySelectorAll('.nav-links a[href^="#"]'));
+  if (navLinks.length && 'IntersectionObserver' in window) {
+    var sectionIo = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        navLinks.forEach(function (a) {
+          a.setAttribute('aria-current', a.getAttribute('href') === '#' + entry.target.id ? 'true' : 'false');
+        });
+      });
+    }, { rootMargin: '-45% 0px -50% 0px' });
+    navLinks.forEach(function (a) {
+      var target = document.getElementById(a.getAttribute('href').slice(1));
+      if (target) sectionIo.observe(target);
+    });
+  }
+
   // ── Estrellas de fondo ───────────────────────────────────────────────
   var starSvg = document.querySelector('.starfield svg');
   if (starSvg) {
@@ -181,37 +198,82 @@
       enableChatInput();
     }
 
-    function playIntro() {
-      var t = 350;
-      var GAP = 950;
-      var TYPING = 1250;
+    var statusText = document.querySelector('.chatcard-status');
+    statusText = statusText ? statusText.lastChild : null;
 
-      setTimeout(function () { msgs[0].classList.add('show'); }, t);
-      t += GAP;
-      setTimeout(function () { msgs[1].classList.add('show'); }, t);
-      t += TYPING;
+    function setStatus(text) {
+      if (statusText) statusText.nodeValue = text;
+    }
+
+    // Burbuja de "escribiendo…" justo antes del mensaje que el bot va a mostrar,
+    // con duración proporcional al largo del texto (más largo = más tarda).
+    function botTypes(msgEl, ms, onShown) {
+      var typingEl = document.createElement('div');
+      typingEl.className = 'msg bubble in typing show';
+      typingEl.setAttribute('aria-hidden', 'true');
+      typingEl.innerHTML = '<span></span><span></span><span></span>';
+      chatLog.insertBefore(typingEl, msgEl);
+      scrollChatToBottom();
+      setStatus('escribiendo…');
+
       setTimeout(function () {
-        msgs[1].classList.remove('show');
-        msgs[2].classList.add('show');
-      }, t);
-      t += GAP;
-      setTimeout(function () { msgs[3].classList.add('show'); }, t);
-      t += GAP;
-      setTimeout(function () { msgs[4].classList.add('show'); }, t);
-      t += GAP;
-      setTimeout(function () { msgs[5].classList.add('show'); }, t);
-      t += TYPING;
-      setTimeout(function () {
-        msgs[5].classList.remove('show');
-        msgs[6].classList.add('show');
-        if (ticks) ticks.setAttribute('data-state', 'sent');
-      }, t);
-      t += 350;
-      setTimeout(function () { if (ticks) ticks.setAttribute('data-state', 'delivered'); }, t);
-      t += 500;
-      setTimeout(function () { if (ticks) ticks.setAttribute('data-state', 'read'); }, t);
-      t += 900;
-      setTimeout(enableChatInput, t);
+        typingEl.classList.add('leaving');
+        setTimeout(function () { typingEl.remove(); }, 180);
+        setStatus('en línea');
+        msgEl.classList.add('show');
+        scrollChatToBottom();
+        if (onShown) onShown();
+      }, ms);
+    }
+
+    function typeMsFor(el) {
+      var len = (el.textContent || '').length;
+      return Math.min(2000, Math.max(900, 700 + len * 22));
+    }
+
+    function playIntro() {
+      msgs.forEach(function (m) {
+        if (m.hasAttribute('data-typing')) m.style.display = 'none';
+      });
+
+      var t = 500;
+      function at(ms, fn) { setTimeout(fn, t += ms); }
+
+      // 1. Cliente escribe
+      at(0, function () {
+        msgs[0].classList.add('show');
+        scrollChatToBottom();
+      });
+
+      // 2. NUBI responde (con "escribiendo…" y resultados)
+      at(1100, function () {
+        botTypes(msgs[2], typeMsFor(msgs[2]));
+      });
+      t += typeMsFor(msgs[2]) + 150;
+
+      // 3. Opciones para confirmar
+      at(700, function () {
+        msgs[3].classList.add('show');
+        scrollChatToBottom();
+      });
+
+      // 4. Cliente confirma
+      at(1300, function () {
+        msgs[4].classList.add('show');
+        scrollChatToBottom();
+      });
+
+      // 5. NUBI asigna domiciliario, con ticks de entrega
+      at(900, function () {
+        botTypes(msgs[6], typeMsFor(msgs[6]), function () {
+          if (ticks) ticks.setAttribute('data-state', 'sent');
+        });
+      });
+      t += typeMsFor(msgs[6]) + 150;
+
+      at(350, function () { if (ticks) ticks.setAttribute('data-state', 'delivered'); });
+      at(700, function () { if (ticks) ticks.setAttribute('data-state', 'read'); });
+      at(700, enableChatInput);
     }
 
     if (reduceMotion) {
