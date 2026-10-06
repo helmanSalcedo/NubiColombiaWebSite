@@ -2,6 +2,8 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
+  <meta name="color-scheme" content="dark" />
+  <script>document.documentElement.classList.add("js");</script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>NubiColombia – NUBI, pedidos por WhatsApp con IA</title>
   <meta name="facebook-domain-verification" content="o4zn77hr3qa62nlp1tp60ya1061qpl" />
@@ -29,10 +31,11 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+  <a class="skip-link" href="#top">Saltar al contenido</a>
 
   <div class="starfield" aria-hidden="true">
     <svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice"></svg>
@@ -43,7 +46,7 @@
   <nav>
     <div class="nav-inner">
       <a class="logo" href="#top">
-        <img src="assets/logo-nubi-final.png" alt="NUBI" width="34" height="34" />
+        <img src="assets/logo-nubi-96.png" alt="NUBI" width="34" height="34" />
         <span>nubi</span>
       </a>
       <div class="nav-links">
@@ -62,7 +65,7 @@
         <div class="hero-copy reveal">
           <span class="eyebrow">
             <span class="dot-live" aria-hidden="true"></span>
-            Chatbot con IA · WhatsApp
+            NUBI · Pedidos por WhatsApp con IA
           </span>
           <h1>Escribes. <em>La IA entiende.</em><br>La orden se mueve.</h1>
           <p class="hero-sub">
@@ -97,13 +100,13 @@
           <img class="hero-mascot" src="assets/nubi-bot.svg" alt="" width="220" height="220" aria-hidden="true" />
           <div class="chatcard glass-border">
             <div class="chatcard-head">
-              <img src="assets/logo-nubi-final.png" alt="" width="28" height="28" />
+              <img src="assets/logo-nubi-96.png" alt="" width="28" height="28" />
               <div>
                 <div class="chatcard-name">NUBI</div>
                 <div class="chatcard-status"><span class="dot-live" aria-hidden="true"></span>en línea</div>
               </div>
             </div>
-            <div class="chatcard-body" data-chat-log>
+            <div class="chatcard-body" data-chat-log role="log" aria-live="polite" aria-label="Ejemplo de conversación con NUBI">
               <div class="msg bubble in" data-msg>Necesito dos pizzas grandes y que revisen un corto en la cocina</div>
               <div class="msg bubble typing" data-msg data-typing aria-hidden="true"><span></span><span></span><span></span></div>
               <div class="msg bubble out" data-msg>
@@ -147,7 +150,7 @@
     <div class="marquee" aria-label="Servicios de NUBI">
       <div class="marquee-track">
         <span>Domicilios</span><i></i><span>Mercancías</span><i></i><span>Pasajeros</span><i></i><span>Emprendimientos</span><i></i><span>Publicidad</span><i></i>
-        <span>Domicilios</span><i></i><span>Mercancías</span><i></i><span>Pasajeros</span><i></i><span>Emprendimientos</span><i></i><span>Publicidad</span><i></i>
+        <span class="marquee-dup" aria-hidden="true"><span>Domicilios</span><i></i><span>Mercancías</span><i></i><span>Pasajeros</span><i></i><span>Emprendimientos</span><i></i><span>Publicidad</span><i></i></span>
       </div>
     </div>
 
@@ -208,7 +211,7 @@
               <li>Arma el carrito y confirma el pedido por chat.</li>
               <li>Sigue el estado y su historial sin salir de WhatsApp.</li>
             </ul>
-            <a class="role-cta" data-wa-text="Hola, quiero pedir algo" href="#" target="_blank" rel="noopener">Escribir a NUBI →</a>
+            <a class="role-cta" data-wa-text="Hola, quiero pedir algo" href="#" target="_blank" rel="noopener">Pedir por WhatsApp →</a>
           </article>
 
           <article class="role-card glass-border">
@@ -221,7 +224,7 @@
               <li>Marca listo y despacha sin panel externo.</li>
               <li>Actualiza disponibilidad del menú en tiempo real.</li>
             </ul>
-            <a class="role-cta" data-wa-text="Hola, quiero registrar mi negocio en NUBI" href="#" target="_blank" rel="noopener">Registra tu negocio →</a>
+            <a class="role-cta" data-wa-text="Hola, quiero registrar mi negocio en NUBI" href="#" target="_blank" rel="noopener">Registrar mi negocio por WhatsApp →</a>
           </article>
 
           <article class="role-card glass-border">
@@ -279,7 +282,7 @@
           <div class="cta-copy">
             <span class="kicker">Empieza ahora</span>
             <h2>Tu próxima solicitud, resuelta en un mensaje.</h2>
-            <a class="btn btn-primary" data-wa-text="Hola, quiero probar NUBI" href="#" target="_blank" rel="noopener">Escribir a NUBI</a>
+            <a class="btn btn-primary" data-wa-text="Hola, quiero probar NUBI" href="#" target="_blank" rel="noopener">Abrir WhatsApp y pedir</a>
           </div>
         </div>
       </div>
@@ -290,7 +293,7 @@
   <footer>
     <div class="wrap footer-inner">
       <a class="logo" href="#top">
-        <img src="assets/logo-nubi-final.png" alt="NUBI" width="24" height="24" />
+        <img src="assets/logo-nubi-96.png" alt="NUBI" width="24" height="24" />
         <span>nubi</span>
       </a>
       <div class="footer-legal">
