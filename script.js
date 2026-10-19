@@ -3,15 +3,19 @@
 
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // ── Número único de WhatsApp de NUBI ────────────────────────────────
-  // TODO: reemplazar por el número real (con indicativo de país, ej.
-  // "573001234567") antes de publicar el sitio. Todos los botones se
-  // actualizan desde esta única línea.
-  var WHATSAPP_NUMBER = '573158678716';
+  // ── Números de WhatsApp de NUBI (con indicativo de país) ────────────
+  // Cada botón abre el chat del canal que le toca: pedidos, negocios o
+  // mensajeros. El canal sale de data-wa-channel; sin él, pedidos.
+  var WHATSAPP_NUMBERS = {
+    pedidos: '573128045836',
+    negocios: '573128047127',
+    domiciliarios: '573128035848',
+  };
 
   document.querySelectorAll('a[data-wa-text]').forEach(function (a) {
     var text = a.getAttribute('data-wa-text');
-    a.href = 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent(text);
+    var number = WHATSAPP_NUMBERS[a.getAttribute('data-wa-channel')] || WHATSAPP_NUMBERS.pedidos;
+    a.href = 'https://wa.me/' + number + '?text=' + encodeURIComponent(text);
   });
 
   // ── Navegación: marca la sección visible ───────────────────────────
@@ -103,8 +107,8 @@
       reply: 'Encontré 3 opciones cerca con eso disponible — la más cercana entrega en 18 min.',
     },
     {
-      keywords: ['plomero', 'electricista', 'arregl', 'daño', 'fuga', 'corto', 'gasfiter'],
-      reply: 'Tengo 2 profesionales verificados disponibles ahora en tu zona, calificación 4.8+.',
+      keywords: ['farmacia', 'drogueria', 'droguería', 'pastilla', 'gripa', 'dolor', 'acetaminof', 'pañal'],
+      reply: 'Encontré 3 droguerías cerca con eso disponible — la más cercana entrega en 20 min.',
     },
     {
       keywords: ['domicil', 'paquete', 'mandado', 'enviar', 'llevar', 'recoger'],

@@ -7,13 +7,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>NubiColombia – NUBI, pedidos por WhatsApp con IA</title>
   <meta name="facebook-domain-verification" content="o4zn77hr3qa62nlp1tp60ya1061qpl" />
-  <meta name="description" content="NubiColombia: NUBI interpreta lo que necesitas por WhatsApp y mueve la orden en segundos: comida, mandados y servicios del hogar, con IA y sin instalar nada." />
+  <meta name="description" content="NubiColombia: NUBI interpreta lo que necesitas por WhatsApp y mueve la orden en segundos: comida, farmacia, mercado y mandados, con IA y sin instalar nada." />
 
   <meta property="og:url" content="https://nubicolombia.com/" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="NubiColombia" />
   <meta property="og:title" content="NUBI — Chatbot con IA por WhatsApp" />
-  <meta property="og:description" content="Escribes, la IA entiende, la orden se mueve. Comida, mandados y servicios del hogar por WhatsApp, sin instalar nada." />
+  <meta property="og:description" content="Escribes, la IA entiende, la orden se mueve. Comida, farmacia, mercado y mandados por WhatsApp, sin instalar nada." />
   <!-- OG/Twitter exigen URL absoluta para la imagen — los crawlers no
        resuelven rutas relativas a la página. -->
   <meta property="og:image" content="https://nubicolombia.com/assets/og-cover.jpg" />
@@ -70,7 +70,7 @@
           <h1>Escribes. <em>La IA entiende.</em><br>La orden se mueve.</h1>
           <p class="hero-sub">
             NUBI interpreta lo que necesitas en un solo mensaje de WhatsApp
-            — comida, mandados o un servicio para el hogar — y coordina
+            — comida, farmacia, mercado o un mandado — y coordina
             todo el proceso sin que abras una app ni llenes un formulario.
           </p>
           <div class="hero-ctas">
@@ -107,17 +107,17 @@
               </div>
             </div>
             <div class="chatcard-body" data-chat-log role="log" aria-live="polite" aria-label="Ejemplo de conversación con NUBI">
-              <div class="msg bubble in" data-msg>Necesito dos pizzas grandes y que revisen un corto en la cocina</div>
+              <div class="msg bubble in" data-msg>Necesito dos pizzas grandes y algo para la gripa</div>
               <div class="msg bubble typing" data-msg data-typing aria-hidden="true"><span></span><span></span><span></span></div>
               <div class="msg bubble out" data-msg>
                 Encontré esto cerca de ti:<br />
                 Pizzería Roma — $52.000<br />
-                Electricista Ana — calificación 4.9
+                Dolex Gripa en Droguería Central — $14.000
                 <span class="latency-tag mono">procesado en 1.3s</span>
               </div>
               <div class="msg option-row" data-msg>
                 <button class="option" type="button">Confirmar pizza</button>
-                <button class="option" type="button">Confirmar electricista</button>
+                <button class="option" type="button">Confirmar Dolex Gripa</button>
               </div>
               <div class="msg bubble in" data-msg>Confirmo las dos</div>
               <div class="msg bubble typing" data-msg data-typing aria-hidden="true"><span></span><span></span><span></span></div>
@@ -149,8 +149,8 @@
 
     <div class="marquee" aria-label="Servicios de NUBI">
       <div class="marquee-track">
-        <span>Domicilios</span><i></i><span>Mercancías</span><i></i><span>Pasajeros</span><i></i><span>Emprendimientos</span><i></i><span>Publicidad</span><i></i>
-        <span class="marquee-dup" aria-hidden="true"><span>Domicilios</span><i></i><span>Mercancías</span><i></i><span>Pasajeros</span><i></i><span>Emprendimientos</span><i></i><span>Publicidad</span><i></i></span>
+        <span>Domicilios</span><i></i><span>Mercancías</span><i></i><span>Emprendimientos</span><i></i><span>Publicidad</span><i></i>
+        <span class="marquee-dup" aria-hidden="true"><span>Domicilios</span><i></i><span>Mercancías</span><i></i><span>Emprendimientos</span><i></i><span>Publicidad</span><i></i></span>
       </div>
     </div>
 
@@ -178,7 +178,7 @@
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3v3M12 18v3M3 12h3M18 12h3" /><circle cx="12" cy="12" r="5.5" /></svg>
             </span>
             <h3>La IA interpreta la intención</h3>
-            <p>Identifica qué necesitas, con qué negocio o profesional, y arma la opción exacta en segundos.</p>
+            <p>Identifica qué necesitas, en qué negocio, y arma la opción exacta en segundos.</p>
           </div>
 
           <div class="step glass-border">
@@ -187,7 +187,7 @@
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 13l4 4L19 7" /></svg>
             </span>
             <h3>Confirmas con un toque</h3>
-            <p>Un domiciliario o profesional queda asignado, y el código de entrega llega solo a ti.</p>
+            <p>Un domiciliario queda asignado, y el código de entrega llega solo a ti.</p>
           </div>
         </div>
       </div>
@@ -224,7 +224,7 @@
               <li>Marca listo y despacha sin panel externo.</li>
               <li>Actualiza disponibilidad del menú en tiempo real.</li>
             </ul>
-            <a class="role-cta" data-wa-text="Hola, quiero registrar mi negocio en NUBI" href="#" target="_blank" rel="noopener">Registrar mi negocio por WhatsApp →</a>
+            <a class="role-cta" data-wa-text="Hola, quiero registrar mi negocio en NUBI" data-wa-channel="negocios" href="#" target="_blank" rel="noopener">Registrar mi negocio por WhatsApp →</a>
           </article>
 
           <article class="role-card glass-border">
@@ -237,7 +237,7 @@
               <li>Confirma recogida y entrega con un código único.</li>
               <li>Consulta sus ganancias sin salir del chat.</li>
             </ul>
-            <a class="role-cta" data-wa-text="Hola, quiero ser domiciliario en NUBI" href="#" target="_blank" rel="noopener">Únete como domiciliario →</a>
+            <a class="role-cta" data-wa-text="Hola, quiero ser domiciliario en NUBI" data-wa-channel="domiciliarios" href="#" target="_blank" rel="noopener">Únete como domiciliario →</a>
           </article>
         </div>
       </div>
@@ -301,7 +301,7 @@
         <p class="footer-note">Responsable: Hellman Sebastian Salcedo Delgado · NIT 1063816105-8</p>
         <p class="footer-note">CR 22 18 05, Barrio San Judas, Timbío, Cauca, Colombia</p>
         <p class="footer-note">Tel/WhatsApp: +57 315 867 8716 · <span data-contact-email>hellman.salcedo@gmail.com</span></p>
-        <p class="footer-note"><a href="/privacidad">Política de privacidad</a> · © 2026 NubiColombia</p>
+        <p class="footer-note"><a href="/privacidad">Política de privacidad</a> · <a href="/terminos-domiciliarios">Términos para domiciliarios</a> · © 2026 NubiColombia</p>
       </div>
     </div>
   </footer>
