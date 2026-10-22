@@ -5,18 +5,201 @@
 
   // ── Números de WhatsApp de NUBI (con indicativo de país) ────────────
   // Cada botón abre el chat del canal que le toca: pedidos, negocios o
-  // mensajeros. El canal sale de data-wa-channel; sin él, pedidos.
+  // domiciliarios. El canal sale de data-wa-channel; sin él, pedidos.
+  // El HTML ya trae los enlaces completos para que funcionen sin JS; esto
+  // solo los actualiza si el admin cambia los números.
   var WHATSAPP_NUMBERS = {
     pedidos: '573128045836',
     negocios: '573128047127',
     domiciliarios: '573128035848',
   };
 
-  document.querySelectorAll('a[data-wa-text]').forEach(function (a) {
-    var text = a.getAttribute('data-wa-text');
-    var number = WHATSAPP_NUMBERS[a.getAttribute('data-wa-channel')] || WHATSAPP_NUMBERS.pedidos;
-    a.href = 'https://wa.me/' + number + '?text=' + encodeURIComponent(text);
-  });
+  function waNumber(channel) {
+    return WHATSAPP_NUMBERS[channel] || WHATSAPP_NUMBERS.pedidos;
+  }
+
+  // 573128045836 -> +57 312 804 5836
+  function formatNumber(number) {
+    var n = String(number).replace(/\D/g, '');
+    if (n.length === 12 && n.indexOf('57') === 0) {
+      return '+57 ' + n.slice(2, 5) + ' ' + n.slice(5, 8) + ' ' + n.slice(8);
+    }
+    return '+' + n;
+  }
+
+  function linkWhatsApp() {
+    document.querySelectorAll('a[data-wa-text]').forEach(function (a) {
+      var text = a.getAttribute('data-wa-text');
+      a.href = 'https://wa.me/' + waNumber(a.getAttribute('data-wa-channel')) + '?text=' + encodeURIComponent(text);
+    });
+    document.querySelectorAll('[data-wa-display]').forEach(function (el) {
+      el.textContent = formatNumber(waNumber(el.getAttribute('data-wa-display')));
+    });
+    var chatForm = document.querySelector('[data-chat-form]');
+    if (chatForm) chatForm.action = 'https://wa.me/' + WHATSAPP_NUMBERS.pedidos;
+  }
+  linkWhatsApp();
+
+  // Solo enlaces seguros desde el admin: https, rutas del sitio, anclas o WhatsApp.
+  function isSafeLink(href) {
+    return /^(https:\/\/|\/(?!\/)|#)/i.test(String(href || '').trim());
+  }
+
+  // ── Contenido editable desde el admin de Nubi (Sitio web) ────────────
+  // El texto que trae esta página es el de respaldo: si el backend responde,
+  // se reemplaza por lo publicado en el admin (o por el borrador, en la vista
+  // previa con ?preview=). El HTML llega ya convertido y escapado por el backend.
+  (function loadContent() {
+    var params = new URLSearchParams(window.location.search);
+    var preview = params.get('preview');
+    var meta = document.querySelector('meta[name="nubi-api"]');
+    var onBackend = window.location.pathname.indexOf('/sitio') === 0;
+    var base = onBackend ? '' : (meta && meta.getAttribute('content')) || '';
+    if (!onBackend && !base) return;
+    var url = base + '/api/public/website' + (preview ? '?preview=' + encodeURIComponent(preview) : '');
+    if (!window.fetch) return;
+    fetch(url, { headers: { 'ngrok-skip-browser-warning': '1' } })
+      .then(function (res) { return res.ok ? res.json() : null; })
+      .then(function (json) { if (json && json.data) applyContent(json.data); })
+      .catch(function () { /* sin backend: se queda el texto de la página */ });
+  })();
+
+  function pick(data, path) {
+    return path.split('.').reduce(function (value, key) { return value == null ? value : value[key]; }, data);
+  }
+
+  function setText(el, value) {
+    if (el && typeof value === 'string' && value.trim()) el.textContent = value;
+  }
+
+  function applyContent(data) {
+    document.querySelectorAll('[data-cms]').forEach(function (el) { setText(el, pick(data, el.getAttribute('data-cms'))); });
+    document.querySelectorAll('[data-cms-html]').forEach(function (el) {
+      var html = pick(data, el.getAttribute('data-cms-html'));
+      if (typeof html === 'string' && html.trim()) el.innerHTML = html;
+    });
+    document.querySelectorAll('[data-cms-list]').forEach(function (ul) {
+      var items = pick(data, ul.getAttribute('data-cms-list'));
+      if (!Array.isArray(items) || !items.length) return;
+      ul.innerHTML = '';
+      items.forEach(function (text) {
+        if (!text || !String(text).trim()) return;
+        var li = document.createElement('li');
+        li.textContent = text;
+        ul.appendChild(li);
+      });
+    });
+
+    // Lista de servicios (el duplicado queda oculto; se conserva por compatibilidad)
+    var track = document.querySelector('[data-cms-marquee]');
+    if (track && Array.isArray(data.marquee) && data.marquee.length) {
+      var words = data.marquee.filter(function (w) { return w && String(w).trim(); });
+      var build = function (target) {
+        words.forEach(function (word) {
+          var span = document.createElement('span');
+          span.textContent = word;
+          target.appendChild(span);
+          target.appendChild(document.createElement('i'));
+        });
+      };
+      track.innerHTML = '';
+      build(track);
+      var dup = document.createElement('span');
+      dup.className = 'marquee-dup';
+      dup.setAttribute('aria-hidden', 'true');
+      build(dup);
+      track.appendChild(dup);
+    }
+
+    // "Por qué": pueden ser más o menos de cuatro
+    var whyGrid = document.querySelector('[data-cms-why]');
+    if (whyGrid && data.why && Array.isArray(data.why.items) && data.why.items.length) {
+      var template = whyGrid.querySelector('.why-item');
+      if (template) {
+        whyGrid.innerHTML = '';
+        data.why.items.forEach(function (item, index) {
+          var node = template.cloneNode(true);
+          var num = node.querySelector('.why-num');
+          if (num) num.textContent = String(index + 1).padStart(2, '0');
+          setText(node.querySelector('h3'), item.title);
+          setText(node.querySelector('p'), item.text);
+          whyGrid.appendChild(node);
+        });
+      }
+    }
+
+    // Números de WhatsApp de cada canal y enlaces de contacto
+    if (data.contact) {
+      if (data.contact.whatsappPedidos) WHATSAPP_NUMBERS.pedidos = String(data.contact.whatsappPedidos).replace(/\D/g, '');
+      if (data.contact.whatsappNegocios) WHATSAPP_NUMBERS.negocios = String(data.contact.whatsappNegocios).replace(/\D/g, '');
+      if (data.contact.whatsappDomiciliarios) WHATSAPP_NUMBERS.domiciliarios = String(data.contact.whatsappDomiciliarios).replace(/\D/g, '');
+      linkWhatsApp();
+      if (typeof data.contact.email === 'string' && data.contact.email.trim()) {
+        document.querySelectorAll('a[data-contact-email]').forEach(function (a) { a.href = 'mailto:' + data.contact.email.trim(); });
+      }
+      if (typeof data.contact.phone === 'string' && data.contact.phone.trim()) {
+        document.querySelectorAll('a[data-contact-phone]').forEach(function (a) { a.href = 'tel:+' + data.contact.phone.replace(/\D/g, ''); });
+      }
+    }
+
+    // Título y descripción (solo en la página principal)
+    if (!document.querySelector('[data-cms-page]') && data.seo) {
+      if (data.seo.title) document.title = data.seo.title;
+      var desc = document.querySelector('meta[name="description"]');
+      if (desc && data.seo.description) desc.setAttribute('content', data.seo.description);
+    }
+
+    // Aviso destacado arriba de la página
+    if (data.announcement && data.announcement.enabled && data.announcement.html) {
+      var bar = document.createElement('div');
+      bar.className = 'announce';
+      bar.setAttribute('role', 'status');
+      var text = document.createElement('span');
+      text.innerHTML = data.announcement.html;
+      bar.appendChild(text);
+      if (data.announcement.link && data.announcement.linkText && isSafeLink(data.announcement.link)) {
+        var link = document.createElement('a');
+        link.href = data.announcement.link.trim();
+        link.textContent = data.announcement.linkText + ' →';
+        if (/^https:/i.test(link.getAttribute('href'))) { link.target = '_blank'; link.rel = 'noopener'; }
+        bar.appendChild(link);
+      }
+      document.body.insertBefore(bar, document.body.firstChild);
+      document.body.classList.add('has-announce');
+    }
+
+    // Páginas legales: las secciones salen del admin. Las secciones que
+    // están fuera del cuerpo (condiciones del servicio, eliminación de datos)
+    // solo se quitan si el admin trae una con el mismo id: así nunca
+    // desaparece lo que pide la revisión de Meta.
+    var page = document.querySelector('[data-cms-page]');
+    if (page && data.legal) {
+      var content = data.legal[page.getAttribute('data-cms-page')];
+      var body = page.querySelector('[data-cms-legal-body]');
+      if (content && body && Array.isArray(content.sections) && content.sections.length) {
+        var ids = {};
+        body.innerHTML = content.sections.map(function (section) {
+          var id = String(section.id || '').replace(/[^a-z0-9-]/g, '');
+          if (id) ids[id] = true;
+          var title = document.createElement('span');
+          title.textContent = section.title;
+          var num = document.createElement('span');
+          num.textContent = section.number == null ? '' : section.number;
+          return '<section id="' + id + '"><h2><span class="num">' + num.innerHTML + '</span>' + title.innerHTML + '</h2>' + section.html + '</section>';
+        }).join('\n');
+        page.querySelectorAll(':scope > section').forEach(function (extra) {
+          if (extra.id && ids[extra.id]) extra.remove();
+        });
+      }
+    }
+
+    if (data.preview) {
+      var badge = document.createElement('div');
+      badge.className = 'preview-badge';
+      badge.textContent = 'Vista previa del borrador · aún no está publicado';
+      document.body.appendChild(badge);
+    }
+  }
 
   // ── Navegación: marca la sección visible ───────────────────────────
   var navLinks = Array.prototype.slice.call(document.querySelectorAll('.nav-links a[href^="#"]'));
@@ -35,12 +218,11 @@
     });
   }
 
-  // ── Estrellas de fondo ───────────────────────────────────────────────
+  // ── Estrellas de fondo (solo páginas legales, hasta su rediseño) ─────
   var starSvg = document.querySelector('.starfield svg');
   if (starSvg) {
     var NS = 'http://www.w3.org/2000/svg';
-    var COUNT = 90;
-    for (var i = 0; i < COUNT; i++) {
+    for (var i = 0; i < 90; i++) {
       var bright = Math.random() < 0.1;
       var c = document.createElementNS(NS, 'circle');
       c.setAttribute('cx', (Math.random() * 100).toFixed(2));
@@ -54,166 +236,66 @@
     }
   }
 
-  // ── Estrellas fugaces ────────────────────────────────────────────────
-  // Cruzan la pantalla desde un lado y desaparecen en el otro, en momentos
-  // y alturas aleatorias, para que el fondo se sienta vivo (no solo puntos
-  // fijos titilando).
-  var shootingContainer = document.querySelector('.shooting-stars');
-  if (shootingContainer && !reduceMotion) {
-    var SHOOTING_COUNT = 6;
-    for (var s = 0; s < SHOOTING_COUNT; s++) {
-      var star = document.createElement('span');
-      star.className = 'shooting-star' + (Math.random() < 0.5 ? ' reverse' : '');
-      star.style.setProperty('--sy', (Math.random() * 70).toFixed(1) + '%');
-      star.style.setProperty('--sdy', (10 + Math.random() * 40).toFixed(0) + 'vh');
-      star.style.setProperty('--sr', (8 + Math.random() * 16).toFixed(1) + 'deg');
-      star.style.animationDuration = (3.5 + Math.random() * 3).toFixed(2) + 's';
-      star.style.animationDelay = (Math.random() * 12).toFixed(2) + 's';
-      shootingContainer.appendChild(star);
-    }
-  }
-
-  // ── Scroll reveal ────────────────────────────────────────────────────
-  var revealEls = document.querySelectorAll('.reveal');
-  if (reduceMotion || !('IntersectionObserver' in window)) {
-    revealEls.forEach(function (el) { el.classList.add('is-visible'); });
-  } else {
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-          io.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.15 });
-    revealEls.forEach(function (el) { io.observe(el); });
-  }
-
-  // ── Mockup de chat: intro guionada + demo real ──────────────────────
-  // Los primeros mensajes entran uno a uno (tipo WhatsApp: "escribiendo…"
-  // antes de cada respuesta, checks enviado -> entregado -> leído) para
-  // mostrar el formato. Al terminar, se habilita el campo de texto: lo que
-  // el usuario escriba a partir de ahí se procesa de verdad en el
-  // navegador (coincidencia de palabras clave) y la latencia mostrada es
-  // el tiempo real transcurrido entre el envío y la respuesta — no un
-  // número inventado.
+  // ── Chat de la portada ──────────────────────────────────────────────
+  // Una conversación de ejemplo entra mensaje a mensaje (con "escribiendo…"
+  // y checks enviado -> entregado -> leído). El campo de texto es real: el
+  // formulario abre WhatsApp con lo que escribas, listo para enviar a NUBI.
   var chatLog = document.querySelector('[data-chat-log]');
   var chatForm = document.querySelector('[data-chat-form]');
   var chatInput = document.querySelector('[data-chat-input]');
-
-  var DEMO_RESPONSES = [
-    {
-      keywords: ['pizza', 'hamburguesa', 'comida', 'restaurante', 'almuerzo', 'cena', 'hambre'],
-      reply: 'Encontré 3 opciones cerca con eso disponible — la más cercana entrega en 18 min.',
-    },
-    {
-      keywords: ['farmacia', 'drogueria', 'droguería', 'pastilla', 'gripa', 'dolor', 'acetaminof', 'pañal'],
-      reply: 'Encontré 3 droguerías cerca con eso disponible — la más cercana entrega en 20 min.',
-    },
-    {
-      keywords: ['domicil', 'paquete', 'mandado', 'enviar', 'llevar', 'recoger'],
-      reply: 'Puedo asignar un domiciliario en los próximos minutos. ¿Confirmo la recogida?',
-    },
-  ];
-  var FALLBACK_REPLY = 'Entendido. Estoy buscando las mejores opciones cerca de ti — dime qué necesitas y en qué zona.';
-
-  function matchReply(text) {
-    var lower = text.toLowerCase();
-    for (var i = 0; i < DEMO_RESPONSES.length; i++) {
-      var found = DEMO_RESPONSES[i].keywords.some(function (kw) { return lower.indexOf(kw) !== -1; });
-      if (found) return DEMO_RESPONSES[i].reply;
-    }
-    return FALLBACK_REPLY;
-  }
+  var chatStatus = document.querySelector('[data-chat-status]');
 
   function scrollChatToBottom() {
-    if (chatLog) chatLog.scrollTop = chatLog.scrollHeight;
+    if (!chatLog) return;
+    chatLog.scrollTo({ top: chatLog.scrollHeight, behavior: reduceMotion ? 'auto' : 'smooth' });
   }
 
-  function appendMessage(direction, html) {
+  function appendBubble(direction, text) {
     var el = document.createElement('div');
     el.className = 'msg bubble ' + direction;
-    el.innerHTML = html;
+    el.textContent = text;
     chatLog.appendChild(el);
-    // Fuerza reflow para que la transición de entrada sí se dispare.
-    void el.offsetWidth;
-    el.classList.add('show');
+    requestAnimationFrame(function () {
+      requestAnimationFrame(function () { el.classList.add('show'); });
+    });
     scrollChatToBottom();
-    return el;
   }
 
-  function appendTyping() {
-    var el = document.createElement('div');
-    el.className = 'msg bubble in typing show';
-    el.setAttribute('aria-hidden', 'true');
-    el.innerHTML = '<span></span><span></span><span></span>';
-    chatLog.appendChild(el);
-    scrollChatToBottom();
-    return el;
-  }
-
-  function enableChatInput() {
-    if (!chatInput) return;
-    chatInput.disabled = false;
-    chatInput.placeholder = 'Escribe lo que necesitas…';
-  }
-
-  if (chatForm && chatInput) {
-    chatForm.addEventListener('submit', function (e) {
-      e.preventDefault();
+  if (chatForm && chatInput && chatLog) {
+    // El envío lo hace el navegador (GET a wa.me con ?text=); aquí solo
+    // dejamos el mensaje en el chat para que se vea qué pasó.
+    chatForm.addEventListener('submit', function () {
       var text = chatInput.value.trim();
-      if (!text || chatInput.disabled) return;
-
-      chatInput.value = '';
-      appendMessage('in', text.replace(/</g, '&lt;'));
-
-      var typingEl = appendTyping();
-      var start = performance.now();
-      // Pausa deliberada para simular el procesamiento — la latencia que se
-      // muestra es el tiempo real transcurrido en este intervalo, no un
-      // valor fijo escrito a mano.
-      var thinkTime = 650 + Math.random() * 700;
-
+      if (!text) return;
+      appendBubble('in', text);
       setTimeout(function () {
-        typingEl.remove();
-        var elapsed = ((performance.now() - start) / 1000).toFixed(1);
-        appendMessage(
-          'out',
-          matchReply(text) + '<span class="latency-tag mono">procesado en ' + elapsed + 's</span>'
-        );
-      }, thinkTime);
+        appendBubble('out', 'Te abrí WhatsApp con tu mensaje. Envíalo allí y NUBI te responde.');
+        chatInput.value = '';
+      }, 400);
     });
   }
 
-  var chatIntro = document.querySelector('[data-chat-log]');
-  if (chatIntro) {
-    var msgs = Array.prototype.slice.call(chatIntro.querySelectorAll('[data-msg]'));
-    var ticks = chatIntro.querySelector('[data-ticks]');
+  if (chatLog) {
+    var msgs = Array.prototype.slice.call(chatLog.querySelectorAll('[data-msg]'));
+    var ticks = chatLog.querySelector('[data-ticks]');
+
+    function setStatus(text) {
+      if (chatStatus) chatStatus.textContent = text;
+    }
 
     function showStatic() {
       msgs.forEach(function (msg) {
-        if (msg.hasAttribute('data-typing')) {
-          msg.style.display = 'none';
-        } else {
-          msg.classList.add('show');
-        }
+        if (msg.hasAttribute('data-typing')) msg.remove();
+        else msg.classList.add('show');
       });
       if (ticks) ticks.setAttribute('data-state', 'read');
-      enableChatInput();
+      chatLog.scrollTop = chatLog.scrollHeight;
     }
 
-    var statusText = document.querySelector('.chatcard-status');
-    statusText = statusText ? statusText.lastChild : null;
-
-    function setStatus(text) {
-      if (statusText) statusText.nodeValue = text;
-    }
-
-    // Burbuja de "escribiendo…" justo antes del mensaje que el bot va a mostrar,
-    // con duración proporcional al largo del texto (más largo = más tarda).
+    // "Escribiendo…" justo antes del mensaje del bot, más largo si el texto es largo.
     function botTypes(msgEl, ms, onShown) {
       var typingEl = document.createElement('div');
-      typingEl.className = 'msg bubble in typing show';
+      typingEl.className = 'msg bubble typing show';
       typingEl.setAttribute('aria-hidden', 'true');
       typingEl.innerHTML = '<span></span><span></span><span></span>';
       chatLog.insertBefore(typingEl, msgEl);
@@ -222,7 +304,7 @@
 
       setTimeout(function () {
         typingEl.classList.add('leaving');
-        setTimeout(function () { typingEl.remove(); }, 180);
+        setTimeout(function () { typingEl.remove(); }, 160);
         setStatus('en línea');
         msgEl.classList.add('show');
         scrollChatToBottom();
@@ -232,128 +314,45 @@
 
     function typeMsFor(el) {
       var len = (el.textContent || '').length;
-      return Math.min(2000, Math.max(900, 700 + len * 22));
+      return Math.min(1800, Math.max(800, 600 + len * 18));
     }
 
     function playIntro() {
-      msgs.forEach(function (m) {
-        if (m.hasAttribute('data-typing')) m.style.display = 'none';
-      });
-
-      var t = 500;
+      msgs.forEach(function (m) { if (m.hasAttribute('data-typing')) m.remove(); });
+      var seq = msgs.filter(function (m) { return !m.hasAttribute('data-typing'); });
+      // seq: 0 cliente, 1 NUBI, 2 opciones, 3 cliente, 4 NUBI con código
+      var t = 400;
       function at(ms, fn) { setTimeout(fn, t += ms); }
 
-      // 1. Cliente escribe
-      at(0, function () {
-        msgs[0].classList.add('show');
-        scrollChatToBottom();
-      });
-
-      // 2. NUBI responde (con "escribiendo…" y resultados)
-      at(1100, function () {
-        botTypes(msgs[2], typeMsFor(msgs[2]));
-      });
-      t += typeMsFor(msgs[2]) + 150;
-
-      // 3. Opciones para confirmar
+      at(0, function () { seq[0].classList.add('show'); scrollChatToBottom(); });
+      at(700, function () { botTypes(seq[1], typeMsFor(seq[1])); });
+      t += typeMsFor(seq[1]);
+      at(500, function () { seq[2].classList.add('show'); scrollChatToBottom(); });
+      at(1100, function () { seq[3].classList.add('show'); scrollChatToBottom(); });
       at(700, function () {
-        msgs[3].classList.add('show');
-        scrollChatToBottom();
-      });
-
-      // 4. Cliente confirma
-      at(1300, function () {
-        msgs[4].classList.add('show');
-        scrollChatToBottom();
-      });
-
-      // 5. NUBI asigna domiciliario, con ticks de entrega
-      at(900, function () {
-        botTypes(msgs[6], typeMsFor(msgs[6]), function () {
+        botTypes(seq[4], typeMsFor(seq[4]), function () {
           if (ticks) ticks.setAttribute('data-state', 'sent');
         });
       });
-      t += typeMsFor(msgs[6]) + 150;
-
+      t += typeMsFor(seq[4]);
       at(350, function () { if (ticks) ticks.setAttribute('data-state', 'delivered'); });
-      at(700, function () { if (ticks) ticks.setAttribute('data-state', 'read'); });
-      at(700, enableChatInput);
+      at(600, function () { if (ticks) ticks.setAttribute('data-state', 'read'); });
     }
 
-    if (reduceMotion) {
+    if (reduceMotion || !('IntersectionObserver' in window)) {
       showStatic();
-    } else if ('IntersectionObserver' in window) {
+    } else {
       var started = false;
       var chatIo = new IntersectionObserver(function (entries) {
         entries.forEach(function (entry) {
           if (entry.isIntersecting && !started) {
             started = true;
+            chatIo.disconnect();
             playIntro();
           }
         });
-      }, { threshold: 0.35 });
-      chatIo.observe(chatIntro);
-    } else {
-      playIntro();
-    }
-  }
-
-  // ── Parallax sutil del panel de chat (sigue el cursor) ──────────────
-  var heroPanel = document.querySelector('.hero-panel');
-  var chatcard = document.querySelector('.chatcard');
-  if (heroPanel && chatcard && !reduceMotion && window.matchMedia('(hover: hover)').matches) {
-    var rafId = null;
-    heroPanel.addEventListener('mousemove', function (e) {
-      var rect = heroPanel.getBoundingClientRect();
-      var px = (e.clientX - rect.left) / rect.width - 0.5;
-      var py = (e.clientY - rect.top) / rect.height - 0.5;
-      if (rafId) cancelAnimationFrame(rafId);
-      rafId = requestAnimationFrame(function () {
-        chatcard.style.transform =
-          'rotateX(' + (-py * 4).toFixed(2) + 'deg) rotateY(' + (px * 5).toFixed(2) + 'deg)';
-      });
-    });
-    heroPanel.addEventListener('mouseleave', function () {
-      if (rafId) cancelAnimationFrame(rafId);
-      chatcard.style.transform = '';
-    });
-  }
-
-  // ── Contador de latencia del hero ───────────────────────────────────
-  // Sube de 0.0s a un valor final (~1.4s) para reforzar visualmente el eje
-  // de "respuesta rápida" del producto — no es un dato medido en vivo.
-  var counter = document.querySelector('[data-latency-counter]');
-  if (counter) {
-    var target = 1.4;
-    var run = function () {
-      if (reduceMotion) {
-        counter.textContent = target.toFixed(1) + 's';
-        return;
-      }
-      var start = null;
-      var duration = 1100;
-      function step(ts) {
-        if (start === null) start = ts;
-        var progress = Math.min((ts - start) / duration, 1);
-        var eased = 1 - Math.pow(1 - progress, 3);
-        counter.textContent = (eased * target).toFixed(1) + 's';
-        if (progress < 1) requestAnimationFrame(step);
-      }
-      requestAnimationFrame(step);
-    };
-
-    if ('IntersectionObserver' in window) {
-      var counterIo = new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting) {
-            run();
-            counterIo.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.4 });
-      counterIo.observe(counter);
-    } else {
-      run();
+      }, { threshold: 0.3 });
+      chatIo.observe(chatLog);
     }
   }
 })();

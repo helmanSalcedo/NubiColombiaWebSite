@@ -2,18 +2,19 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="color-scheme" content="dark" />
+  <meta name="color-scheme" content="light" />
   <script>document.documentElement.classList.add("js");</script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>NubiColombia – NUBI, pedidos por WhatsApp con IA</title>
   <meta name="facebook-domain-verification" content="o4zn77hr3qa62nlp1tp60ya1061qpl" />
   <meta name="description" content="NubiColombia: NUBI interpreta lo que necesitas por WhatsApp y mueve la orden en segundos: comida, farmacia, mercado y mandados, con IA y sin instalar nada." />
+  <link rel="canonical" href="https://nubicolombia.com/" />
 
   <meta property="og:url" content="https://nubicolombia.com/" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="NubiColombia" />
-  <meta property="og:title" content="NUBI — Chatbot con IA por WhatsApp" />
-  <meta property="og:description" content="Escribes, la IA entiende, la orden se mueve. Comida, farmacia, mercado y mandados por WhatsApp, sin instalar nada." />
+  <meta property="og:title" content="NUBI — Pedidos por WhatsApp" />
+  <meta property="og:description" content="Escribes, NUBI entiende, la orden se mueve. Comida, farmacia, mercado y mandados por WhatsApp, sin instalar nada." />
   <!-- OG/Twitter exigen URL absoluta para la imagen — los crawlers no
        resuelven rutas relativas a la página. -->
   <meta property="og:image" content="https://nubicolombia.com/assets/og-cover.jpg" />
@@ -21,289 +22,328 @@
   <meta property="og:image:height" content="630" />
   <meta property="og:locale" content="es_CO" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="NUBI — Chatbot con IA por WhatsApp" />
-  <meta name="twitter:description" content="Escribes, la IA entiende, la orden se mueve. Sin instalar nada." />
+  <meta name="twitter:title" content="NUBI — Pedidos por WhatsApp" />
+  <meta name="twitter:description" content="Escribes, NUBI entiende, la orden se mueve. Sin instalar nada." />
   <meta name="twitter:image" content="https://nubicolombia.com/assets/og-cover.jpg" />
 
   <meta name="theme-color" content="#0A1330" />
+  <!-- Backend de Nubi: de aquí sale el contenido que se edita en el admin (Sitio web) -->
+  <meta name="nubi-api" content="https://jaybird-dominion-habitant.ngrok-free.dev" />
   <link rel="icon" href="assets/favicon-32.png" sizes="32x32" type="image/png" />
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
 
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="preload" href="assets/fonts/bricolage-grotesque-latin.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="styles.css" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "NubiColombia",
+    "alternateName": "NUBI",
+    "description": "Plataforma de pedidos por WhatsApp: comida, farmacia, mercado y mandados.",
+    "url": "https://nubicolombia.com/",
+    "logo": "https://nubicolombia.com/assets/apple-touch-icon.png",
+    "image": "https://nubicolombia.com/assets/og-cover.jpg",
+    "telephone": "+57 312 804 5836",
+    "email": "hellman.salcedo@gmail.com",
+    "taxID": "1063816105-8",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "CR 22 18 05, Barrio San Judas",
+      "addressLocality": "Timbío",
+      "addressRegion": "Cauca",
+      "addressCountry": "CO"
+    },
+    "areaServed": "Timbío, Cauca"
+  }
+  </script>
 </head>
 <body>
-  <a class="skip-link" href="#top">Saltar al contenido</a>
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
 
-  <div class="starfield" aria-hidden="true">
-    <svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice"></svg>
-    <div class="shooting-stars"></div>
-  </div>
-  <div class="grain" aria-hidden="true"></div>
-
-  <nav>
+  <nav class="site-nav" aria-label="Principal">
     <div class="nav-inner">
-      <a class="logo" href="#top">
-        <img src="assets/logo-nubi-96.png" alt="NUBI" width="34" height="34" />
+      <a class="logo" href="/">
+        <img src="assets/logo-nubi-96.png" alt="" width="36" height="35" />
         <span>nubi</span>
       </a>
       <div class="nav-links">
         <a href="#como-funciona">Cómo funciona</a>
-        <a href="#roles">El chatbot</a>
-        <a href="#por-que">Por qué IA</a>
+        <a href="#negocios">Negocios</a>
+        <a href="#domiciliarios">Domiciliarios</a>
       </div>
-      <a class="btn btn-primary btn-small" data-wa-text="Hola, quiero saber más sobre NUBI" href="#" target="_blank" rel="noopener">Hablar con NUBI</a>
+      <a class="btn btn-primary btn-small" data-wa-text="Hola, quiero saber más sobre NUBI" href="https://wa.me/573128045836?text=Hola%2C%20quiero%20saber%20m%C3%A1s%20sobre%20NUBI" target="_blank" rel="noopener" data-cms="nav.cta">Hablar con NUBI</a>
     </div>
   </nav>
 
-  <main id="top">
+  <main id="contenido" tabindex="-1">
 
-    <header class="hero">
+    <header class="hero band-night">
       <div class="hero-inner">
-        <div class="hero-copy reveal">
-          <span class="eyebrow">
-            <span class="dot-live" aria-hidden="true"></span>
-            NUBI · Pedidos por WhatsApp con IA
-          </span>
-          <h1>Escribes. <em>La IA entiende.</em><br>La orden se mueve.</h1>
-          <p class="hero-sub">
+        <div class="hero-head">
+          <h1 data-cms-html="hero.titleHtml">Escribes. <em>La IA entiende.</em><br>La orden se mueve.</h1>
+        </div>
+
+        <div class="hero-copy">
+          <p class="hero-sub" data-cms="hero.subtitle">
             NUBI interpreta lo que necesitas en un solo mensaje de WhatsApp
             — comida, farmacia, mercado o un mandado — y coordina
             todo el proceso sin que abras una app ni llenes un formulario.
           </p>
           <div class="hero-ctas">
-            <a class="btn btn-primary" data-wa-text="Hola, quiero probar NUBI" href="#" target="_blank" rel="noopener">Probar por WhatsApp</a>
-            <a class="btn btn-outline" href="#como-funciona">Ver cómo funciona</a>
+            <a class="btn btn-primary" data-wa-text="Hola, quiero probar NUBI" href="https://wa.me/573128045836?text=Hola%2C%20quiero%20probar%20NUBI" target="_blank" rel="noopener" data-cms="hero.ctaPrimary">Probar por WhatsApp</a>
+            <a class="btn btn-ghost" href="#como-funciona" data-cms="hero.ctaSecondary">Ver cómo funciona</a>
           </div>
-          <div class="hero-stats">
-            <div class="stat">
-              <span class="stat-value mono">+530</span>
-              <span class="stat-label">pedidos entregados en Timbío</span>
-            </div>
-            <div class="stat-divider" aria-hidden="true"></div>
-            <div class="stat">
-              <span class="stat-value mono" data-latency-counter>0.0s</span>
-              <span class="stat-label">tiempo promedio de respuesta</span>
-            </div>
-            <div class="stat-divider" aria-hidden="true"></div>
-            <div class="stat">
-              <span class="stat-value mono">3</span>
-              <span class="stat-label">flujos: cliente, negocio, domiciliario</span>
-            </div>
-          </div>
+          <ul class="hero-proof">
+            <li>Código de entrega en cada pedido</li>
+            <li>Domiciliarios revisados por una persona</li>
+            <li>Sin instalar ninguna app</li>
+          </ul>
+          <p class="hero-doors">
+            <a href="#negocios">¿Tienes un negocio?</a>
+            <a href="#domiciliarios">¿Quieres repartir?</a>
+          </p>
         </div>
 
-        <div class="hero-panel reveal">
-          <div class="panel-glow" aria-hidden="true"></div>
-          <img class="hero-mascot" src="assets/nubi-bot.svg" alt="" width="220" height="220" aria-hidden="true" />
-          <div class="chatcard glass-border">
-            <div class="chatcard-head">
-              <img src="assets/logo-nubi-96.png" alt="" width="28" height="28" />
-              <div>
-                <div class="chatcard-name">NUBI</div>
-                <div class="chatcard-status"><span class="dot-live" aria-hidden="true"></span>en línea</div>
+        <div class="hero-chat">
+          <div class="chat" aria-label="Ejemplo de conversación con NUBI">
+            <div class="chat-head">
+              <img src="assets/logo-nubi-96.png" alt="" width="32" height="31" />
+              <div class="chat-id">
+                <span class="chat-name">NUBI</span>
+                <span class="chat-status" data-chat-status>en línea</span>
               </div>
+              <span class="chat-tag">Ejemplo</span>
             </div>
-            <div class="chatcard-body" data-chat-log role="log" aria-live="polite" aria-label="Ejemplo de conversación con NUBI">
+            <div class="chat-body" data-chat-log role="log" aria-live="polite">
               <div class="msg bubble in" data-msg>Necesito dos pizzas grandes y algo para la gripa</div>
-              <div class="msg bubble typing" data-msg data-typing aria-hidden="true"><span></span><span></span><span></span></div>
               <div class="msg bubble out" data-msg>
                 Encontré esto cerca de ti:<br />
                 Pizzería Roma — $52.000<br />
                 Dolex Gripa en Droguería Central — $14.000
-                <span class="latency-tag mono">procesado en 1.3s</span>
               </div>
-              <div class="msg option-row" data-msg>
-                <button class="option" type="button">Confirmar pizza</button>
-                <button class="option" type="button">Confirmar Dolex Gripa</button>
+              <div class="msg option-row msg-extra" data-msg aria-hidden="true">
+                <span class="option">Confirmar pizza</span>
+                <span class="option">Confirmar Dolex Gripa</span>
               </div>
-              <div class="msg bubble in" data-msg>Confirmo las dos</div>
-              <div class="msg bubble typing" data-msg data-typing aria-hidden="true"><span></span><span></span><span></span></div>
+              <div class="msg bubble in msg-extra" data-msg>Confirmo las dos</div>
               <div class="msg bubble out" data-msg>
-                Domiciliario asignado. Código de entrega enviado al cliente.
+                Domiciliario asignado. Tu código de entrega es <b class="code-inline">4827</b>: dáselo solo a quien te entregue.
                 <span class="ticks" data-ticks aria-hidden="true">
                   <svg viewBox="0 0 18 12" class="tick tick-1"><path d="M1 6l4 4L13 2" /></svg>
                   <svg viewBox="0 0 18 12" class="tick tick-2"><path d="M5 6l4 4L17 2" /></svg>
                 </span>
               </div>
             </div>
-            <form class="chat-input-row" data-chat-form>
-              <input
-                type="text"
-                class="chat-input"
-                data-chat-input
-                placeholder="Escribe lo que necesitas (pruébalo)…"
-                autocomplete="off"
-                disabled
-              />
-              <button type="submit" class="chat-send" aria-label="Enviar">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12h16M14 6l6 6-6 6" /></svg>
+            <form class="chat-form" data-chat-form action="https://wa.me/573128045836" method="get" target="_blank" rel="noopener">
+              <label class="sr-only" for="chat-text">Escribe tu pedido para enviarlo por WhatsApp</label>
+              <input id="chat-text" name="text" type="text" class="chat-input" data-chat-input placeholder="Escribe tu pedido…" autocomplete="off" enterkeyhint="send" required />
+              <button type="submit" class="chat-send" aria-label="Enviar por WhatsApp">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6" /></svg>
               </button>
             </form>
+            <p class="chat-hint">Lo que escribas se abre en WhatsApp, listo para enviar.</p>
           </div>
         </div>
       </div>
     </header>
 
-    <div class="marquee" aria-label="Servicios de NUBI">
-      <div class="marquee-track">
+    <div class="services" aria-label="Servicios de NUBI">
+      <p class="services-track" data-cms-marquee>
         <span>Domicilios</span><i></i><span>Mercancías</span><i></i><span>Emprendimientos</span><i></i><span>Publicidad</span><i></i>
         <span class="marquee-dup" aria-hidden="true"><span>Domicilios</span><i></i><span>Mercancías</span><i></i><span>Emprendimientos</span><i></i><span>Publicidad</span><i></i></span>
-      </div>
+      </p>
     </div>
 
-    <section id="como-funciona" class="section reveal">
+    <section id="como-funciona" class="section" aria-labelledby="how-title">
       <div class="wrap">
         <div class="section-head">
-          <span class="kicker">Cómo funciona</span>
-          <h2>Un mensaje, tres pasos</h2>
-          <p>Nada de menús anidados ni formularios largos. La IA hace la parte difícil.</p>
+          <h2 id="how-title" data-cms="how.title">Un mensaje, tres pasos</h2>
+          <p data-cms="how.subtitle">Nada de menús anidados ni formularios largos. La IA hace la parte difícil.</p>
         </div>
 
-        <div class="steps">
-          <div class="step step-lead glass-border">
-            <span class="step-num-ghost mono" aria-hidden="true">01</span>
-            <span class="step-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 5h16a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H9l-5 4V6a1 1 0 0 1 1-1Z" /><path d="M8 10h8M8 13h5" /></svg>
-            </span>
-            <h3>Escribes lo que necesitas</h3>
-            <p>En tus palabras, como se lo dirías a un vecino. Sin comandos ni menús que memorizar.</p>
-          </div>
-
-          <div class="step glass-border">
-            <span class="step-num-ghost mono" aria-hidden="true">02</span>
-            <span class="step-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3v3M12 18v3M3 12h3M18 12h3" /><circle cx="12" cy="12" r="5.5" /></svg>
-            </span>
-            <h3>La IA interpreta la intención</h3>
-            <p>Identifica qué necesitas, en qué negocio, y arma la opción exacta en segundos.</p>
-          </div>
-
-          <div class="step glass-border">
-            <span class="step-num-ghost mono" aria-hidden="true">03</span>
-            <span class="step-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 13l4 4L19 7" /></svg>
-            </span>
-            <h3>Confirmas con un toque</h3>
-            <p>Un domiciliario queda asignado, y el código de entrega llega solo a ti.</p>
-          </div>
-        </div>
+        <ol class="steps">
+          <li class="step">
+            <div class="moment" aria-hidden="true">
+              <div class="bubble in">Necesito dos pizzas grandes y algo para la gripa</div>
+            </div>
+            <h3 data-cms="how.steps.0.title">Escribes lo que necesitas</h3>
+            <p data-cms="how.steps.0.text">En tus palabras, como se lo dirías a un vecino. Sin comandos ni menús que memorizar.</p>
+          </li>
+          <li class="step">
+            <div class="moment" aria-hidden="true">
+              <div class="bubble out">Pizzería Roma — $52.000<br />Dolex Gripa — $14.000</div>
+              <div class="option-row"><span class="option">Confirmar pizza</span><span class="option">Confirmar Dolex Gripa</span></div>
+            </div>
+            <h3 data-cms="how.steps.1.title">La IA interpreta la intención</h3>
+            <p data-cms="how.steps.1.text">Identifica qué necesitas, en qué negocio, y arma la opción exacta en segundos.</p>
+          </li>
+          <li class="step">
+            <div class="moment moment-code" aria-hidden="true">
+              <div class="ticket">
+                <span class="ticket-label">Código de entrega</span>
+                <span class="ticket-code">4827</span>
+              </div>
+            </div>
+            <h3 data-cms="how.steps.2.title">Confirmas con un toque</h3>
+            <p data-cms="how.steps.2.text">Un domiciliario queda asignado, y el código de entrega llega solo a ti.</p>
+          </li>
+        </ol>
+        <p class="steps-note">Conversaciones de ejemplo.</p>
       </div>
     </section>
 
-    <section id="roles" class="section section-panel reveal">
+    <section id="roles" class="section section-roles" aria-labelledby="roles-title">
       <div class="wrap">
         <div class="section-head">
-          <span class="kicker">Un solo chatbot, tres roles</span>
-          <h2>Cliente, negocio y domiciliario, coordinados por la misma IA</h2>
+          <h2 id="roles-title" data-cms="roles.title">Cliente, negocio y domiciliario, coordinados por la misma IA</h2>
         </div>
 
-        <div class="roles">
-          <article class="role-card glass-border">
-            <span class="role-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8" r="3.4" /><path d="M5 20c0-3.6 3.1-6.4 7-6.4s7 2.8 7 6.4" /></svg>
-            </span>
-            <h3>Cliente</h3>
-            <ul>
+        <article class="role role-client">
+          <div class="role-copy">
+            <h3 data-cms="roles.cards.0.title">Cliente</h3>
+            <ul class="role-list" data-cms-list="roles.cards.0.items">
               <li>Busca negocios aprobados y su menú en el momento.</li>
               <li>Arma el carrito y confirma el pedido por chat.</li>
               <li>Sigue el estado y su historial sin salir de WhatsApp.</li>
             </ul>
-            <a class="role-cta" data-wa-text="Hola, quiero pedir algo" href="#" target="_blank" rel="noopener">Pedir por WhatsApp →</a>
-          </article>
+          </div>
+          <a class="btn btn-dark" data-wa-text="Hola, quiero pedir algo" href="https://wa.me/573128045836?text=Hola%2C%20quiero%20pedir%20algo" target="_blank" rel="noopener" data-cms="roles.cards.0.cta">Pedir por WhatsApp</a>
+        </article>
 
-          <article class="role-card glass-border">
-            <span class="role-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 9.5 12 4l9 5.5" /><path d="M5 10v9h14v-9" /><path d="M10 19v-5h4v5" /></svg>
-            </span>
-            <h3>Negocio</h3>
-            <ul>
+        <article id="negocios" class="role role-split">
+          <div class="role-copy">
+            <h3 data-cms="roles.cards.1.title">Negocio</h3>
+            <ul class="role-list" data-cms-list="roles.cards.1.items">
               <li>Recibe, confirma y prepara pedidos desde el chat.</li>
               <li>Marca listo y despacha sin panel externo.</li>
               <li>Actualiza disponibilidad del menú en tiempo real.</li>
             </ul>
-            <a class="role-cta" data-wa-text="Hola, quiero registrar mi negocio en NUBI" data-wa-channel="negocios" href="#" target="_blank" rel="noopener">Registrar mi negocio por WhatsApp →</a>
-          </article>
+            <a class="btn btn-dark" data-wa-text="Hola, quiero registrar mi negocio en NUBI" data-wa-channel="negocios" href="https://wa.me/573128047127?text=Hola%2C%20quiero%20registrar%20mi%20negocio%20en%20NUBI" target="_blank" rel="noopener" data-cms="roles.cards.1.cta">Registrar mi negocio por WhatsApp</a>
+          </div>
+          <div class="role-screen" aria-hidden="true">
+            <div class="screen">
+              <div class="screen-head">NUBI · Negocio <span class="chat-tag">Ejemplo</span></div>
+              <div class="screen-body">
+                <div class="bubble out">Nuevo pedido<br />2 pizzas grandes · Barrio Centro<br />Total $52.000</div>
+                <div class="option-row"><span class="option">Aceptar</span><span class="option">Rechazar</span></div>
+                <div class="bubble in">Aceptar</div>
+                <div class="bubble out">Listo. Avísame cuando esté para despachar.</div>
+              </div>
+            </div>
+          </div>
+        </article>
 
-          <article class="role-card glass-border">
-            <span class="role-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="6" cy="18" r="2.6" /><circle cx="17" cy="18" r="2.6" /><path d="M8.5 18h6l-2-9H6l1.5 5.5H14" /></svg>
-            </span>
-            <h3>Domiciliario</h3>
-            <ul>
+        <article id="domiciliarios" class="role role-split role-flip">
+          <div class="role-copy">
+            <h3 data-cms="roles.cards.2.title">Domiciliario</h3>
+            <p class="role-fact">Te quedas con el 100% del valor del domicilio. NUBI no te cobra comisión.</p>
+            <ul class="role-list" data-cms-list="roles.cards.2.items">
               <li>Acepta o rechaza ofertas según su zona.</li>
               <li>Confirma recogida y entrega con un código único.</li>
               <li>Consulta sus ganancias sin salir del chat.</li>
             </ul>
-            <a class="role-cta" data-wa-text="Hola, quiero ser domiciliario en NUBI" data-wa-channel="domiciliarios" href="#" target="_blank" rel="noopener">Únete como domiciliario →</a>
-          </article>
-        </div>
+            <p class="role-note">Para registrarte necesitas tu cédula y, si usas moto o carro, licencia y SOAT vigentes. Una persona del equipo revisa tus documentos. <a href="/terminos-domiciliarios">Ver términos</a></p>
+            <a class="btn btn-dark" data-wa-text="Hola, quiero ser domiciliario en NUBI" data-wa-channel="domiciliarios" href="https://wa.me/573128035848?text=Hola%2C%20quiero%20ser%20domiciliario%20en%20NUBI" target="_blank" rel="noopener" data-cms="roles.cards.2.cta">Únete como domiciliario</a>
+          </div>
+          <div class="role-screen" aria-hidden="true">
+            <div class="screen">
+              <div class="screen-head">NUBI · Domiciliario <span class="chat-tag">Ejemplo</span></div>
+              <div class="screen-body">
+                <div class="bubble out">Oferta de domicilio<br />Recoge en Pizzería Roma<br />Entrega en Barrio Centro</div>
+                <div class="option-row"><span class="option">Aceptar</span><span class="option">Dejar pasar</span></div>
+                <div class="bubble in">Entregado. Código 4827</div>
+                <div class="bubble out">Código correcto. Entrega confirmada.</div>
+              </div>
+            </div>
+          </div>
+        </article>
       </div>
     </section>
 
-    <section id="por-que" class="section reveal">
+    <section id="por-que" class="section" aria-labelledby="why-title">
       <div class="wrap">
         <div class="section-head">
-          <span class="kicker">Por qué IA + WhatsApp</span>
-          <h2>Rápido para el usuario, simple de operar</h2>
+          <h2 id="why-title" data-cms="why.title">Rápido para el usuario, simple de operar</h2>
         </div>
 
-        <div class="why-grid">
+        <div class="why-grid" data-cms-why>
           <div class="why-item">
-            <span class="why-num mono">01</span>
-            <h3>Sin apps que instalar</h3>
-            <p>Todo corre en el WhatsApp que la gente ya usa a diario, sin pesar el teléfono ni pedir permisos.</p>
+            <h3 data-cms="why.items.0.title">Sin apps que instalar</h3>
+            <p data-cms="why.items.0.text">Todo corre en el WhatsApp que la gente ya usa a diario, sin pesar el teléfono ni pedir permisos.</p>
           </div>
           <div class="why-item">
-            <span class="why-num mono">02</span>
-            <h3>Respuesta en segundos</h3>
-            <p>La IA interpreta la intención desde el primer mensaje — no hace falta navegar categorías.</p>
+            <h3 data-cms="why.items.1.title">Respuesta en segundos</h3>
+            <p data-cms="why.items.1.text">La IA interpreta la intención desde el primer mensaje — no hace falta navegar categorías.</p>
           </div>
           <div class="why-item">
-            <span class="why-num mono">03</span>
-            <h3>Entregas verificadas</h3>
-            <p>Un código único de recogida y otro de entrega confirman que cada paso realmente ocurrió.</p>
+            <h3 data-cms="why.items.2.title">Entregas verificadas</h3>
+            <p data-cms="why.items.2.text">Un código único de recogida y otro de entrega confirman que cada paso realmente ocurrió.</p>
           </div>
           <div class="why-item">
-            <span class="why-num mono">04</span>
-            <h3>Funciona en cualquier teléfono</h3>
-            <p>No requiere gama alta ni buena señal — WhatsApp ya está optimizado para eso.</p>
+            <h3 data-cms="why.items.3.title">Funciona en cualquier teléfono</h3>
+            <p data-cms="why.items.3.text">No requiere gama alta ni buena señal — WhatsApp ya está optimizado para eso.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="section final-cta reveal">
-      <div class="wrap">
-        <div class="cta-panel">
-          <img class="final-cta-mascot" src="assets/nubi-bot.svg" alt="" width="200" height="200" loading="lazy" />
-          <div class="cta-copy">
-            <span class="kicker">Empieza ahora</span>
-            <h2>Tu próxima solicitud, resuelta en un mensaje.</h2>
-            <a class="btn btn-primary" data-wa-text="Hola, quiero probar NUBI" href="#" target="_blank" rel="noopener">Abrir WhatsApp y pedir</a>
-          </div>
+    <section class="closing band-night" aria-labelledby="close-title">
+      <div class="wrap closing-inner">
+        <img class="closing-mascot" src="assets/nubi-bot-static.svg" alt="" width="160" height="160" loading="lazy" />
+        <div class="closing-copy">
+          <h2 id="close-title" data-cms="finalCta.title">Tu próxima solicitud, resuelta en un mensaje.</h2>
+          <a class="btn btn-primary" data-wa-text="Hola, quiero probar NUBI" href="https://wa.me/573128045836?text=Hola%2C%20quiero%20probar%20NUBI" target="_blank" rel="noopener" data-cms="finalCta.button">Abrir WhatsApp y pedir</a>
         </div>
+        <figure class="closing-qr">
+          <img src="assets/qr-nubi-pedidos.png" alt="Código QR para pedir por WhatsApp" width="132" height="132" loading="lazy" />
+          <figcaption>¿Estás en el computador? Escanéalo con tu celular.</figcaption>
+        </figure>
       </div>
     </section>
 
   </main>
 
-  <footer>
-    <div class="wrap footer-inner">
-      <a class="logo" href="#top">
-        <img src="assets/logo-nubi-96.png" alt="NUBI" width="24" height="24" />
-        <span>nubi</span>
-      </a>
-      <div class="footer-legal">
-        <p class="footer-note"><strong>NubiColombia</strong> — Plataforma de pedidos por WhatsApp con IA</p>
-        <p class="footer-note">Responsable: Hellman Sebastian Salcedo Delgado · NIT 1063816105-8</p>
-        <p class="footer-note">CR 22 18 05, Barrio San Judas, Timbío, Cauca, Colombia</p>
-        <p class="footer-note">Tel/WhatsApp: +57 315 867 8716 · <span data-contact-email>hellman.salcedo@gmail.com</span></p>
-        <p class="footer-note"><a href="/privacidad">Política de privacidad</a> · <a href="/terminos-domiciliarios">Términos para domiciliarios</a> · © 2026 NubiColombia</p>
+  <footer class="site-footer">
+    <div class="wrap footer-grid">
+      <div class="footer-brand">
+        <a class="logo" href="/">
+          <img src="assets/logo-nubi-96.png" alt="" width="30" height="29" />
+          <span>nubi</span>
+        </a>
+        <p><strong>NubiColombia</strong> — <span data-cms="contact.tagline">Plataforma de pedidos por WhatsApp con IA</span></p>
+      </div>
+
+      <div class="footer-col">
+        <h2 class="footer-title">WhatsApp</h2>
+        <ul>
+          <li><a data-wa-text="Hola, quiero pedir algo" href="https://wa.me/573128045836?text=Hola%2C%20quiero%20pedir%20algo" target="_blank" rel="noopener">Pedidos <span data-wa-display="pedidos">+57 312 804 5836</span></a></li>
+          <li><a data-wa-text="Hola, quiero registrar mi negocio en NUBI" data-wa-channel="negocios" href="https://wa.me/573128047127?text=Hola%2C%20quiero%20registrar%20mi%20negocio%20en%20NUBI" target="_blank" rel="noopener">Negocios <span data-wa-display="negocios">+57 312 804 7127</span></a></li>
+          <li><a data-wa-text="Hola, quiero ser domiciliario en NUBI" data-wa-channel="domiciliarios" href="https://wa.me/573128035848?text=Hola%2C%20quiero%20ser%20domiciliario%20en%20NUBI" target="_blank" rel="noopener">Domiciliarios <span data-wa-display="domiciliarios">+57 312 803 5848</span></a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h2 class="footer-title">Contacto y responsable</h2>
+        <ul>
+          <li><span data-cms="contact.legalName">Hellman Sebastian Salcedo Delgado</span> · NIT <span data-cms="contact.nit">1063816105-8</span></li>
+          <li data-cms="contact.address">CR 22 18 05, Barrio San Judas, Timbío, Cauca, Colombia</li>
+          <li><a href="tel:+573158678716" data-contact-phone>Tel. <span data-cms="contact.phone">+57 315 867 8716</span></a></li>
+          <li><a href="mailto:hellman.salcedo@gmail.com" data-contact-email data-cms="contact.email">hellman.salcedo@gmail.com</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h2 class="footer-title">Legal</h2>
+        <ul>
+          <li><a href="/privacidad">Política de privacidad</a></li>
+          <li><a href="/privacidad#eliminacion">Eliminar mis datos</a></li>
+          <li><a href="/terminos-domiciliarios">Términos para domiciliarios</a></li>
+        </ul>
       </div>
     </div>
+    <div class="wrap footer-base">© 2026 NubiColombia · Timbío, Cauca</div>
   </footer>
 
   <script src="script.js"></script>
