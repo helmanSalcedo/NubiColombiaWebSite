@@ -1,29 +1,29 @@
 <!doctype html>
-<html lang="es">
+<html lang="es-CO">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="color-scheme" content="light" />
   <script>document.documentElement.classList.add("js");</script>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>NubiColombia – NUBI, pedidos por WhatsApp con IA</title>
-  <meta name="facebook-domain-verification" content="o4zn77hr3qa62nlp1tp60ya1061qpl" />
-  <meta name="description" content="NubiColombia: NUBI interpreta lo que necesitas por WhatsApp y mueve la orden en segundos: comida, farmacia, mercado y mandados, con IA y sin instalar nada." />
+  <title>NUBI · Domicilios por WhatsApp en Timbío y Popayán</title>
+  <meta name="description" content="Pide comida, farmacia, mercado o un mandado con un mensaje o un audio de WhatsApp. NUBI entiende, busca el negocio y te lo lleva con código de entrega. Timbío y Popayán." />
   <link rel="canonical" href="https://nubicolombia.com/" />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <meta name="facebook-domain-verification" content="o4zn77hr3qa62nlp1tp60ya1061qpl" />
 
   <meta property="og:url" content="https://nubicolombia.com/" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="NubiColombia" />
-  <meta property="og:title" content="NUBI — Pedidos por WhatsApp" />
-  <meta property="og:description" content="Escribes, NUBI entiende, la orden se mueve. Comida, farmacia, mercado y mandados por WhatsApp, sin instalar nada." />
-  <!-- OG/Twitter exigen URL absoluta para la imagen — los crawlers no
-       resuelven rutas relativas a la página. -->
+  <meta property="og:locale" content="es_CO" />
+  <meta property="og:title" content="NUBI · Domicilios por WhatsApp" />
+  <meta property="og:description" content="Escribes o mandas un audio, NUBI entiende y la orden se mueve. Sin instalar nada." />
   <meta property="og:image" content="https://nubicolombia.com/assets/og-cover.jpg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
-  <meta property="og:locale" content="es_CO" />
+  <meta property="og:image:alt" content="NUBI, pedidos por WhatsApp" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="NUBI — Pedidos por WhatsApp" />
-  <meta name="twitter:description" content="Escribes, NUBI entiende, la orden se mueve. Sin instalar nada." />
+  <meta name="twitter:title" content="NUBI · Domicilios por WhatsApp" />
+  <meta name="twitter:description" content="Escribes o mandas un audio, NUBI entiende y la orden se mueve. Sin instalar nada." />
   <meta name="twitter:image" content="https://nubicolombia.com/assets/og-cover.jpg" />
 
   <meta name="theme-color" content="#0A1330" />
@@ -32,30 +32,68 @@
   <link rel="icon" href="assets/favicon-32.png" sizes="32x32" type="image/png" />
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
 
-  <link rel="preload" href="assets/fonts/bricolage-grotesque-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="assets/fonts/bricolage-grotesque-latin-v2.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="styles.css" />
 
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "name": "NubiColombia",
-    "alternateName": "NUBI",
-    "description": "Plataforma de pedidos por WhatsApp: comida, farmacia, mercado y mandados.",
-    "url": "https://nubicolombia.com/",
-    "logo": "https://nubicolombia.com/assets/apple-touch-icon.png",
-    "image": "https://nubicolombia.com/assets/og-cover.jpg",
-    "telephone": "+57 312 804 5836",
-    "email": "hellman.salcedo@gmail.com",
-    "taxID": "1063816105-8",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "CR 22 18 05, Barrio San Judas",
-      "addressLocality": "Timbío",
-      "addressRegion": "Cauca",
-      "addressCountry": "CO"
-    },
-    "areaServed": "Timbío, Cauca"
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://nubicolombia.com/#org",
+        "name": "NubiColombia",
+        "alternateName": "NUBI",
+        "url": "https://nubicolombia.com/",
+        "logo": "https://nubicolombia.com/assets/apple-touch-icon.png",
+        "email": "hellman.salcedo@gmail.com",
+        "taxID": "1063816105-8",
+        "contactPoint": [
+          { "@type": "ContactPoint", "contactType": "customer service", "telephone": "+57 312 804 5836", "areaServed": "CO", "availableLanguage": "es" },
+          { "@type": "ContactPoint", "contactType": "sales", "telephone": "+57 312 804 7127", "areaServed": "CO", "availableLanguage": "es" }
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://nubicolombia.com/#web",
+        "url": "https://nubicolombia.com/",
+        "name": "NUBI",
+        "inLanguage": "es-CO",
+        "publisher": { "@id": "https://nubicolombia.com/#org" }
+      },
+      {
+        "@type": "LocalBusiness",
+        "@id": "https://nubicolombia.com/#local",
+        "name": "NUBI – domicilios por WhatsApp",
+        "parentOrganization": { "@id": "https://nubicolombia.com/#org" },
+        "description": "Pedidos por WhatsApp con IA: comida, farmacia, mercado y mandados, con código de entrega.",
+        "url": "https://nubicolombia.com/",
+        "image": "https://nubicolombia.com/assets/og-cover.jpg",
+        "telephone": "+57 312 804 5836",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "CR 22 18 05, Barrio San Judas",
+          "addressLocality": "Timbío",
+          "addressRegion": "Cauca",
+          "addressCountry": "CO"
+        },
+        "areaServed": [
+          { "@type": "City", "name": "Timbío" },
+          { "@type": "City", "name": "Popayán" }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          { "@type": "Question", "name": "¿Tengo que instalar una app?", "acceptedAnswer": { "@type": "Answer", "text": "No. Todo pasa en WhatsApp: le escribes a NUBI al +57 312 804 5836 y listo." } },
+          { "@type": "Question", "name": "¿En qué ciudades funciona NUBI?", "acceptedAnswer": { "@type": "Answer", "text": "Hoy en Timbío y Popayán, en el Cauca. Pronto llegamos a más ciudades de Colombia." } },
+          { "@type": "Question", "name": "¿Puedo pedir con un audio?", "acceptedAnswer": { "@type": "Answer", "text": "Sí. Manda una nota de voz con lo que quieres. NUBI te muestra lo que entendió y sigue cuando le confirmas." } },
+          { "@type": "Question", "name": "¿Cómo pago mi pedido?", "acceptedAnswer": { "@type": "Answer", "text": "En línea con el enlace de pago seguro de Wompi (tarjeta, PSE o Nequi), o en efectivo cuando la tienda lo permite." } },
+          { "@type": "Question", "name": "¿Para qué sirve el código de entrega?", "acceptedAnswer": { "@type": "Answer", "text": "Es un número que te llega solo a ti. Se lo das al domiciliario cuando recibes el pedido: así queda confirmado que te llegó a ti." } },
+          { "@type": "Question", "name": "¿Puedo pedir de varias tiendas a la vez?", "acceptedAnswer": { "@type": "Answer", "text": "Sí. En un mismo mensaje puedes pedir, por ejemplo, una pizza y algo de la droguería. NUBI arma el pedido con cada tienda." } }
+        ]
+      }
+    ]
   }
   </script>
 </head>
@@ -64,14 +102,15 @@
 
   <nav class="site-nav" aria-label="Principal">
     <div class="nav-inner">
-      <a class="logo" href="/">
-        <img src="assets/logo-nubi-96.png" alt="" width="36" height="35" />
+      <a class="logo" href="/" aria-label="NUBI, inicio">
+        <img src="assets/logo-nubi-72.webp" alt="" width="36" height="35" />
         <span>nubi</span>
       </a>
       <div class="nav-links">
         <a href="#como-funciona">Cómo funciona</a>
-        <a href="#negocios">Negocios</a>
-        <a href="#domiciliarios">Domiciliarios</a>
+        <a href="/negocios">Negocios</a>
+        <a href="/domiciliarios">Domiciliarios</a>
+        <a href="#preguntas">Preguntas</a>
       </div>
       <a class="btn btn-primary btn-small" data-wa-text="Hola, quiero saber más sobre NUBI" href="https://wa.me/573128045836?text=Hola%2C%20quiero%20saber%20m%C3%A1s%20sobre%20NUBI" target="_blank" rel="noopener" data-cms="nav.cta">Hablar con NUBI</a>
     </div>
@@ -100,16 +139,17 @@
             <li>Domiciliarios revisados por una persona</li>
             <li>Sin instalar ninguna app</li>
           </ul>
+          <p class="hero-where">Hoy en <strong>Timbío</strong> y <strong>Popayán</strong>, Cauca.</p>
           <p class="hero-doors">
-            <a href="#negocios">¿Tienes un negocio?</a>
-            <a href="#domiciliarios">¿Quieres repartir?</a>
+            <a href="/negocios">¿Tienes un negocio?</a>
+            <a href="/domiciliarios">¿Quieres repartir?</a>
           </p>
         </div>
 
         <div class="hero-chat">
           <div class="chat" aria-label="Ejemplo de conversación con NUBI">
             <div class="chat-head">
-              <img src="assets/logo-nubi-96.png" alt="" width="32" height="31" />
+              <img src="assets/logo-nubi-72.webp" alt="" width="32" height="31" />
               <div class="chat-id">
                 <span class="chat-name">NUBI</span>
                 <span class="chat-status" data-chat-status>en línea</span>
@@ -194,6 +234,54 @@
       </div>
     </section>
 
+    <section id="pedir" class="section section-ways" aria-labelledby="ways-title">
+      <div class="wrap">
+        <div class="section-head">
+          <h2 id="ways-title">Pide como te quede más fácil</h2>
+          <p>Con un audio, tocando productos o repitiendo lo de siempre. Y pagas como prefieras.</p>
+        </div>
+
+        <div class="ways">
+          <article class="way">
+            <div class="moment" aria-hidden="true">
+              <div class="bubble in voice">
+                <svg class="voice-play" viewBox="0 0 16 16"><path d="M4 2.5v11l9-5.5z" /></svg>
+                <svg class="voice-wave" viewBox="0 0 120 24" preserveAspectRatio="none"><path d="M2 10v4M8 7v10M14 4v16M20 9v6M26 6v12M32 3v18M38 8v8M44 5v14M50 10v4M56 7v10M62 4v16M68 8v8M74 6v12M80 9v6M86 5v14M92 7v10M98 10v4M104 8v8M110 6v12M116 10v4" /></svg>
+                <span class="voice-time">0:07</span>
+              </div>
+              <div class="bubble out">Entendí: «2 hamburguesas, una sin cebolla». ¿Es correcto?</div>
+              <div class="option-row"><span class="option">Sí, es eso</span><span class="option">Corregir</span></div>
+            </div>
+            <h3>Con una nota de voz</h3>
+            <p>Habla como siempre. NUBI te muestra lo que entendió y sigue solo cuando le confirmas.</p>
+          </article>
+
+          <article class="way">
+            <div class="moment" aria-hidden="true">
+              <div class="pick">
+                <div class="pick-head">Arma tu pedido · Pizzería Roma</div>
+                <div class="pick-row"><span>Pizza mediana</span><b>$30.000</b><span class="pick-qty">1</span></div>
+                <div class="pick-row"><span>Gaseosa 1,5 L</span><b>$7.000</b><span class="pick-qty">2</span></div>
+                <div class="pick-row total"><span>Total</span><b>$44.000</b><span></span></div>
+              </div>
+            </div>
+            <h3>Tocando los productos</h3>
+            <p>Abre la carta de una tienda con fotos y precios, marca lo que quieres y elige la dirección. Sin escribir.</p>
+          </article>
+
+          <article class="way">
+            <div class="moment" aria-hidden="true">
+              <div class="bubble in">Lo de siempre</div>
+              <div class="bubble out">Tu pedido de siempre: <b>$44.000</b>. ¿Cómo pagas?</div>
+              <div class="option-row"><span class="option">Pagar en línea</span><span class="option">Efectivo</span></div>
+            </div>
+            <h3>Paga como quieras</h3>
+            <p>Con el enlace de pago seguro de Wompi (tarjeta, PSE o Nequi) o en efectivo al recibir. Y la próxima vez, «lo de siempre» repite tu último pedido.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
     <section id="roles" class="section section-roles" aria-labelledby="roles-title">
       <div class="wrap">
         <div class="section-head">
@@ -204,9 +292,9 @@
           <div class="role-copy">
             <h3 data-cms="roles.cards.0.title">Cliente</h3>
             <ul class="role-list" data-cms-list="roles.cards.0.items">
-              <li>Busca negocios aprobados y su menú en el momento.</li>
-              <li>Arma el carrito y confirma el pedido por chat.</li>
-              <li>Sigue el estado y su historial sin salir de WhatsApp.</li>
+              <li>Pide de restaurantes, droguerías y tiendas de tu zona, incluso de varias a la vez.</li>
+              <li>Escribe, manda un audio o arma tu pedido tocando productos con foto.</li>
+              <li>Sigue cada paso del pedido y recibe con tu código de entrega.</li>
             </ul>
           </div>
           <a class="btn btn-dark" data-wa-text="Hola, quiero pedir algo" href="https://wa.me/573128045836?text=Hola%2C%20quiero%20pedir%20algo" target="_blank" rel="noopener" data-cms="roles.cards.0.cta">Pedir por WhatsApp</a>
@@ -216,20 +304,23 @@
           <div class="role-copy">
             <h3 data-cms="roles.cards.1.title">Negocio</h3>
             <ul class="role-list" data-cms-list="roles.cards.1.items">
-              <li>Recibe, confirma y prepara pedidos desde el chat.</li>
-              <li>Marca listo y despacha sin panel externo.</li>
-              <li>Actualiza disponibilidad del menú en tiempo real.</li>
+              <li>Recibe y confirma los pedidos de NUBI con un botón en el chat.</li>
+              <li>Vende también en tu local con el POS: mesas, cocina, caja y recibo con QR.</li>
+              <li>Lleva el inventario, ve tus ventas del día y arranca gratis.</li>
             </ul>
-            <a class="btn btn-dark" data-wa-text="Hola, quiero registrar mi negocio en NUBI" data-wa-channel="negocios" href="https://wa.me/573128047127?text=Hola%2C%20quiero%20registrar%20mi%20negocio%20en%20NUBI" target="_blank" rel="noopener" data-cms="roles.cards.1.cta">Registrar mi negocio por WhatsApp</a>
+            <div class="role-actions">
+              <a class="btn btn-dark" data-wa-text="Hola, quiero registrar mi negocio en NUBI" data-wa-channel="negocios" href="https://wa.me/573128047127?text=Hola%2C%20quiero%20registrar%20mi%20negocio%20en%20NUBI" target="_blank" rel="noopener" data-cms="roles.cards.1.cta">Registrar mi negocio por WhatsApp</a>
+              <a class="link-more" href="/negocios">Ver el POS y los planes</a>
+            </div>
           </div>
           <div class="role-screen" aria-hidden="true">
             <div class="screen">
               <div class="screen-head">NUBI · Negocio <span class="chat-tag">Ejemplo</span></div>
               <div class="screen-body">
                 <div class="bubble out">Nuevo pedido<br />2 pizzas grandes · Barrio Centro<br />Total $52.000</div>
-                <div class="option-row"><span class="option">Aceptar</span><span class="option">Rechazar</span></div>
-                <div class="bubble in">Aceptar</div>
-                <div class="bubble out">Listo. Avísame cuando esté para despachar.</div>
+                <div class="option-row"><span class="option">Confirmar</span><span class="option">Rechazar</span></div>
+                <div class="bubble in">Confirmar</div>
+                <div class="bubble out">Listo. El domiciliario lo recoge con su código.</div>
               </div>
             </div>
           </div>
@@ -240,12 +331,15 @@
             <h3 data-cms="roles.cards.2.title">Domiciliario</h3>
             <p class="role-fact">Te quedas con el 100% del valor del domicilio. NUBI no te cobra comisión.</p>
             <ul class="role-list" data-cms-list="roles.cards.2.items">
-              <li>Acepta o rechaza ofertas según su zona.</li>
+              <li>Acepta o deja pasar cada oferta: ves dónde recoger, dónde entregar y cuánto ganas.</li>
               <li>Confirma recogida y entrega con un código único.</li>
-              <li>Consulta sus ganancias sin salir del chat.</li>
+              <li>Consulta tus ganancias sin salir del chat.</li>
             </ul>
             <p class="role-note">Para registrarte necesitas tu cédula y, si usas moto o carro, licencia y SOAT vigentes. Una persona del equipo revisa tus documentos. <a href="/terminos-domiciliarios">Ver términos</a></p>
-            <a class="btn btn-dark" data-wa-text="Hola, quiero ser domiciliario en NUBI" data-wa-channel="domiciliarios" href="https://wa.me/573128035848?text=Hola%2C%20quiero%20ser%20domiciliario%20en%20NUBI" target="_blank" rel="noopener" data-cms="roles.cards.2.cta">Únete como domiciliario</a>
+            <div class="role-actions">
+              <a class="btn btn-dark" data-wa-text="Hola, quiero ser domiciliario en NUBI" data-wa-channel="domiciliarios" href="https://wa.me/573128035848?text=Hola%2C%20quiero%20ser%20domiciliario%20en%20NUBI" target="_blank" rel="noopener" data-cms="roles.cards.2.cta">Únete como domiciliario</a>
+              <a class="link-more" href="/domiciliarios">Cómo funciona para repartir</a>
+            </div>
           </div>
           <div class="role-screen" aria-hidden="true">
             <div class="screen">
@@ -289,15 +383,50 @@
       </div>
     </section>
 
+    <section id="preguntas" class="section section-faq" aria-labelledby="faq-title">
+      <div class="wrap faq-wrap">
+        <div class="section-head">
+          <h2 id="faq-title">Preguntas frecuentes</h2>
+          <p>Lo que más nos preguntan antes del primer pedido.</p>
+        </div>
+        <div class="faq">
+          <details>
+            <summary>¿Tengo que instalar una app?</summary>
+            <p>No. Todo pasa en WhatsApp: le escribes a NUBI al +57 312 804 5836 y listo.</p>
+          </details>
+          <details>
+            <summary>¿En qué ciudades funciona NUBI?</summary>
+            <p>Hoy en Timbío y Popayán, en el Cauca. Pronto llegamos a más ciudades de Colombia.</p>
+          </details>
+          <details>
+            <summary>¿Puedo pedir con un audio?</summary>
+            <p>Sí. Manda una nota de voz con lo que quieres. NUBI te muestra lo que entendió y sigue cuando le confirmas.</p>
+          </details>
+          <details>
+            <summary>¿Cómo pago mi pedido?</summary>
+            <p>En línea con el enlace de pago seguro de Wompi (tarjeta, PSE o Nequi), o en efectivo cuando la tienda lo permite.</p>
+          </details>
+          <details>
+            <summary>¿Para qué sirve el código de entrega?</summary>
+            <p>Es un número que te llega solo a ti. Se lo das al domiciliario cuando recibes el pedido: así queda confirmado que te llegó a ti.</p>
+          </details>
+          <details>
+            <summary>¿Puedo pedir de varias tiendas a la vez?</summary>
+            <p>Sí. En un mismo mensaje puedes pedir, por ejemplo, una pizza y algo de la droguería. NUBI arma el pedido con cada tienda.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
     <section class="closing band-night" aria-labelledby="close-title">
       <div class="wrap closing-inner">
-        <img class="closing-mascot" src="assets/nubi-bot-static.svg" alt="" width="160" height="160" loading="lazy" />
+        <img class="closing-mascot" src="assets/nubi-bot-static.svg" alt="" width="160" height="160" loading="lazy" decoding="async" />
         <div class="closing-copy">
           <h2 id="close-title" data-cms="finalCta.title">Tu próxima solicitud, resuelta en un mensaje.</h2>
           <a class="btn btn-primary" data-wa-text="Hola, quiero probar NUBI" href="https://wa.me/573128045836?text=Hola%2C%20quiero%20probar%20NUBI" target="_blank" rel="noopener" data-cms="finalCta.button">Abrir WhatsApp y pedir</a>
         </div>
         <figure class="closing-qr">
-          <img src="assets/qr-nubi-pedidos.png" alt="Código QR para pedir por WhatsApp" width="132" height="132" loading="lazy" />
+          <img src="assets/qr-nubi-pedidos.png" alt="Código QR para pedir por WhatsApp" width="132" height="132" loading="lazy" decoding="async" />
           <figcaption>¿Estás en el computador? Escanéalo con tu celular.</figcaption>
         </figure>
       </div>
@@ -308,11 +437,12 @@
   <footer class="site-footer">
     <div class="wrap footer-grid">
       <div class="footer-brand">
-        <a class="logo" href="/">
-          <img src="assets/logo-nubi-96.png" alt="" width="30" height="29" />
+        <a class="logo" href="/" aria-label="NUBI, inicio">
+          <img src="assets/logo-nubi-72.webp" alt="" width="30" height="29" loading="lazy" decoding="async" />
           <span>nubi</span>
         </a>
         <p><strong>NubiColombia</strong> — <span data-cms="contact.tagline">Plataforma de pedidos por WhatsApp con IA</span></p>
+        <p class="footer-where">Timbío y Popayán, Cauca</p>
       </div>
 
       <div class="footer-col">
@@ -325,20 +455,22 @@
       </div>
 
       <div class="footer-col">
-        <h2 class="footer-title">Contacto y responsable</h2>
+        <h2 class="footer-title">NUBI</h2>
+        <ul>
+          <li><a href="/negocios">POS y planes para negocios</a></li>
+          <li><a href="/domiciliarios">Trabaja como domiciliario</a></li>
+          <li><a href="/#preguntas">Preguntas frecuentes</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h2 class="footer-title">Contacto y legal</h2>
         <ul>
           <li><span data-cms="contact.legalName">Hellman Sebastian Salcedo Delgado</span> · NIT <span data-cms="contact.nit">1063816105-8</span></li>
           <li data-cms="contact.address">CR 22 18 05, Barrio San Judas, Timbío, Cauca, Colombia</li>
           <li><a href="tel:+573158678716" data-contact-phone>Tel. <span data-cms="contact.phone">+57 315 867 8716</span></a></li>
           <li><a href="mailto:hellman.salcedo@gmail.com" data-contact-email data-cms="contact.email">hellman.salcedo@gmail.com</a></li>
-        </ul>
-      </div>
-
-      <div class="footer-col">
-        <h2 class="footer-title">Legal</h2>
-        <ul>
-          <li><a href="/privacidad">Política de privacidad</a></li>
-          <li><a href="/privacidad#eliminacion">Eliminar mis datos</a></li>
+          <li><a href="/privacidad">Política de privacidad</a> · <a href="/privacidad#eliminacion">Eliminar mis datos</a></li>
           <li><a href="/terminos-domiciliarios">Términos para domiciliarios</a></li>
         </ul>
       </div>
@@ -346,6 +478,6 @@
     <div class="wrap footer-base">© 2026 NubiColombia · Timbío, Cauca</div>
   </footer>
 
-  <script src="script.js"></script>
+  <script src="script.js" defer></script>
 </body>
 </html>

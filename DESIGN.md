@@ -201,7 +201,7 @@ A two-ground palette: daylight paper and night-blue bands, with one cyan/teal si
 
 ## Typography
 
-**Display Font:** Bricolage Grotesque, self-hosted variable woff2 (600–800), with system-ui fallback
+**Display Font:** Bricolage Grotesque, self-hosted variable woff2 (`bricolage-grotesque-latin-v2.woff2`: Spanish Latin subset, wght 600–800, opsz 14–96, 62 kB), with system-ui fallback
 **Body Font:** system-ui stack (-apple-system, Segoe UI, Roboto, Helvetica Neue, Arial)
 
 **Character:** A chunky, slightly quirky grotesque that sets confident, tightly tracked headlines, against the phone's native UI face for body copy so reading feels like using the phone itself, and nothing extra downloads for text.
@@ -270,6 +270,18 @@ Chunky, rounded, thumb-sized.
 
 ### Navigation
 - Sticky night bar, 64px, hairline bottom border. Wordmark "nubi" in Bricolage 800 beside the logo; text links in Mist as 44px pills that go white with a 6% wash on hover or when current; one small cyan button. At ≤760px the links hide and only the wordmark and button remain.
+
+### Audience pages and new pieces (2026-10-27)
+- **Page hero** (`.page-hero`): night band, copy left and a chat/screen example right; used by `negocios.html` and `domiciliarios.html`.
+- **Feature rows** (`.feature`, `.feature-flip`): copy with a teal check list beside a night-raised example (screen, POS mock); alternate sides, hairline between rows.
+- **Voice note bubble** (`.bubble.voice`): play glyph, drawn waveform, tabular duration.
+- **Pick list** (`.pick`): "Arma tu pedido" rows with price and a cyan quantity dot.
+- **POS mock** (`.pos-mock`): table grid (free = dashed, busy = cyan, paying = pale cyan) and a white bill stub with tabular amounts.
+- **Mini chart** (`.mini-chart`): hand-drawn SVG bars (cyan today, Harbour Bubble earlier); no chart library on the site.
+- **Plans** (`.plans`): five white columns on the roles ground; Crece marked by a 2px night border, no badge; columns scroll-snap under 1020px.
+- **Journey** (`.journey`): numbered steps topped by a 2px ink rule, like the why list.
+- **FAQ** (`.faq`): native `<details>` with a teal plus that turns into an x; heading column sticky on desktop. Every FAQ is mirrored in FAQPage JSON-LD with the same text.
+- **Big fact** (`.big-fact`): one oversized cyan number on night ("100%") for the courier page only.
 
 ### Lists and "why" items
 - Role lists use an 8×2 teal dash; hero proof uses cyan check marks. "Why" items are topped by a 2px ink rule, no card.

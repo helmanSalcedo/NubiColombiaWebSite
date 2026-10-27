@@ -58,10 +58,20 @@
     if (!onBackend && !base) return;
     var url = base + '/api/public/website' + (preview ? '?preview=' + encodeURIComponent(preview) : '');
     if (!window.fetch) return;
-    fetch(url, { headers: { 'ngrok-skip-browser-warning': '1' } })
-      .then(function (res) { return res.ok ? res.json() : null; })
-      .then(function (json) { if (json && json.data) applyContent(json.data); })
-      .catch(function () { /* sin backend: se queda el texto de la página */ });
+    // Después de que la página cargó y con límite de tiempo: el contenido del
+    // admin nunca retrasa lo que se ve primero (la página ya trae su texto)
+    var run = function () {
+      var ctrl = window.AbortController ? new AbortController() : null;
+      var timer = ctrl && setTimeout(function () { ctrl.abort(); }, 5000);
+      fetch(url, { headers: { 'ngrok-skip-browser-warning': '1' }, signal: ctrl ? ctrl.signal : undefined })
+        .then(function (res) { return res.ok ? res.json() : null; })
+        .then(function (json) { if (json && json.data) applyContent(json.data); })
+        .catch(function () { /* sin backend: se queda el texto de la página */ })
+        .then(function () { if (timer) clearTimeout(timer); });
+    };
+    var idle = function () { (window.requestIdleCallback || function (fn) { setTimeout(fn, 200); })(run, { timeout: 2500 }); };
+    if (preview || document.readyState === 'complete') run();
+    else window.addEventListener('load', idle, { once: true });
   })();
 
   function pick(data, path) {
@@ -142,8 +152,10 @@
       }
     }
 
-    // Título y descripción (solo en la página principal)
-    if (!document.querySelector('[data-cms-page]') && data.seo) {
+    // Título y descripción (solo en la portada: las demás páginas traen los suyos)
+    var canonical = document.querySelector('link[rel="canonical"]');
+    var isHome = !canonical || /\.com\/?$/.test(canonical.getAttribute('href') || '');
+    if (isHome && !document.querySelector('[data-cms-page]') && data.seo) {
       if (data.seo.title) document.title = data.seo.title;
       var desc = document.querySelector('meta[name="description"]');
       if (desc && data.seo.description) desc.setAttribute('content', data.seo.description);

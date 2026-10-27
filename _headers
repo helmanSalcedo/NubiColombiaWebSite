@@ -1,0 +1,19 @@
+# Cloudflare (Workers static assets): caché y seguridad.
+# Imágenes y fuente cambian poco: una semana en el navegador, y mientras se
+# revisa la nueva se sigue mostrando la guardada.
+/assets/*
+  Cache-Control: public, max-age=604800, stale-while-revalidate=86400
+
+# CSS y JS: un día (no llevan huella en el nombre)
+/styles.css
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
+/script.js
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
+/legal.css
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
+
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+  X-Frame-Options: SAMEORIGIN

@@ -30,7 +30,7 @@ NUBI lets someone place an order in their own words in a single WhatsApp message
 
 ## Operating Context
 
-- It started in Timbío, Cauca, and the goal is to cover all of Colombia. Timbío is the pilot, not the ceiling. Copy should not lock the brand to a single town.
+- It operates in Timbío and Popayán, Cauca (confirmed by the owner 2026-10-27), and the goal is to cover all of Colombia. Name both cities for local SEO without locking the brand to them.
 - Language: Colombian Spanish, written informally with "tú".
 - Service lines named on the site: domicilios, mercancías, emprendimientos, publicidad. All four are confirmed as real offerings.
 - Couriers register through WhatsApp and send ID documents, which a person on the team reviews (see `terminos-domiciliarios.html`).
@@ -39,7 +39,7 @@ NUBI lets someone place an order in their own words in a single WhatsApp message
 ## Capabilities and Constraints
 
 - Static site: plain HTML, CSS and JS with no build step, deployed as Cloudflare Workers static assets (`wrangler.toml`, `.assetsignore`).
-- Pages: `index.html` (landing), `privacidad.html` (privacy policy and data deletion), `terminos-domiciliarios.html` (courier terms, v1.0, in force since 17 Oct 2026).
+- Pages: `index.html` (landing, customers first), `negocios.html` (businesses: WhatsApp orders, POS, inventory, dashboard, plans with prices), `domiciliarios.html` (couriers: 100% of the fee, how it works, requirements), `privacidad.html` (privacy policy and data deletion), `terminos-domiciliarios.html` (courier terms, v1.0, in force since 17 Oct 2026). Clean URLs (/negocios, /domiciliarios). SEO: per-page title/description/canonical, JSON-LD (Organization, WebSite, LocalBusiness, FAQPage, SoftwareApplication with Offers, BreadcrumbList), sitemap.xml, llms.txt, `_headers` for caching.
 - The legal pages are needed for Meta's WhatsApp Business app review. They must stay public and their legal facts must stay accurate.
 - Legal operator: Hellman Sebastian Salcedo Delgado (trade name NubiColombia), NIT 1063816105-8, CR 22 18 05, Barrio San Judas, Timbío, Cauca. Email: hellman.salcedo@gmail.com.
 - Every call to action ends in a WhatsApp deep link. There is no web ordering, login or account area.
@@ -55,7 +55,9 @@ NUBI lets someone place an order in their own words in a single WhatsApp message
 - Confirmed: couriers keep 100% of the delivery fee (no commission). The four service lines are real.
 - **Not confirmed, do not present as fact:** "+530 pedidos entregados en Timbío" and the "tiempo promedio de respuesta" figure on the landing page. Neither was verified as real or current. Reconfirm with the owner before reusing or keeping them.
 - The demo chat on the landing (Pizzería Roma, Droguería Central, prices) is an illustration, not real merchant data.
-- No testimonials, partner logos, press or published pricing exist. Do not make any up.
+- Published pricing (approved by the owner 2026-10-27, from the live plans): Semilla $0, Básico $19.900, Crece $49.900, Impulso $99.900, Avanzado $149.900 per month; Cadenas/Enterprise a convenir. If prices change in the admin, update negocios.html and its JSON-LD Offers.
+- Confirmed product facts used on the site: no sales commission for businesses (they pay only the plan; the payment gateway fee applies to online payments), voice notes with confirmation, Arma tu pedido with photos, "lo de siempre", Wompi online payment (card, PSE, Nequi) or cash, multi-store orders, POS features by plan.
+- No testimonials, partner logos or press exist. Do not make any up.
 - `assets/qr-nubi-pedidos.png` and the printable card `assets/qr-nubi-pedidos-tarjeta.png` both encode `wa.me/573128045836` (orders channel), verified by decoding.
 
 ## Product Principles

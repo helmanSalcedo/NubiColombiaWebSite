@@ -1,0 +1,420 @@
+<!doctype html>
+<html lang="es-CO">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="light" />
+  <script>document.documentElement.classList.add("js");</script>
+  <title>POS para restaurantes y tiendas + pedidos por WhatsApp · NUBI Negocios</title>
+  <meta name="description" content="Recibe pedidos por WhatsApp y vende en tu local con el POS de NUBI: mesas, comandas de cocina, caja, inventario por recetas y reportes. Plan gratis. Timbío y Popayán." />
+  <link rel="canonical" href="https://nubicolombia.com/negocios" />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+
+  <meta property="og:url" content="https://nubicolombia.com/negocios" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="NubiColombia" />
+  <meta property="og:locale" content="es_CO" />
+  <meta property="og:title" content="NUBI para negocios: pedidos por WhatsApp y POS para tu local" />
+  <meta property="og:description" content="Mesas, cocina, caja, inventario y reportes, más los pedidos de NUBI en tu WhatsApp. Empieza gratis." />
+  <meta property="og:image" content="https://nubicolombia.com/assets/og-cover.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="NUBI para negocios" />
+  <meta name="twitter:description" content="Pedidos por WhatsApp y POS para tu local. Empieza gratis." />
+  <meta name="twitter:image" content="https://nubicolombia.com/assets/og-cover.jpg" />
+
+  <meta name="theme-color" content="#0A1330" />
+  <meta name="nubi-api" content="https://jaybird-dominion-habitant.ngrok-free.dev" />
+  <link rel="icon" href="assets/favicon-32.png" sizes="32x32" type="image/png" />
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+  <link rel="preload" href="assets/fonts/bricolage-grotesque-latin-v2.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="styles.css" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "SoftwareApplication",
+        "name": "NUBI Negocios",
+        "applicationCategory": "BusinessApplication",
+        "applicationSubCategory": "Punto de venta (POS) y pedidos por WhatsApp",
+        "operatingSystem": "Web, WhatsApp",
+        "inLanguage": "es-CO",
+        "url": "https://nubicolombia.com/negocios",
+        "publisher": { "@id": "https://nubicolombia.com/#org" },
+        "description": "POS para restaurantes y tiendas con mesas, comandas de cocina, caja, inventario por recetas y reportes, más pedidos por WhatsApp con domiciliarios.",
+        "offers": [
+          { "@type": "Offer", "name": "Semilla", "price": "0", "priceCurrency": "COP" },
+          { "@type": "Offer", "name": "Básico", "price": "19900", "priceCurrency": "COP", "priceSpecification": { "@type": "UnitPriceSpecification", "price": "19900", "priceCurrency": "COP", "unitText": "MONTH" } },
+          { "@type": "Offer", "name": "Crece", "price": "49900", "priceCurrency": "COP", "priceSpecification": { "@type": "UnitPriceSpecification", "price": "49900", "priceCurrency": "COP", "unitText": "MONTH" } },
+          { "@type": "Offer", "name": "Impulso", "price": "99900", "priceCurrency": "COP", "priceSpecification": { "@type": "UnitPriceSpecification", "price": "99900", "priceCurrency": "COP", "unitText": "MONTH" } },
+          { "@type": "Offer", "name": "Avanzado", "price": "149900", "priceCurrency": "COP", "priceSpecification": { "@type": "UnitPriceSpecification", "price": "149900", "priceCurrency": "COP", "unitText": "MONTH" } }
+        ]
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://nubicolombia.com/" },
+          { "@type": "ListItem", "position": 2, "name": "Negocios", "item": "https://nubicolombia.com/negocios" }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          { "@type": "Question", "name": "¿NUBI cobra comisión por venta?", "acceptedAnswer": { "@type": "Answer", "text": "No. NUBI no cobra comisión por tus ventas: pagas solo tu plan, y el plan Semilla es gratis. Si el cliente paga en línea, se descuenta el costo de la pasarela de pagos." } },
+          { "@type": "Question", "name": "¿Necesito impresora o computador para el POS?", "acceptedAnswer": { "@type": "Answer", "text": "No. El POS abre en el navegador de un celular, una tablet o un computador. Las comandas se ven en pantalla en la cocina, y el recibo se le da al cliente con un código QR. Si tienes impresora, también puedes imprimir." } },
+          { "@type": "Question", "name": "¿Qué pasa si se va el internet?", "acceptedAnswer": { "@type": "Answer", "text": "Desde el plan Básico el POS sigue vendiendo sin internet: guarda las ventas en el equipo y las envía solas cuando vuelve la señal, sin duplicarlas." } },
+          { "@type": "Question", "name": "¿Cómo registro mi negocio?", "acceptedAnswer": { "@type": "Answer", "text": "Escribe al WhatsApp de NUBI Negocios, +57 312 804 7127. Te llega un formulario corto con los datos del negocio y tu carta (puedes mandar fotos o un PDF). Nuestro equipo lo revisa y te avisa cuando quede activo." } },
+          { "@type": "Question", "name": "¿Cómo me pagan las ventas en línea?", "acceptedAnswer": { "@type": "Answer", "text": "Lo que tus clientes pagan en línea con Wompi se liquida a la cuenta bancaria que registres." } }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+  <nav class="site-nav" aria-label="Principal">
+    <div class="nav-inner">
+      <a class="logo" href="/" aria-label="NUBI, inicio">
+        <img src="assets/logo-nubi-72.webp" alt="" width="36" height="35" />
+        <span>nubi</span>
+      </a>
+      <div class="nav-links">
+        <a href="#pedidos">Pedidos</a>
+        <a href="#pos">POS</a>
+        <a href="#inventario">Inventario</a>
+        <a href="#planes">Planes</a>
+      </div>
+      <a class="btn btn-primary btn-small" data-wa-text="Hola, quiero registrar mi negocio en NUBI" data-wa-channel="negocios" href="https://wa.me/573128047127?text=Hola%2C%20quiero%20registrar%20mi%20negocio%20en%20NUBI" target="_blank" rel="noopener">Registrar mi negocio</a>
+    </div>
+  </nav>
+
+  <main id="contenido" tabindex="-1">
+
+    <header class="page-hero band-night">
+      <div class="page-hero-inner">
+        <div>
+          <h1>Vende por WhatsApp <em>y en tu local</em>, con un solo sistema.</h1>
+          <p class="hero-sub">Los pedidos de NUBI te llegan al chat con un botón para confirmarlos. En tu local, el POS lleva las mesas, la cocina, la caja y el inventario. Y arrancas gratis.</p>
+          <div class="hero-ctas">
+            <a class="btn btn-primary" data-wa-text="Hola, quiero registrar mi negocio en NUBI" data-wa-channel="negocios" href="https://wa.me/573128047127?text=Hola%2C%20quiero%20registrar%20mi%20negocio%20en%20NUBI" target="_blank" rel="noopener">Registrar mi negocio gratis</a>
+            <a class="btn btn-ghost" href="#planes">Ver planes y precios</a>
+          </div>
+          <ul class="hero-proof">
+            <li>Sin comisión por venta</li>
+            <li>Sin impresora ni equipos especiales</li>
+            <li>Domiciliarios de NUBI incluidos</li>
+          </ul>
+        </div>
+        <div aria-hidden="true">
+          <div class="chat">
+            <div class="chat-head">
+              <img src="assets/logo-nubi-72.webp" alt="" width="32" height="31" />
+              <div class="chat-id"><span class="chat-name">NUBI Negocios</span><span class="chat-status">en línea</span></div>
+              <span class="chat-tag">Ejemplo</span>
+            </div>
+            <div class="screen-body">
+              <div class="bubble out">Nueva orden #NB-4K2P<br />2× Hamburguesa doble (una sin cebolla)<br />1× Gaseosa 400 ml<br />Total $41.000 · pagado en línea</div>
+              <div class="option-row"><span class="option">Confirmar</span><span class="option">Rechazar</span></div>
+              <div class="bubble in">Confirmar</div>
+              <div class="bubble out">Listo. El domiciliario la recoge con el código <b class="code-inline">3591</b>.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <section id="pedidos" class="section" aria-labelledby="orders-title">
+      <div class="wrap">
+        <div class="section-head">
+          <h2 id="orders-title">Todo lo que tu negocio necesita, en un lugar</h2>
+          <p>Lo que hoy haces con un cuaderno, una calculadora y tres chats, en el celular que ya tienes.</p>
+        </div>
+
+        <article class="feature">
+          <div class="feature-copy">
+            <h3>Pedidos de NUBI en tu WhatsApp</h3>
+            <p>Los clientes piden en sus palabras y NUBI arma la orden con tu carta. Tú solo confirmas o rechazas.</p>
+            <ul class="check-list">
+              <li>La orden llega con productos, notas («sin cebolla») y cómo pagó el cliente.</li>
+              <li>El domiciliario la recoge con un código, así nadie se lleva un pedido que no es suyo.</li>
+              <li>Pagos en línea con Wompi, liquidados a tu cuenta bancaria. <b>NUBI no cobra comisión por venta.</b></li>
+              <li>Tu carta se arma sola: mandas una foto o un PDF del menú y NUBI la convierte en productos con precio.</li>
+            </ul>
+          </div>
+          <div class="role-screen" aria-hidden="true">
+            <div class="screen">
+              <div class="screen-head">Tu carta · leída de una foto <span class="chat-tag">Ejemplo</span></div>
+              <div class="screen-body">
+                <div class="pick">
+                  <div class="pick-row"><span>Hamburguesa doble</span><b>$18.000</b><span></span></div>
+                  <div class="pick-row"><span>Salchipapa</span><b>$12.000</b><span></span></div>
+                  <div class="pick-row"><span>Gaseosa 400 ml</span><b>$5.000</b><span></span></div>
+                </div>
+                <div class="option-row"><span class="option">Publicar</span><span class="option">Corregir un precio</span></div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article id="pos" class="feature feature-flip">
+          <div class="feature-copy">
+            <h3>POS para vender en tu local</h3>
+            <p>Abre en el navegador de un celular, una tablet o un computador. Sin instalar nada.</p>
+            <ul class="check-list">
+              <li><b>Mostrador, mesa, para llevar o domicilio propio</b>, con tamaños y adicionales al precio correcto.</li>
+              <li><b>Comandas en pantalla</b> para la cocina, junto con los pedidos de NUBI. Sin impresora.</li>
+              <li><b>Cobra como paga la gente:</b> efectivo con cambio, Nequi, Daviplata, transferencia o datáfono; pago mixto, propina voluntaria y cuenta dividida.</li>
+              <li><b>Mapa de mesas y meseros con PIN:</b> mueve o junta cuentas y ve las ventas y propinas de cada mesero.</li>
+              <li><b>Caja que cuadra:</b> base, entradas y salidas, devoluciones y cierre con la diferencia exacta.</li>
+              <li><b>Sigue vendiendo sin internet</b> y lo envía solo cuando vuelve la señal.</li>
+              <li><b>Recibo digital con QR</b> que el cliente abre en su celular.</li>
+            </ul>
+          </div>
+          <div aria-hidden="true">
+            <div class="pos-mock">
+              <div class="screen-head">POS · Mesas <span class="chat-tag">Ejemplo</span></div>
+              <div class="pos-mock-body">
+                <div class="tables">
+                  <span class="table-dot busy">1</span><span class="table-dot">2</span><span class="table-dot paying">3</span><span class="table-dot busy">4</span>
+                  <span class="table-dot">5</span><span class="table-dot busy">6</span><span class="table-dot">T1</span><span class="table-dot">T2</span>
+                </div>
+                <div class="bill">
+                  <div class="bill-head"><span>Mesa 4 · Ana</span><span>#27</span></div>
+                  <div class="bill-row"><span>2× Pizza mediana<small>+ queso extra</small></span><b>$68.000</b></div>
+                  <div class="bill-row"><span>3× Limonada</span><b>$15.000</b></div>
+                  <div class="bill-row"><span>Propina voluntaria</span><b>$8.300</b></div>
+                  <div class="bill-total"><span>Total</span><span>$91.300</span></div>
+                </div>
+                <div class="pay-split"><span class="option">Efectivo $50.000</span><span class="option">Nequi $41.300</span></div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article id="inventario" class="feature">
+          <div class="feature-copy">
+            <h3>Inventario que se descuenta solo</h3>
+            <p>Dile a NUBI cuánto lleva cada plato y el inventario se mueve con cada venta, del local o de NUBI.</p>
+            <ul class="check-list">
+              <li><b>Costo y margen de cada plato</b>, calculados con lo que te cuesta cada insumo.</li>
+              <li>Cuando un insumo no alcanza, el plato se marca <b>agotado solo</b> y vuelve cuando registras la compra.</li>
+              <li>Te llega un <b>aviso por WhatsApp</b> cuando algo se está acabando.</li>
+              <li>Entradas, mermas y conteos con el motivo y quién lo hizo.</li>
+            </ul>
+          </div>
+          <div class="role-screen" aria-hidden="true">
+            <div class="screen">
+              <div class="screen-head">NUBI Negocios <span class="chat-tag">Ejemplo</span></div>
+              <div class="screen-body">
+                <div class="bubble out">Se está acabando en tu inventario:<br />Carne molida: quedan 800 g (mínimo 1.000 g)<br />Quedó agotado: Hamburguesa doble</div>
+                <div class="bill">
+                  <div class="bill-head"><span>Hamburguesa doble</span><span>$18.000</span></div>
+                  <div class="bill-row"><span>150 g carne</span><b>$4.500</b></div>
+                  <div class="bill-row"><span>1 pan</span><b>$800</b></div>
+                  <div class="bill-total"><span>Ganas</span><span>$12.700 · 70%</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article id="resumen" class="feature feature-flip">
+          <div class="feature-copy">
+            <h3>Tus números, claros</h3>
+            <p>Un resumen que se actualiza solo: lo vendido hoy contra ayer a la misma hora, cuentas abiertas, cocina, caja y lo que hay que reponer.</p>
+            <ul class="check-list">
+              <li>Tendencia de 30 días del local y de NUBI, juntos.</li>
+              <li>Qué día y a qué hora vendes más, y lo que más sale con su margen.</li>
+              <li>Reportes por fechas y exportar a Excel para tu contador.</li>
+            </ul>
+          </div>
+          <div aria-hidden="true">
+            <div class="pos-mock">
+              <div class="screen-head">Resumen de hoy <span class="chat-tag">Ejemplo</span></div>
+              <div class="pos-mock-body">
+                <div class="stat-line"><strong>$1.284.000</strong><span><span class="up">+12%</span> vs ayer a esta hora</span></div>
+                <svg class="mini-chart" viewBox="0 0 240 120" preserveAspectRatio="none">
+                  <rect class="bar past" x="4" y="92" width="14" height="26" rx="3" />
+                  <rect class="bar past" x="24" y="70" width="14" height="48" rx="3" />
+                  <rect class="bar past" x="44" y="40" width="14" height="78" rx="3" />
+                  <rect class="bar past" x="64" y="18" width="14" height="100" rx="3" />
+                  <rect class="bar past" x="84" y="50" width="14" height="68" rx="3" />
+                  <rect class="bar past" x="104" y="76" width="14" height="42" rx="3" />
+                  <rect class="bar past" x="124" y="84" width="14" height="34" rx="3" />
+                  <rect class="bar past" x="144" y="58" width="14" height="60" rx="3" />
+                  <rect class="bar" x="164" y="30" width="14" height="88" rx="3" />
+                  <rect class="bar" x="184" y="22" width="14" height="96" rx="3" />
+                  <line class="base" x1="0" y1="118.5" x2="240" y2="118.5" />
+                </svg>
+                <div class="mini-legend"><span>11 a. m.</span><span>Hora con más ventas: 2 p. m.</span><span>8 p. m.</span></div>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="planes" class="section section-roles" aria-labelledby="plans-title">
+      <div class="wrap">
+        <div class="section-head">
+          <h2 id="plans-title">Planes para cada etapa de tu negocio</h2>
+          <p>Empiezas gratis y NUBI no cobra comisión por tus ventas. Cuando crezcas, cambias de plan desde tu panel o con /plan en el chat.</p>
+        </div>
+
+        <div class="plans">
+          <article class="plan">
+            <h3 class="plan-name">Semilla</h3>
+            <p class="plan-for">Para negocios nuevos en NUBI</p>
+            <p class="plan-price">$0 <small>siempre</small></p>
+            <ul>
+              <li>Pedidos por WhatsApp y domiciliarios de NUBI</li>
+              <li>Apareces en el catálogo de NUBI</li>
+              <li>POS: caja, comandas, propina, pago mixto y recibo con QR</li>
+              <li>Resumen de ventas de hoy</li>
+              <li>Hasta 40 productos, 1 cupón y 1 empleado</li>
+              <li>1 flyer de tu producto al mes</li>
+            </ul>
+          </article>
+          <article class="plan">
+            <h3 class="plan-name">Básico</h3>
+            <p class="plan-for">Para tiendas pequeñas ya establecidas</p>
+            <p class="plan-price">$19.900 <small>al mes</small></p>
+            <ul>
+              <li class="lead">Todo lo de Semilla, más:</li>
+              <li>Mapa de mesas en el POS</li>
+              <li>El POS sigue vendiendo sin internet</li>
+              <li>Apareces antes que los negocios Semilla</li>
+              <li>1 publicación y 1 historia al mes en las redes de NUBI</li>
+              <li>Hasta 100 productos, 3 cupones y 2 empleados</li>
+            </ul>
+          </article>
+          <article class="plan featured">
+            <h3 class="plan-name">Crece</h3>
+            <p class="plan-for">Para negocios con ventas estables que quieren más visibilidad</p>
+            <p class="plan-price">$49.900 <small>al mes</small></p>
+            <ul>
+              <li class="lead">Todo lo de Básico, más:</li>
+              <li>Hasta 5 meseros con PIN</li>
+              <li>Inventario por recetas, costo y margen por plato (100 insumos)</li>
+              <li>Resumen completo y reportes para exportar a Excel</li>
+              <li>Destacado en la vitrina de NUBI</li>
+              <li>2 publicaciones y 4 historias al mes en las redes de NUBI</li>
+              <li>Hasta 300 productos, 10 cupones y 5 empleados</li>
+            </ul>
+          </article>
+          <article class="plan">
+            <h3 class="plan-name">Impulso</h3>
+            <p class="plan-for">Para negocios medianos que quieren presencia en sus redes</p>
+            <p class="plan-price">$99.900 <small>al mes</small></p>
+            <ul>
+              <li class="lead">Todo lo de Crece, más:</li>
+              <li>Hasta 15 meseros e inventario sin límite</li>
+              <li>Máxima prioridad en la vitrina de NUBI</li>
+              <li>4 publicaciones y 8 historias al mes en las redes de NUBI</li>
+              <li>Flyers, productos y cupones sin límite; 10 empleados</li>
+            </ul>
+          </article>
+          <article class="plan">
+            <h3 class="plan-name">Avanzado</h3>
+            <p class="plan-for">Para negocios grandes que quieren pauta paga</p>
+            <p class="plan-price">$149.900 <small>al mes</small></p>
+            <ul>
+              <li class="lead">Todo lo de Impulso, más:</li>
+              <li>Meseros y empleados sin límite</li>
+              <li>8 publicaciones y 12 historias al mes en las redes de NUBI</li>
+              <li>Anuncios en Facebook e Instagram gestionados por NUBI (próximamente; la pauta se paga aparte)</li>
+            </ul>
+          </article>
+        </div>
+        <p class="plans-note">Precios en pesos colombianos. ¿Tienes varias sedes o una franquicia? Hay un plan para cadenas con precio a convenir: <a data-wa-text="Hola, tengo varias sedes y quiero el plan para cadenas de NUBI" data-wa-channel="negocios" href="https://wa.me/573128047127?text=Hola%2C%20tengo%20varias%20sedes%20y%20quiero%20el%20plan%20para%20cadenas%20de%20NUBI" target="_blank" rel="noopener">escríbenos</a>.</p>
+      </div>
+    </section>
+
+    <section id="preguntas" class="section section-faq" aria-labelledby="faq-title">
+      <div class="wrap faq-wrap">
+        <div class="section-head">
+          <h2 id="faq-title">Preguntas de negocios</h2>
+          <p>Si te queda una duda, escríbenos al +57 312 804 7127.</p>
+        </div>
+        <div class="faq">
+          <details>
+            <summary>¿NUBI cobra comisión por venta?</summary>
+            <p>No. NUBI no cobra comisión por tus ventas: pagas solo tu plan, y el plan Semilla es gratis. Si el cliente paga en línea, se descuenta el costo de la pasarela de pagos.</p>
+          </details>
+          <details>
+            <summary>¿Necesito impresora o computador para el POS?</summary>
+            <p>No. El POS abre en el navegador de un celular, una tablet o un computador. Las comandas se ven en pantalla en la cocina, y el recibo se le da al cliente con un código QR. Si tienes impresora, también puedes imprimir.</p>
+          </details>
+          <details>
+            <summary>¿Qué pasa si se va el internet?</summary>
+            <p>Desde el plan Básico el POS sigue vendiendo sin internet: guarda las ventas en el equipo y las envía solas cuando vuelve la señal, sin duplicarlas.</p>
+          </details>
+          <details>
+            <summary>¿Cómo registro mi negocio?</summary>
+            <p>Escribe al WhatsApp de NUBI Negocios, +57 312 804 7127. Te llega un formulario corto con los datos del negocio y tu carta (puedes mandar fotos o un PDF). Nuestro equipo lo revisa y te avisa cuando quede activo.</p>
+          </details>
+          <details>
+            <summary>¿Cómo me pagan las ventas en línea?</summary>
+            <p>Lo que tus clientes pagan en línea con Wompi se liquida a la cuenta bancaria que registres.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="closing band-night" aria-labelledby="close-title">
+      <div class="wrap closing-inner">
+        <img class="closing-mascot" src="assets/nubi-bot-static.svg" alt="" width="160" height="160" loading="lazy" decoding="async" />
+        <div class="closing-copy">
+          <h2 id="close-title">Registra tu negocio hoy. Es gratis empezar.</h2>
+          <a class="btn btn-primary" data-wa-text="Hola, quiero registrar mi negocio en NUBI" data-wa-channel="negocios" href="https://wa.me/573128047127?text=Hola%2C%20quiero%20registrar%20mi%20negocio%20en%20NUBI" target="_blank" rel="noopener">Escribir a NUBI Negocios</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-grid">
+      <div class="footer-brand">
+        <a class="logo" href="/" aria-label="NUBI, inicio">
+          <img src="assets/logo-nubi-72.webp" alt="" width="30" height="29" loading="lazy" decoding="async" />
+          <span>nubi</span>
+        </a>
+        <p><strong>NubiColombia</strong> — Plataforma de pedidos por WhatsApp con IA</p>
+        <p class="footer-where">Timbío y Popayán, Cauca</p>
+      </div>
+      <div class="footer-col">
+        <h2 class="footer-title">WhatsApp</h2>
+        <ul>
+          <li><a data-wa-text="Hola, quiero pedir algo" href="https://wa.me/573128045836?text=Hola%2C%20quiero%20pedir%20algo" target="_blank" rel="noopener">Pedidos <span data-wa-display="pedidos">+57 312 804 5836</span></a></li>
+          <li><a data-wa-text="Hola, quiero registrar mi negocio en NUBI" data-wa-channel="negocios" href="https://wa.me/573128047127?text=Hola%2C%20quiero%20registrar%20mi%20negocio%20en%20NUBI" target="_blank" rel="noopener">Negocios <span data-wa-display="negocios">+57 312 804 7127</span></a></li>
+          <li><a data-wa-text="Hola, quiero ser domiciliario en NUBI" data-wa-channel="domiciliarios" href="https://wa.me/573128035848?text=Hola%2C%20quiero%20ser%20domiciliario%20en%20NUBI" target="_blank" rel="noopener">Domiciliarios <span data-wa-display="domiciliarios">+57 312 803 5848</span></a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h2 class="footer-title">NUBI</h2>
+        <ul>
+          <li><a href="/">Pedir por WhatsApp</a></li>
+          <li><a href="/domiciliarios">Trabaja como domiciliario</a></li>
+          <li><a href="/#preguntas">Preguntas frecuentes</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h2 class="footer-title">Legal</h2>
+        <ul>
+          <li><a href="/privacidad">Política de privacidad</a></li>
+          <li><a href="/privacidad#eliminacion">Eliminar mis datos</a></li>
+          <li><a href="/terminos-domiciliarios">Términos para domiciliarios</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="wrap footer-base">© 2026 NubiColombia · Hellman Sebastian Salcedo Delgado · NIT 1063816105-8</div>
+  </footer>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
