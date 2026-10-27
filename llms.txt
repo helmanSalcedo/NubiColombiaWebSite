@@ -3,11 +3,11 @@
 > NUBI es un asistente de pedidos por WhatsApp con IA. Las personas piden comida, farmacia, mercado o un mandado con un mensaje o una nota de voz; NUBI entiende, arma el pedido con los negocios aliados y lo coordina con un domiciliario hasta que se confirma la entrega con un código. Opera en Timbío y Popayán (Cauca, Colombia).
 
 ## Páginas
-- [Inicio: pedir por WhatsApp](https://nubicolombia.com/): cómo funciona, formas de pedir (texto, audio, Arma tu pedido, lo de siempre), pagos con Wompi o efectivo y preguntas frecuentes.
-- [Negocios: POS y planes](https://nubicolombia.com/negocios): pedidos de NUBI en WhatsApp, POS para el local (mesas, comandas, caja, pago mixto, propina, sin internet), inventario por recetas, reportes y planes con precios (desde $0).
-- [Domiciliarios](https://nubicolombia.com/domiciliarios): el domiciliario se queda con el 100% del domicilio; registro por WhatsApp y requisitos.
-- [Política de privacidad](https://nubicolombia.com/privacidad)
-- [Términos para domiciliarios](https://nubicolombia.com/terminos-domiciliarios)
+- [Inicio: pedir por WhatsApp](https://web.nubicolombia.com/): cómo funciona, formas de pedir (texto, audio, Arma tu pedido, lo de siempre), pagos con Wompi o efectivo y preguntas frecuentes.
+- [Negocios: POS y planes](https://web.nubicolombia.com/negocios): pedidos de NUBI en WhatsApp, POS para el local (mesas, comandas, caja, pago mixto, propina, sin internet), inventario por recetas, reportes y planes con precios (desde $0).
+- [Domiciliarios](https://web.nubicolombia.com/domiciliarios): el domiciliario se queda con el 100% del domicilio; registro por WhatsApp y requisitos.
+- [Política de privacidad](https://web.nubicolombia.com/privacidad)
+- [Términos para domiciliarios](https://web.nubicolombia.com/terminos-domiciliarios)
 
 ## Contacto
 - Pedidos: WhatsApp +57 312 804 5836
