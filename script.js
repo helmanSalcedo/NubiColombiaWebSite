@@ -63,7 +63,7 @@
     var run = function () {
       var ctrl = window.AbortController ? new AbortController() : null;
       var timer = ctrl && setTimeout(function () { ctrl.abort(); }, 5000);
-      fetch(url, { headers: { 'ngrok-skip-browser-warning': '1' }, signal: ctrl ? ctrl.signal : undefined })
+      fetch(url, { signal: ctrl ? ctrl.signal : undefined })
         .then(function (res) { return res.ok ? res.json() : null; })
         .then(function (json) { if (json && json.data) applyContent(json.data); })
         .catch(function () { /* sin backend: se queda el texto de la página */ })
