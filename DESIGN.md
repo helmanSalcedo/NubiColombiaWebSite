@@ -1,52 +1,54 @@
 ---
 name: NUBI
-description: Pedidos por WhatsApp con IA. The landing is the conversation, on daylight paper with night-blue bands.
+description: Pedidos por WhatsApp con IA. La página es la conversación, en crema con bandas café, con los colores del logo de NUBI.
 colors:
-  night: "#0A1330"
-  night-2: "#121E47"
-  night-3: "#1C2B57"
-  ink: "#0A1330"
-  ink-2: "#44527A"
-  paper: "#F4F7FA"
-  surface: "#FFFFFF"
-  line: "#D8E0EB"
-  line-strong: "#B4C2D6"
-  on-night: "#FFFFFF"
-  on-night-2: "#B9C7E3"
-  line-night: "rgba(185, 199, 227, 0.18)"
-  cyan: "#4FE3D6"
-  cyan-soft: "#9BF6EC"
-  teal: "#0A6B65"
-  teal-strong: "#064F4A"
-  bubble-in: "#1C2B57"
-  bubble-out: "#154452"
+  cafe: "#2E1205"
+  crema: "#FCF3E6"
+  blanco: "#FFFFFF"
+  naranja: "#F5633A"
+  turquesa: "#54C0B4"
+  turquesa-oscuro: "#1D6B63"
+  amarillo: "#FBB039"
+  crema-2: "#F5E6D0"
+  cafe-900: "#1F0B02"
+  cafe-700: "#4A2414"
+  turquesa-tinte: "#DDF1EE"
+  turquesa-suave: "#BDE4DE"
+  naranja-hover: "#F77E59"
+  naranja-texto: "#B53F18"
+  tinta-2: "#6B4A39"
+  sobre-cafe: "#FCF3E6"
+  sobre-cafe-2: "#DCC8B2"
+  linea: "#EADBC6"
+  linea-fuerte: "#D8C2A5"
+  linea-cafe: "rgba(252, 243, 230, 0.16)"
 typography:
   display:
     fontFamily: "'Bricolage Grotesque', system-ui, sans-serif"
-    fontSize: "clamp(2.5rem, 1.5rem + 3.6vw, 4.5rem)"
+    fontSize: "clamp(2.5rem, 1.55rem + 4vw, 4.75rem)"
     fontWeight: 800
     lineHeight: 0.98
-    letterSpacing: "-0.035em"
+    letterSpacing: "-0.038em"
   headline:
     fontFamily: "'Bricolage Grotesque', system-ui, sans-serif"
-    fontSize: "clamp(1.875rem, 1.35rem + 2.2vw, 3rem)"
+    fontSize: "clamp(2rem, 1.4rem + 2.4vw, 3.25rem)"
     fontWeight: 700
-    lineHeight: 1.08
-    letterSpacing: "-0.02em"
+    lineHeight: 1.04
+    letterSpacing: "-0.03em"
   title:
     fontFamily: "'Bricolage Grotesque', system-ui, sans-serif"
-    fontSize: "clamp(1.375rem, 1.15rem + 0.9vw, 1.75rem)"
+    fontSize: "clamp(1.3125rem, 1.15rem + 0.7vw, 1.75rem)"
     fontWeight: 700
     lineHeight: 1.08
     letterSpacing: "-0.02em"
   body-lg:
     fontFamily: "system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif"
-    fontSize: "1.1875rem"
+    fontSize: "clamp(1.0625rem, 1rem + 0.3vw, 1.25rem)"
     fontWeight: 400
     lineHeight: 1.55
   body:
     fontFamily: "system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif"
-    fontSize: "1.0625rem"
+    fontSize: "clamp(1rem, 0.97rem + 0.15vw, 1.0625rem)"
     fontWeight: 400
     lineHeight: 1.6
   label:
@@ -67,9 +69,10 @@ typography:
     letterSpacing: "0.18em"
     fontFeature: "tnum"
 rounded:
-  sm: "8px"
-  md: "14px"
-  lg: "22px"
+  xs: "6px"
+  sm: "10px"
+  md: "16px"
+  lg: "24px"
   pill: "999px"
 spacing:
   s-1: "4px"
@@ -81,225 +84,269 @@ spacing:
   s-7: "48px"
   s-8: "64px"
   s-9: "96px"
-  gutter: "clamp(16px, 4vw, 32px)"
-  max: "1160px"
+  section-y: "clamp(72px, 4.5rem + 4vw, 136px)"
+  gutter: "clamp(16px, 4vw, 40px)"
+  max: "1180px"
 components:
   button-primary:
-    backgroundColor: "{colors.cyan}"
-    textColor: "{colors.night}"
+    backgroundColor: "{colors.naranja}"
+    textColor: "{colors.cafe}"
     typography: "{typography.label}"
     rounded: "{rounded.pill}"
-    padding: "0 24px"
+    padding: "0 32px"
     height: "52px"
   button-primary-hover:
-    backgroundColor: "{colors.cyan-soft}"
-    textColor: "{colors.night}"
+    backgroundColor: "{colors.naranja-hover}"
+    textColor: "{colors.cafe}"
+  button-secondary:
+    backgroundColor: "{colors.turquesa-oscuro}"
+    textColor: "{colors.blanco}"
+    rounded: "{rounded.pill}"
+    padding: "0 32px"
+    height: "52px"
+  button-secondary-hover:
+    backgroundColor: "{colors.cafe}"
   button-ghost:
     backgroundColor: "transparent"
-    textColor: "{colors.on-night}"
+    textColor: "{colors.sobre-cafe}"
     rounded: "{rounded.pill}"
-    padding: "0 24px"
+    padding: "0 32px"
     height: "52px"
-  button-dark:
-    backgroundColor: "{colors.night}"
-    textColor: "{colors.on-night}"
-    rounded: "{rounded.pill}"
-    padding: "0 24px"
-    height: "52px"
-  button-dark-hover:
-    backgroundColor: "{colors.night-3}"
   button-small:
     rounded: "{rounded.pill}"
-    padding: "0 16px"
+    padding: "0 24px"
     height: "44px"
   bubble-in:
-    backgroundColor: "{colors.bubble-in}"
-    textColor: "{colors.on-night}"
+    backgroundColor: "{colors.turquesa-tinte}"
+    textColor: "{colors.cafe}"
     rounded: "{rounded.md}"
-    padding: "10px 14px"
+    padding: "9px 13px"
   bubble-out:
-    backgroundColor: "{colors.bubble-out}"
-    textColor: "{colors.on-night}"
+    backgroundColor: "{colors.blanco}"
+    textColor: "{colors.cafe}"
     rounded: "{rounded.md}"
-    padding: "10px 14px"
+    padding: "9px 13px"
   option-chip:
-    backgroundColor: "transparent"
-    textColor: "{colors.cyan}"
+    backgroundColor: "{colors.blanco}"
+    textColor: "{colors.turquesa-oscuro}"
     rounded: "{rounded.pill}"
     padding: "0 12px"
     height: "32px"
+  chat-window:
+    backgroundColor: "{colors.blanco}"
+    textColor: "{colors.cafe}"
+    rounded: "{rounded.lg}"
+    width: "420px"
   chat-input:
-    backgroundColor: "{colors.night}"
-    textColor: "{colors.on-night}"
+    backgroundColor: "{colors.crema}"
+    textColor: "{colors.cafe}"
     rounded: "{rounded.pill}"
     padding: "0 16px"
     height: "48px"
   chat-send:
-    backgroundColor: "{colors.cyan}"
-    textColor: "{colors.night}"
+    backgroundColor: "{colors.cafe}"
+    textColor: "{colors.blanco}"
     rounded: "50%"
     size: "48px"
-  chat-window:
-    backgroundColor: "{colors.night-2}"
-    textColor: "{colors.on-night}"
-    rounded: "{rounded.lg}"
-    width: "420px"
   ticket:
-    backgroundColor: "{colors.surface}"
-    textColor: "{colors.ink}"
+    backgroundColor: "{colors.blanco}"
+    textColor: "{colors.cafe}"
     typography: "{typography.code}"
     rounded: "{rounded.md}"
     padding: "16px 32px"
   nav:
-    backgroundColor: "{colors.night}"
-    textColor: "{colors.on-night-2}"
-    height: "64px"
+    backgroundColor: "{colors.cafe}"
+    textColor: "{colors.sobre-cafe-2}"
+    height: "68px"
+  footer:
+    backgroundColor: "{colors.cafe-900}"
+    textColor: "{colors.sobre-cafe-2}"
 ---
 
-# Design System: NUBI
+# Sistema de diseño: NUBI
 
-## Overview
+## Resumen
 
-**Creative North Star: "The Conversation in Daylight"**
+**Idea central: "La conversación, con los colores de NUBI"**
 
-The page is the conversation. Everything NUBI shows is told through the material of a WhatsApp chat: bubbles, option chips, delivery ticks, and a ticket-stub delivery code. That chat language sits on cool daylight paper, built to read in sunlight on a phone, and is framed by full-bleed night-blue bands (the logo's colour) at the opening and the close. Cyan is a signal, not a decoration: it marks what you can press and what state a message is in.
+La página es la conversación. NUBI se explica con el material de un chat de WhatsApp: burbujas, opciones, chulitos de leído y el talón con el código de entrega. La mascota (una nube crema con casco naranja de domiciliario) se asoma por encima del chat de la portada y aparece en los cierres. Los colores salen del logo: café oscuro de fondo, crema, naranja del casco y de "nubi", turquesa de "COLOMBIA" y amarillo de los destellos.
 
-Density is calm and mobile-first. Sections breathe on a 96px rhythm, copy runs in short measures, and every interactive target is at least 44px tall. The system deliberately refuses the dark AI-SaaS idiom: no gradient headlines, starfields, glass cards, glows or metric rows. Depth comes from the night/paper contrast and from two restrained shadows, not from effects.
+El tono es cálido, cercano y alegre, como la mascota. Las secciones respiran, los textos se leen en medidas cortas y cada botón es fácil de tocar con el pulgar. La mayoría entra desde el celular, en gamas bajas y con señal irregular.
 
-The landing (`index.html`, `styles.css`) is the canonical implementation. The legal pages (`privacidad.html`, `terminos-domiciliarios.html`) still use the previous dark look in `legal.css` and are pending migration to this system; `legal.css` is not part of it.
+Se rechaza a propósito la estética de "SaaS de IA": nada de degradados en titulares, cifras gigantes ni tarjetas de ícono más título más texto como estructura de la página. El único vidrio es el del menú flotante.
 
-**Key Characteristics:**
-- Cool daylight paper (#F4F7FA family, never cream) with night-blue ink.
-- Full-bleed night bands for the hero, the closing call to action and the sticky nav.
-- Chat bubbles, option chips, ticks and the ticket stub are the component language.
-- Cyan only for action and state on night; deep teal for action on light.
-- Bricolage Grotesque for display, the phone's own system UI face for everything you read.
-- Pill buttons, softly rounded containers, no gradients, glass or glows.
+Todas las páginas usan `styles.css`. Las legales (`privacidad.html`, `terminos-domiciliarios.html`) cargan además `legal.css`, que solo agrega lo propio de un documento largo.
 
-## Colors
+**Rasgos clave:**
+- Fondo crema (#FCF3E6) con texto café. El blanco solo se usa en tarjetas sobre crema.
+- Bandas café de lado a lado para el menú, la portada, el cierre y el pie (el pie en café-900).
+- El chat como lenguaje visual: burbujas, opciones, chulitos y el talón del código.
+- El naranja de fondo solo en el botón principal: pocos puntos por pantalla.
+- Bricolage Grotesque para los titulares y la letra del celular para todo lo que se lee.
+- Botones en píldora, contenedores con bordes suaves y sombras teñidas de café.
 
-A two-ground palette: daylight paper and night-blue bands, with one cyan/teal signal pair that switches by ground.
+## Colores
 
-### Primary
-- **Signal Cyan** (`cyan`): primary buttons on night, the chat send button, option chips, the "en línea" status, read ticks, focus rings on night, text selection. The one non-action use is the emphasised middle line of the hero headline; keep it to that line. It sits only on night grounds; never cyan text on paper.
-- **Pale Signal Cyan** (`cyan-soft`): hover state of cyan surfaces, read-state ticks, inline delivery codes inside bubbles.
-- **Harbour Teal** (`teal`): the cyan's counterpart on light grounds. Links, step numerals, list dashes, service separators and focus rings on paper. Its deep sibling **Deep Harbour** (`teal-strong`) is the hover for teal links.
+### Paleta de marca (sale del logo)
+| Token | Valor | Uso |
+|---|---|---|
+| `--cafe` | #2E1205 | Bandas oscuras (menú, portada, cierre), texto principal y titulares sobre claro |
+| `--crema` | #FCF3E6 | Fondo general de la página y texto sobre café |
+| `--blanco` | #FFFFFF | Solo tarjetas sobre crema: planes, notas, ticket, burbujas de NUBI, ventana del chat |
+| `--naranja` | #F5633A | Botón principal, con texto café |
+| `--turquesa` | #54C0B4 | Línea destacada del titular sobre café, viñetas, chulitos, números de pasos |
+| `--turquesa-oscuro` | #1D6B63 | Botón secundario (texto blanco), enlaces y opciones del chat sobre claro |
+| `--amarillo` | #FBB039 | Destellos y detalles sobre café; nunca texto sobre claro |
 
-### Neutral
-- **Night Ink** (`night`, same value as `ink`): the band ground, the nav, the dark button, and all headline/body ink on paper.
-- **Night Raised** (`night-2`): chat windows, phone "screens" and the moment cards that sit on paper; one step up from the band.
-- **Night Lifted** (`night-3`): inbound bubbles (`bubble-in`), dark-button hover, the CMS announcement bar.
-- **Harbour Bubble** (`bubble-out`): NUBI's outbound bubbles, a blue-teal that reads as "the bot".
-- **Daylight Paper** (`paper`): page ground and footer. **Plain White** (`surface`): the services strip, the roles section and the ticket stub.
-- **Slate Ink** (`ink-2`): secondary copy on paper. **Mist** (`on-night-2`): secondary copy, nav links and placeholders on night.
-- **Hairlines**: `line` and `line-strong` on paper (section borders, ticket perforation), `line-night` on night (chat dividers, ghost-button border).
+Proporción aproximada: 55 % crema, 30 % café, 10 % turquesa, 5 % naranja y amarillo.
 
-### Named Rules
-**The Signal Switch Rule.** The action colour depends on the ground: cyan on night, teal (or the night button) on paper. Cyan text or cyan fills never appear on paper.
+### Tonos derivados (no son colores nuevos)
+- `--crema-2` #F5E6D0: banda alterna (`.section-roles`) y fondo del chat.
+- `--cafe-900` #1F0B02: pie de página y fondo de `html` cuando la página rebota en el celular.
+- `--cafe-700` #4A2414: luz de fondo de la portada y superficies elevadas sobre café.
+- `--turquesa-tinte` #DDF1EE: burbuja del cliente, fondo de los chulitos y del botón de preguntas.
+- `--turquesa-suave` #BDE4DE: barras y hover del botón de preguntas.
+- `--naranja-hover` #F77E59: hover del botón principal.
+- `--naranja-texto` #B53F18: naranja como texto sobre crema o blanco.
+- `--tinta-2` #6B4A39: texto secundario sobre claro (≥6.4:1 en crema, crema-2 y blanco).
+- `--sobre-cafe-2` #DCC8B2: texto secundario sobre café (10.7:1).
+- Líneas: `--linea` y `--linea-fuerte` sobre claro; `--linea-cafe` sobre café.
 
-**The Two Grounds Rule.** Every surface is either paper or night. Night arrives as full-bleed bands or as raised night objects (chat, screen, moment cards); there is no third mid-tone ground.
+### Reglas de contraste (no se pueden romper)
+**Regla del naranja.** Nunca texto blanco sobre naranja (3.1:1). El texto de los botones naranja va en café (5.6:1). Como texto, el naranja claro solo va sobre café (5.6:1); sobre crema da 2.8:1, así que ahí se usa `--naranja-texto`.
 
-## Typography
+**Regla del turquesa.** El turquesa claro como texto solo va sobre café (7.9:1). Sobre claro se usa `--turquesa-oscuro` (5.1:1 en crema-2, 5.7:1 en crema y 6.3:1 en blanco). Sobre turquesa claro el texto va en café (7.9:1).
 
-**Display Font:** Bricolage Grotesque, self-hosted variable woff2 (`bricolage-grotesque-latin-v2.woff2`: Spanish Latin subset, wght 600–800, opsz 14–96, 62 kB), with system-ui fallback
-**Body Font:** system-ui stack (-apple-system, Segoe UI, Roboto, Helvetica Neue, Arial)
+**Regla del amarillo.** Solo es decoración (destellos, detalles) o fondo con texto café (9.4:1). Nunca texto sobre claro.
 
-**Character:** A chunky, slightly quirky grotesque that sets confident, tightly tracked headlines, against the phone's native UI face for body copy so reading feels like using the phone itself, and nothing extra downloads for text.
+**Regla AA.** Todo texto normal tiene un contraste de al menos 4.5:1, y el texto grande de al menos 3:1.
 
-### Hierarchy
-- **Display** (800, `clamp(2.5rem…4.5rem)`, 0.98, -0.035em): the hero h1 only. On ≤600px it becomes `clamp(2.25rem, 10.5vw, 3rem)`.
-- **Headline** (700, `clamp(1.875rem…3rem)`, 1.08, -0.02em): section h2s and the closing h2.
-- **Title** (700, `clamp(1.375rem…1.75rem)`): step h3s, the services strip, the courier fact line. Role h3s sit slightly larger at `clamp(1.5rem…2.125rem)`.
-- **Body large** (400, 1.1875rem, 1.55): hero subtitle and section intros, held to 40–44ch.
-- **Body** (400, 1.0625rem, 1.6): running copy, measures of 34–46ch.
-- **Label** (650, 0.9375rem): buttons, chat names, screen heads, footer titles.
-- **Caption** (400, 0.8125rem): hints, notes, ticket label, footer base.
-- **Code** (Bricolage 800, 2.5rem, +0.18em, tabular figures): the four-digit delivery code on the ticket stub.
+### Contrastes verificados
+| Combinación | Contraste |
+|---|---|
+| café / crema · crema-2 · blanco | 15.85 · 14.20 · 17.43:1 |
+| café / turquesa-tinte (burbuja del cliente) | 14.85:1 |
+| tinta-2 / crema · crema-2 · blanco | 7.17 · 6.42 · 7.88:1 |
+| crema / café · café-900 | 15.85 · 17.26:1 |
+| sobre-cafe-2 / café · café-700 · café-900 | 10.75 · 8.33 · 11.70:1 |
+| café / naranja (botón principal) | 5.58:1 |
+| naranja / café (texto) | 5.58:1 |
+| turquesa / café (titular, viñetas) | 7.95:1 |
+| café / turquesa (números de pasos) | 7.95:1 |
+| amarillo / café | 9.44:1 |
+| blanco / turquesa-oscuro (botón secundario) | 6.30:1 |
+| turquesa-oscuro / crema · crema-2 · blanco · tinte | 5.73 · 5.13 · 6.30 · 5.36:1 |
+| naranja-texto / crema · blanco | 5.18 · 5.69:1 |
 
-### Named Rules
-**The Native Reader Rule.** Bricolage is for headings, the wordmark, the services strip and the delivery code. Anything a person reads as a sentence uses the system face.
+## Tipografía
 
-**The Tabular Code Rule.** Delivery codes and phone numbers always use tabular figures; codes are tracked wide (0.08em inline, 0.18em on the ticket).
+**Titulares:** Bricolage Grotesque, alojada en el sitio (`assets/fonts/bricolage-grotesque-latin-v2.woff2`, subconjunto latino, wght 600–800, opsz 14–96, 62 kB). Las páginas legales ya no cargan Google Fonts.
+**Texto:** la letra del sistema del celular, así que no se descarga nada para leer.
 
-## Layout
+### Jerarquía (todo fluido con `clamp`)
+- **Display** (800, 0.98, -0.038em): el h1 de la portada, con un máximo de 14ch en escritorio y de 2.25–3rem en el celular. Los h1 de negocios y domiciliarios van de 2.25 a 4rem con un máximo de 19ch.
+- **Headline** (700, 1.04, -0.03em): h2 de sección y del cierre.
+- **Title** (700): h3 de pasos y formas de pedir. Los h3 de roles y funciones van más grandes, de 1.625 a 2.375rem.
+- **Body large** (1.55): subtítulos e introducciones, a 44–52ch.
+- **Body** (1.6): texto corrido, a 36–62ch. En las páginas legales, 70ch.
+- **Label** (650): botones, nombres en el chat y encabezados de pantalla.
+- **Caption**: notas, el talón y la base del pie.
+- **Code** (Bricolage 800, +0.18em, cifras tabulares): el código de entrega del talón.
 
-A single centred column, max 1160px, with fluid gutters (`clamp(16px, 4vw, 32px)`), on a 4px spacing scale (4, 8, 12, 16, 24, 32, 48, 64, 96). Sections use 96px vertical padding (64px on ≤600px); section heads are capped at 40rem with 48px below.
+**Regla del lector.** Bricolage solo va en titulares, la marca, la franja de servicios, precios y el código. Todo lo que se lee como frase va en la letra del sistema. Los números que se comparan (precios, códigos y teléfonos) usan `tabular-nums`.
 
-The hero is a two-column grid (1.08fr / 0.92fr, 64px gap): headline and copy on the left, the live chat on the right. At ≤900px it stacks headline → chat → copy, so on a 390px phone the chat's first bubbles and its input sit inside the first viewport. Other grids: three steps (stack at ≤900px into image/text pairs, then single column at ≤600px), role rows that alternate copy and phone screen, a four-up "why" list (2-up ≤1020px, 1-up ≤600px), and a 4-column footer.
+## Diseño y espacio
 
-Breakpoints: 1020px, 900px, 760px (nav links hide), 600px. On ≤600px, primary CTAs go full width.
+Una columna centrada de máximo 1180px, con márgenes laterales fluidos (`clamp(16px, 4vw, 40px)`) que respetan la muesca (`env(safe-area-inset-*)`). La escala es de 4 px. Las secciones se separan con `--section-y` (de 72 a 136px). Dos secciones crema seguidas se separan con una línea fina, y la banda alterna `crema-2` marca el cambio de tema (roles, planes, requisitos).
 
-## Elevation & Depth
+La portada tiene dos columnas (titular y texto a la izquierda, chat a la derecha). A ≤900px se apila en el orden titular → chat → texto. Puntos de quiebre: 1020, 900, 760 (se ocultan los enlaces del menú) y 600 (los botones principales pasan a todo el ancho).
 
-Depth is mostly tonal: night objects sit on paper, raised night sits on the band, hairlines separate everything else. Two shadows exist, both soft and night-tinted, both for "a phone in the hand".
+## Profundidad
 
-### Shadow Vocabulary
-- **Resting card** (`0 1px 2px rgba(10,19,48,.06), 0 4px 14px rgba(10,19,48,.06)`): the role phone screens on white, and the CMS preview badge.
-- **Held phone** (`0 2px 6px rgba(5,9,20,.18), 0 28px 56px -16px rgba(5,9,20,.55)`): the hero chat only, lifting it off the night band.
+Casi toda la profundidad es de tono (café contra crema, blanco contra crema). Las sombras siempre tienen desplazamiento y van teñidas de café, nunca grises ni de color brillante.
+- `--shadow-1`: tarjetas en reposo (planes, notas legales, tablas).
+- `--shadow-2`: pantallas de ejemplo, el POS y los planes con hover.
+- `--shadow-phone`: el teléfono del chat sobre la banda café y el QR del cierre.
+- El disco `café-700` detrás del chat de la portada es un círculo sólido, sin degradado. Siempre va detrás del texto.
 
-### Named Rules
-**The No-Glow Rule.** Shadows are dark and diffuse, never coloured. No glows, no glass, no backdrop blur, no gradient fills.
+**Regla sin brillo.** Nada de degradados de relleno, vidrio, desenfoque ni brillos de color. Los degradados solo se usan como máscara, como en las muescas del talón.
 
-## Shapes
+## Formas
 
-Soft but not bubbly. Pill (999px) for every button, nav link, option chip, tag and the chat input; 22px for chat windows, phone screens and moment cards; 14px for bubbles, the ticket and the QR plate; 8px for focus rings and the skip link. Bubbles cut one corner to 4px on the tail side (bottom-right for the customer, bottom-left for NUBI). The ticket stub is the signature silhouette: semicircular 9px notches masked out of both sides and a dashed tear line under its label. Small 14×10 check marks, 8×2 dashes and 6px dots are the only list markers.
+Píldora (999px) en botones, opciones, etiquetas y el campo del chat. 24px en la ventana del chat, las pantallas, los recuadros de ejemplo y los planes. 16px en las burbujas, el talón, las notas y las tablas. 10px en las mesas del POS y 6px en la cola de las burbujas y el anillo de foco. Las burbujas cortan una esquina a 6px del lado de la cola. El talón conserva sus muescas semicirculares y la línea punteada.
 
-## Components
+Marcadores de lista: un punto turquesa (roles, planes, legal), un chulito turquesa oscuro en un círculo turquesa-tinte (`.check-list`), un círculo turquesa con chulito café (pruebas de la portada) y números en círculos turquesa (pasos, registro, listas numeradas legales).
 
-### Buttons
-Chunky, rounded, thumb-sized.
-- **Shape:** full pill (999px), 52px tall, 24px side padding, 650 weight.
-- **Primary (on night):** cyan fill, night text; hover goes to pale cyan.
-- **Dark (on paper):** night fill, white text; hover to Night Lifted.
-- **Ghost (on night):** transparent, white text, `line-night` border; hover brightens the border to Mist and adds a 6% white wash.
-- **Small:** 44px tall, 16px padding, 0.9375rem; used in the nav.
-- **States:** 160ms colour transitions on `cubic-bezier(0.16, 1, 0.3, 1)`; press scales to 0.97. Focus is a 2px ring offset 3px (teal on paper, cyan on night).
+## Componentes
 
-### Chips (options)
-- **Style:** outline pill, 32px tall, cyan text and 70% cyan border, 0.8125rem semibold. They show what NUBI offers to tap inside a chat; they are illustrations, not interactive.
+### Botones
+- **Principal:** naranja con texto café, 52px, en píldora, con un brillo interior sutil. Con mouse, el hover lo pasa a `naranja-hover` y le agrega sombra.
+- **Secundario sobre claro (`.btn-dark`):** turquesa oscuro lleno con texto blanco; con mouse, el hover pasa a café.
+- **Fantasma sobre café (`.btn-ghost`):** contorno crema al 32 % con texto blanco.
+- **Contorno (`.btn-outline`):** turquesa oscuro sobre claro y crema sobre la cabecera legal.
+- **Pequeño:** 44px, usado en el menú. Si el admin manda un texto largo, se corta con "…" en una línea.
+- **Estados:** al presionar, `scale(0.97)` en 160ms. El foco es un anillo de 2px a 3px de distancia, café sobre claro y turquesa sobre café. Los hover que cambian el fondo solo existen con `(hover: hover) and (pointer: fine)`.
 
-### Chat window (signature)
-- Night Raised panel, 22px radius, hairline border, the held-phone shadow, max 420px. Header with avatar, name, "en línea" status in cyan and an outline "Ejemplo" tag. The body (400px, 300px on phones) stacks messages from the bottom like a real chat. Messages enter one by one (fade and rise 8px, 280–420ms), with a three-dot typing bubble and ticks that go sent → delivered → read (Mist → Pale Cyan). This entrance is the page's only animation.
-- **Input:** night pill field, 48px, Mist placeholder, cyan caret; focus is a 2px cyan ring. A 48px round cyan send button with an arrow icon. Submitting opens WhatsApp with the text prefilled.
+### Chat (firma)
+La ventana es blanca y su cuerpo crema-2. Burbujas de NUBI en blanco y del cliente en turquesa-tinte, todo con texto café. Las opciones son píldoras blancas con texto turquesa oscuro. Los chulitos pasan de gris a tinta-2 y luego a turquesa oscuro (enviado, entregado, leído). El campo del chat es crema con letra de 16px (sin zoom en iPhone) y el botón de enviar es un círculo café.
 
-### Phone screens and moment cards
-- Same night-raised material at smaller scale: role "screens" (max 400px, resting shadow, head line "NUBI · Negocio") and the step "moments" (min 168px tall, no shadow) each hold two to four bubbles and chips.
+### Marca y mascota
+Las piezas están en `assets/marca/`, recortadas del logo con el fondo café quitado y el contorno rehecho, así que sirven sobre crema y sobre café.
+- **Menú:** `nubi-logo.webp` (cara de NUBI + "nubi COLOMBIA"), 64px de alto en computador y 50px en celular. El texto "NUBI" queda para lectores de pantalla.
+- **Portada:** `nubi-asoma.webp`, NUBI con el celular, agarrado del borde del chat.
+- **Chat:** `nubi-cabeza.webp` en un círculo crema-2, como foto de perfil.
+- **Cierres:** `nubi-moto-celular.webp` en la portada, `nubi-pulgar.webp` en negocios y `nubi-moto-caja.webp` en domiciliarios.
+- **Pie:** `nubi-timbio.webp`, la nube con la moto, las montañas y la iglesia de Timbío.
+- **Íconos:** `favicon-32.png` y `marca/favicon-192.png` (la cara sobre turquesa) y `apple-touch-icon.png` (el ícono de app turquesa). `og-cover.jpg` es NUBI en moto con el logo.
+- `nubi-wordmark-crema.webp` y `nubi-app-icono-512.png` quedan listos para usar en otras piezas.
+- Los logos viejos en cian (`logo-nubi-*`, `nubi-bot*`) ya no se usan en las páginas.
 
-### Ticket stub (signature)
-- White stub on night, 14px radius with side notches, label above a dashed tear line, then the four-digit code in Bricolage 800 with tabular, widely tracked figures. It is the visual proof of a verified delivery.
+### Menú
+Arriba es una banda café. Al bajar 24px se vuelve una cápsula flotante café al 92 % con desenfoque, borde `linea-cafe` y sombra teñida.
 
-### Navigation
-- Sticky night bar, 64px, hairline bottom border. Wordmark "nubi" in Bricolage 800 beside the logo; text links in Mist as 44px pills that go white with a 6% wash on hover or when current; one small cyan button. At ≤760px the links hide and only the wordmark and button remain.
+### Talón del código (firma)
+Talón blanco sobre crema-2, con muescas laterales, línea punteada y cuatro cifras en Bricolage 800 tabulares.
 
-### Audience pages and new pieces (2026-10-27)
-- **Page hero** (`.page-hero`): night band, copy left and a chat/screen example right; used by `negocios.html` and `domiciliarios.html`.
-- **Feature rows** (`.feature`, `.feature-flip`): copy with a teal check list beside a night-raised example (screen, POS mock); alternate sides, hairline between rows.
-- **Voice note bubble** (`.bubble.voice`): play glyph, drawn waveform, tabular duration.
-- **Pick list** (`.pick`): "Arma tu pedido" rows with price and a cyan quantity dot.
-- **POS mock** (`.pos-mock`): table grid (free = dashed, busy = cyan, paying = pale cyan) and a white bill stub with tabular amounts.
-- **Mini chart** (`.mini-chart`): hand-drawn SVG bars (cyan today, Harbour Bubble earlier); no chart library on the site.
-- **Plans** (`.plans`): five white columns on the roles ground; Crece marked by a 2px night border, no badge; columns scroll-snap under 1020px.
-- **Journey** (`.journey`): numbered steps topped by a 2px ink rule, like the why list.
-- **FAQ** (`.faq`): native `<details>` with a teal plus that turns into an x; heading column sticky on desktop. Every FAQ is mirrored in FAQPage JSON-LD with the same text.
-- **Big fact** (`.big-fact`): one oversized cyan number on night ("100%") for the courier page only.
+### Planes
+Cinco columnas blancas sobre crema-2. Crece se marca con un borde café de 2px, sin insignia. Por debajo de 1020px se deslizan de lado con scroll-snap.
 
-### Lists and "why" items
-- Role lists use an 8×2 teal dash; hero proof uses cyan check marks. "Why" items are topped by a 2px ink rule, no card.
+### Preguntas frecuentes
+`<details>` nativo con un botón circular turquesa-tinte con un más que gira a una x y se vuelve turquesa al abrirse.
 
-## Do's and Don'ts
+### Páginas legales
+Cabecera café con el título, la versión y el PDF. Cuerpo de 46rem. El número de cada capítulo va en turquesa oscuro (es la referencia legal, así que sí informa). Las tablas son blancas y se deslizan de lado en el celular, y las notas son tarjetas blancas sin franja lateral.
 
-### Do:
-- **Do** put night content in full-bleed bands or raised night objects; keep everything else on Daylight Paper (#F4F7FA) or white.
-- **Do** use cyan for action and state on night and teal for links and markers on paper.
-- **Do** tell product behaviour through bubbles, chips, ticks and the ticket stub rather than icons or illustrations.
-- **Do** keep every tap target at least 44px, primary buttons 52px, and make CTAs full-width on ≤600px.
-- **Do** use tabular figures for codes and phone numbers.
-- **Do** honour `prefers-reduced-motion`: transitions collapse to 1ms and the typing dots stop.
+## Movimiento
 
-### Don't:
-- **Don't** use gradient fills, glass, glows or backdrop blur. (Gradients used only as a mask, as in the ticket's notches, are fine.)
-- **Don't** use cream or warm off-white grounds; the paper stays cool.
-- **Don't** put cyan text or cyan fills on paper.
-- **Don't** set body copy in Bricolage Grotesque or load another text face.
-- **Don't** add a metric row or stat band; proof is shown as mechanisms (codes, checks, review), not numbers.
-- **Don't** treat `legal.css` as part of this system; migrate the legal pages to these tokens when they are redesigned.
+- **Entrada de la portada (el momento de autor):** el titular sube palabra por palabra desde su línea (1000ms, 65ms entre palabras, con un desenfoque que se aclara). El chat aterriza inclinado en 3D (1100ms) y NUBI sube desde detrás del borde con un pequeño rebote. Luego la conversación se escribe sola.
+- **Chat de la portada:** los mensajes entran uno a uno, con "escribiendo…" y los chulitos. Mientras escribe, NUBI se balancea. Cuando llega un mensaje del cliente se inclina hacia él, y salta cuando el código queda leído.
+- **NUBI se inclina:** con mouse, se inclina hacia el puntero (con un poco de inercia, usando `rotate` y `translate` para no pisar las animaciones). En el celular se inclina hacia la conversación.
+- **Fondo del titular:** luces café, naranja, turquesa y amarillo que respiran despacio (20s) y una trama de puntos crema al 9 %. Con mouse, una luz turquesa suave sigue al puntero. Es igual en negocios y domiciliarios.
+- **Riel de los pasos:** la línea 1-2-3 se llena con el scroll y cada número se enciende al llegar (`animation-timeline: view()`). En navegadores sin esa función queda encendido y quieto. En el celular se oculta y vuelven los números de cada paso.
+- **Aparición al hacer scroll** (`.rv`, desde `script.js`): `opacity` + `translateY(16px)` en 600ms con `--ease-out`, con 70ms de diferencia entre hermanos y una sola vez. Las burbujas de los ejemplos (`.rv-child`) entran en orden, 90ms entre cada una, y el talón se "sella" (`scale(0.94)` → 1). Solo se oculta lo que el JS va a mostrar: sin JS o sin IntersectionObserver, todo queda visible. Al imprimir, todo se muestra.
+- **Preguntas:** la respuesta entra con un fundido de 260ms. La altura se anima donde existe `::details-content`.
+- **`prefers-reduced-motion`:** sin desplazamientos, solo un fundido de 300ms. El chat se muestra completo y quieto, el titular aparece entero, las luces no se mueven y NUBI no se balancea ni sigue el puntero.
+- **Curvas:** `--ease-out: cubic-bezier(0.23, 1, 0.32, 1)` y `--ease-in-out: cubic-bezier(0.77, 0, 0.175, 1)`. Se animan `transform` y `opacity`, más `filter` en la entrada del titular.
+
+## Celular
+
+`viewport-fit=cover` con zonas seguras en el menú, el pie, los márgenes y la insignia de vista previa. `theme-color` es #164A41. Sin destello al tocar, `touch-action: manipulation` en los controles, sin selección de texto al dejar presionado un botón y campos de al menos 16px. Nunca se desactiva el zoom.
+
+## Sí y no
+
+### Sí
+- **Sí** usa crema de fondo, blanco solo para tarjetas y café para las bandas.
+- **Sí** usa la mascota de `assets/marca/` donde haya un momento importante (portada, cierres, pie), una por pantalla.
+- **Sí** reserva el naranja para el botón principal, con texto café.
+- **Sí** cuenta cómo funciona el producto con burbujas, opciones, chulitos y el talón, en lugar de íconos genéricos.
+- **Sí** mantiene los botones de al menos 44px (52 los principales) y a todo el ancho en ≤600px.
+- **Sí** verifica el contraste de cualquier combinación nueva antes de usarla.
+
+### No
+- **No** pongas texto blanco sobre naranja, amarillo ni turquesa claro.
+- **No** uses el turquesa claro ni el naranja claro como texto sobre crema o blanco: ahí van `--turquesa-oscuro` y `--naranja-texto`.
+- **No** uses el amarillo como texto sobre claro.
+- **No** cambies los colores de las piezas de `assets/marca/` ni las pongas sobre fondos que no sean crema o café.
+- **No** uses degradados de relleno, brillos ni sombras grises; el único vidrio es el menú flotante.
+- **No** escribas el cuerpo en Bricolage ni cargues otra fuente de texto.
+- **No** agregues filas de cifras ni números sin verificar; la prueba se muestra con mecanismos (códigos, revisión humana).

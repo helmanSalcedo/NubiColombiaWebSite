@@ -2,7 +2,7 @@
 <html lang="es-CO">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <meta name="color-scheme" content="light" />
   <script>document.documentElement.classList.add("js");</script>
   <title>NUBI · Domicilios por WhatsApp en Timbío y Popayán</title>
@@ -26,9 +26,10 @@
   <meta name="twitter:description" content="Escribes o mandas un audio, NUBI entiende y la orden se mueve. Sin instalar nada." />
   <meta name="twitter:image" content="https://web.nubicolombia.com/assets/og-cover.jpg" />
 
-  <meta name="theme-color" content="#0A1330" />
+  <meta name="theme-color" content="#2E1205" />
   <!-- Backend de Nubi: de aquí sale el contenido que se edita en el admin (Sitio web) -->
   <meta name="nubi-api" content="https://api.nubicolombia.com" />
+  <link rel="icon" href="assets/marca/favicon-192.png" sizes="192x192" type="image/png" />
   <link rel="icon" href="assets/favicon-32.png" sizes="32x32" type="image/png" />
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
 
@@ -47,7 +48,6 @@
         "url": "https://web.nubicolombia.com/",
         "logo": "https://web.nubicolombia.com/assets/apple-touch-icon.png",
         "email": "hellman.salcedo@gmail.com",
-        "taxID": "1063816105-8",
         "contactPoint": [
           { "@type": "ContactPoint", "contactType": "customer service", "telephone": "+57 312 804 5836", "areaServed": "CO", "availableLanguage": "es" },
           { "@type": "ContactPoint", "contactType": "sales", "telephone": "+57 312 804 7127", "areaServed": "CO", "availableLanguage": "es" }
@@ -72,7 +72,6 @@
         "telephone": "+57 312 804 5836",
         "address": {
           "@type": "PostalAddress",
-          "streetAddress": "CR 22 18 05, Barrio San Judas",
           "addressLocality": "Timbío",
           "addressRegion": "Cauca",
           "addressCountry": "CO"
@@ -103,8 +102,8 @@
   <nav class="site-nav" aria-label="Principal">
     <div class="nav-inner">
       <a class="logo" href="/" aria-label="NUBI, inicio">
-        <img src="assets/logo-nubi-72.webp" alt="" width="36" height="35" />
-        <span>nubi</span>
+        <img src="assets/marca/nubi-logo.webp" alt="" width="188" height="64" />
+        <span class="sr-only">NUBI</span>
       </a>
       <div class="nav-links">
         <a href="#como-funciona">Cómo funciona</a>
@@ -119,6 +118,7 @@
   <main id="contenido" tabindex="-1">
 
     <header class="hero band-night">
+      <div class="hero-glow" data-hero-glow aria-hidden="true"></div>
       <div class="hero-inner">
         <div class="hero-head">
           <h1 data-cms-html="hero.titleHtml">Escribes. <em>La IA entiende.</em><br>La orden se mueve.</h1>
@@ -147,9 +147,12 @@
         </div>
 
         <div class="hero-chat">
+          <div class="bot" data-bot aria-hidden="true">
+            <img class="bot-img" src="assets/marca/nubi-asoma.webp" alt="" width="280" height="150" fetchpriority="high" decoding="async" />
+          </div>
           <div class="chat" aria-label="Ejemplo de conversación con NUBI">
             <div class="chat-head">
-              <img src="assets/logo-nubi-72.webp" alt="" width="32" height="31" />
+              <img src="assets/marca/nubi-cabeza.webp" alt="" width="40" height="34" />
               <div class="chat-id">
                 <span class="chat-name">NUBI</span>
                 <span class="chat-status" data-chat-status>en línea</span>
@@ -203,6 +206,10 @@
           <p data-cms="how.subtitle">Nada de menús anidados ni formularios largos. La IA hace la parte difícil.</p>
         </div>
 
+        <div class="steps-rail" aria-hidden="true">
+          <span class="rail-line"><span class="rail-fill"></span></span>
+          <span class="rail-node n1">1</span><span class="rail-node n2">2</span><span class="rail-node n3">3</span>
+        </div>
         <ol class="steps">
           <li class="step">
             <div class="moment" aria-hidden="true">
@@ -420,7 +427,7 @@
 
     <section class="closing band-night" aria-labelledby="close-title">
       <div class="wrap closing-inner">
-        <img class="closing-mascot" src="assets/nubi-bot-static.svg" alt="" width="160" height="160" loading="lazy" decoding="async" />
+        <img class="closing-mascot" src="assets/marca/nubi-moto-celular.webp" alt="" width="340" height="312" loading="lazy" decoding="async" />
         <div class="closing-copy">
           <h2 id="close-title" data-cms="finalCta.title">Tu próxima solicitud, resuelta en un mensaje.</h2>
           <a class="btn btn-primary" data-wa-text="Hola, quiero probar NUBI" href="https://wa.me/573128045836?text=Hola%2C%20quiero%20probar%20NUBI" target="_blank" rel="noopener" data-cms="finalCta.button">Abrir WhatsApp y pedir</a>
@@ -438,8 +445,8 @@
     <div class="wrap footer-grid">
       <div class="footer-brand">
         <a class="logo" href="/" aria-label="NUBI, inicio">
-          <img src="assets/logo-nubi-72.webp" alt="" width="30" height="29" loading="lazy" decoding="async" />
-          <span>nubi</span>
+          <img src="assets/marca/nubi-timbio.webp" alt="" width="220" height="125" loading="lazy" decoding="async" />
+          <span class="sr-only">NUBI</span>
         </a>
         <p><strong>NubiColombia</strong> — <span data-cms="contact.tagline">Plataforma de pedidos por WhatsApp con IA</span></p>
         <p class="footer-where">Timbío y Popayán, Cauca</p>
@@ -466,8 +473,6 @@
       <div class="footer-col">
         <h2 class="footer-title">Contacto y legal</h2>
         <ul>
-          <li><span data-cms="contact.legalName">Hellman Sebastian Salcedo Delgado</span> · NIT <span data-cms="contact.nit">1063816105-8</span></li>
-          <li data-cms="contact.address">CR 22 18 05, Barrio San Judas, Timbío, Cauca, Colombia</li>
           <li><a href="tel:+573158678716" data-contact-phone>Tel. <span data-cms="contact.phone">+57 315 867 8716</span></a></li>
           <li><a href="mailto:hellman.salcedo@gmail.com" data-contact-email data-cms="contact.email">hellman.salcedo@gmail.com</a></li>
           <li><a href="/privacidad">Política de privacidad</a> · <a href="/privacidad#eliminacion">Eliminar mis datos</a></li>

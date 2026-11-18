@@ -2,8 +2,8 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="color-scheme" content="dark" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="light" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Términos para domiciliarios — NubiColombia</title>
   <meta name="description" content="Términos y condiciones para los domiciliarios que prestan servicios a través de NUBI: requisitos, seguridad, vehículo y pertenencias, responsabilidad y pagos." />
   <link rel="canonical" href="https://web.nubicolombia.com/terminos-domiciliarios" />
@@ -16,28 +16,25 @@
   <meta property="og:locale" content="es_CO" />
   <meta name="twitter:card" content="summary_large_image" />
 
-  <meta name="theme-color" content="#0A1330" />
+  <meta name="theme-color" content="#2E1205" />
   <meta name="nubi-api" content="https://api.nubicolombia.com" />
+  <link rel="icon" href="assets/marca/favicon-192.png" sizes="192x192" type="image/png" />
   <link rel="icon" href="assets/favicon-32.png" sizes="32x32" type="image/png" />
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
 
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="preload" href="assets/fonts/bricolage-grotesque-latin-v2.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="legal.css" />
 </head>
 <body>
 
-  <div class="starfield" aria-hidden="true">
-    <svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice"></svg>
-  </div>
-  <div class="grain" aria-hidden="true"></div>
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
 
-  <nav>
+  <nav class="site-nav" aria-label="Principal">
     <div class="nav-inner">
       <a class="logo" href="/">
-        <img src="assets/logo-nubi-96.png" alt="NUBI" width="34" height="34" />
-        <span>nubi</span>
+        <img src="assets/marca/nubi-logo.webp" alt="" width="188" height="64" />
+        <span class="sr-only">NUBI</span>
       </a>
       <div class="nav-links">
         <a href="/#como-funciona">Cómo funciona</a>
@@ -48,7 +45,7 @@
     </div>
   </nav>
 
-  <main class="legal" data-cms-page="terminosDomiciliarios">
+  <main id="contenido" tabindex="-1" class="legal" data-cms-page="terminosDomiciliarios">
     <header class="legal-head wrap">
       <p class="legal-eyebrow mono" data-cms="legal.terminosDomiciliarios.eyebrow">Domiciliarios</p>
       <h1 data-cms="legal.terminosDomiciliarios.title">Términos y condiciones para domiciliarios</h1>
@@ -144,11 +141,11 @@
     </article>
   </main>
 
-  <footer>
+  <footer class="site-footer legal-footer">
     <div class="wrap footer-inner">
       <a class="logo" href="/">
-        <img src="assets/logo-nubi-96.png" alt="NUBI" width="24" height="24" />
-        <span>nubi</span>
+        <img src="assets/marca/nubi-timbio.webp" alt="" width="220" height="125" loading="lazy" decoding="async" />
+          <span class="sr-only">NUBI</span>
       </a>
       <span class="footer-note">Chatbot con IA por WhatsApp — Timbío, Cauca. · <a href="/privacidad">Política de privacidad</a> · <a href="/terminos-domiciliarios">Términos para domiciliarios</a></span>
     </div>

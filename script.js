@@ -230,23 +230,142 @@
     });
   }
 
-  // ── Estrellas de fondo (solo páginas legales, hasta su rediseño) ─────
-  var starSvg = document.querySelector('.starfield svg');
-  if (starSvg) {
-    var NS = 'http://www.w3.org/2000/svg';
-    for (var i = 0; i < 90; i++) {
-      var bright = Math.random() < 0.1;
-      var c = document.createElementNS(NS, 'circle');
-      c.setAttribute('cx', (Math.random() * 100).toFixed(2));
-      c.setAttribute('cy', (Math.random() * 100).toFixed(2));
-      c.setAttribute('r', (bright ? 0.2 + Math.random() * 0.1 : 0.05 + Math.random() * 0.14).toFixed(3));
-      c.setAttribute('fill', Math.random() < 0.15 ? '#9BF6EC' : '#fff');
-      c.setAttribute('class', 'star');
-      c.style.animationDelay = (Math.random() * 5).toFixed(2) + 's';
-      c.style.animationDuration = (3 + Math.random() * 3.5).toFixed(2) + 's';
-      starSvg.appendChild(c);
-    }
+  // ── Aparición al hacer scroll ───────────────────────────────────────
+  // Solo se oculta lo que este código va a mostrar: sin JS o sin
+  // IntersectionObserver todo queda visible. Cada bloque aparece una vez;
+  // los hermanos con 70 ms de diferencia y, dentro de los ejemplos de chat,
+  // las burbujas en orden, como llegan los mensajes.
+  (function reveal() {
+    if (!('IntersectionObserver' in window)) return;
+    var blocks = document.querySelectorAll('.section-head, .step, .way, .role, .why-grid, .feature, .plans, .journey li');
+    if (!blocks.length) return;
+    document.documentElement.classList.add('reveal-on');
+
+    Array.prototype.forEach.call(blocks, function (el) {
+      var siblings = Array.prototype.filter.call(el.parentNode.children, function (s) { return s.className.replace(/ ?rv\b/, '') === el.className; });
+      el.classList.add('rv');
+      var index = Math.min(siblings.indexOf(el), 4);
+      if (index > 0) el.style.transitionDelay = (index * 70) + 'ms';
+      var start = 180 + Math.max(index, 0) * 70;
+      el.querySelectorAll('.moment > *, .screen-body > *, .pos-mock-body > *').forEach(function (child, i) {
+        child.classList.add('rv-child');
+        child.style.transitionDelay = (start + Math.min(i, 5) * 90) + 'ms';
+      });
+    });
+
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('is-in');
+        io.unobserve(entry.target);
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0 });
+    Array.prototype.forEach.call(blocks, function (el) { io.observe(el); });
+    // Al imprimir o guardar como PDF, todo visible
+    window.addEventListener('beforeprint', function () {
+      Array.prototype.forEach.call(blocks, function (el) { el.classList.add('is-in'); });
+    });
+  })();
+
+  // ── Menú flotante ───────────────────────────────────────────────────
+  // Arriba es la banda café; al bajar, el menú queda como cápsula.
+  var nav = document.querySelector('.site-nav');
+  if (nav) {
+    var navTicking = false;
+    var updateNav = function () {
+      navTicking = false;
+      nav.classList.toggle('is-floating', window.scrollY > 24);
+    };
+    window.addEventListener('scroll', function () {
+      if (!navTicking) { navTicking = true; requestAnimationFrame(updateNav); }
+    }, { passive: true });
+    updateNav();
   }
+
+  // ── Titular palabra por palabra ─────────────────────────────────────
+  // Envuelve cada palabra (respetando <em> y <br>) para que suba desde su
+  // línea. Si el admin cambia el titular después, llega ya visible.
+  (function splitTitle() {
+    var h1 = document.querySelector('.hero h1');
+    if (!h1 || reduceMotion) return;
+    var i = 0;
+    (function walk(node) {
+      Array.prototype.slice.call(node.childNodes).forEach(function (child) {
+        if (child.nodeType === 3) {
+          var parts = child.textContent.split(/(\s+)/);
+          var frag = document.createDocumentFragment();
+          parts.forEach(function (part) {
+            if (!part) return;
+            if (/^\s+$/.test(part)) { frag.appendChild(document.createTextNode(part)); return; }
+            var w = document.createElement('span');
+            w.className = 'w';
+            var inner = document.createElement('span');
+            inner.textContent = part;
+            inner.style.setProperty('--i', i++);
+            w.appendChild(inner);
+            frag.appendChild(w);
+          });
+          node.replaceChild(frag, child);
+        } else if (child.nodeType === 1 && child.tagName !== 'BR') {
+          walk(child);
+        }
+      });
+    })(h1);
+    h1.classList.add('is-split');
+  })();
+
+  // ── NUBI se inclina: hacia el mouse en computador, hacia la conversación en celular ──
+  var bot = document.querySelector('[data-bot]');
+  var botLookEl = bot && bot.querySelector('.bot-img');
+  var look = { x: 0, y: 0, tx: 0, ty: 0, raf: 0 };
+  function botStep() {
+    look.x += (look.tx - look.x) * 0.14;
+    look.y += (look.ty - look.y) * 0.14;
+    // rotate y translate van aparte de transform: no pisan las animaciones de CSS
+    botLookEl.style.rotate = (look.x * 5).toFixed(2) + 'deg';
+    botLookEl.style.translate = (look.x * 6).toFixed(2) + 'px ' + (look.y * 3).toFixed(2) + 'px';
+    if (Math.abs(look.tx - look.x) > 0.004 || Math.abs(look.ty - look.y) > 0.004) look.raf = requestAnimationFrame(botStep);
+    else look.raf = 0;
+  }
+  function botLook(x, y) {
+    if (!botLookEl || reduceMotion) return;
+    look.tx = Math.max(-1, Math.min(1, x));
+    look.ty = Math.max(-1, Math.min(1, y));
+    if (!look.raf) look.raf = requestAnimationFrame(botStep);
+  }
+
+  // Luz del titular que sigue al mouse, y NUBI se inclina hacia ella
+  (function pointerFollow() {
+    var hero = document.querySelector('.hero');
+    var glow = document.querySelector('[data-hero-glow]');
+    if (!hero || reduceMotion || !window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+    var g = { x: 0, y: 0, tx: 0, ty: 0, raf: 0, on: false };
+    function glowStep() {
+      g.x += (g.tx - g.x) * 0.12;
+      g.y += (g.ty - g.y) * 0.12;
+      if (glow) glow.style.transform = 'translate3d(' + g.x.toFixed(1) + 'px,' + g.y.toFixed(1) + 'px,0)';
+      if (Math.abs(g.tx - g.x) > 0.5 || Math.abs(g.ty - g.y) > 0.5) g.raf = requestAnimationFrame(glowStep);
+      else g.raf = 0;
+    }
+    var visible = true;
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (entries) { visible = entries[0].isIntersecting; }).observe(hero);
+    }
+    window.addEventListener('pointermove', function (e) {
+      if (!visible || e.pointerType !== 'mouse') return;
+      var r = hero.getBoundingClientRect();
+      g.tx = e.clientX - r.left;
+      g.ty = e.clientY - r.top;
+      if (!g.on) { g.on = true; g.x = g.tx; g.y = g.ty; hero.classList.add('has-pointer'); }
+      if (!g.raf) g.raf = requestAnimationFrame(glowStep);
+      if (bot && !bot.hasAttribute('data-talk')) {
+        var b = bot.getBoundingClientRect();
+        var cx = b.left + b.width / 2, cy = b.top + b.height * 0.45;
+        botLook((e.clientX - cx) / 260, (e.clientY - cy) / 220);
+      }
+    }, { passive: true });
+    hero.addEventListener('pointerleave', function () { hero.classList.remove('has-pointer'); g.on = false; });
+  })();
 
   // ── Chat de la portada ──────────────────────────────────────────────
   // Una conversación de ejemplo entra mensaje a mensaje (con "escribiendo…"
@@ -293,6 +412,10 @@
 
     function setStatus(text) {
       if (chatStatus) chatStatus.textContent = text;
+      if (bot) {
+        if (text === 'escribiendo…') { bot.setAttribute('data-talk', ''); botLook(-0.5, 1); }
+        else bot.removeAttribute('data-talk');
+      }
     }
 
     function showStatic() {
@@ -333,14 +456,15 @@
       msgs.forEach(function (m) { if (m.hasAttribute('data-typing')) m.remove(); });
       var seq = msgs.filter(function (m) { return !m.hasAttribute('data-typing'); });
       // seq: 0 cliente, 1 NUBI, 2 opciones, 3 cliente, 4 NUBI con código
-      var t = 400;
+      // Empieza cuando el chat ya aterrizó y NUBI se asomó
+      var t = 1500;
       function at(ms, fn) { setTimeout(fn, t += ms); }
 
-      at(0, function () { seq[0].classList.add('show'); scrollChatToBottom(); });
+      at(0, function () { seq[0].classList.add('show'); scrollChatToBottom(); botLook(0.7, 1); });
       at(700, function () { botTypes(seq[1], typeMsFor(seq[1])); });
       t += typeMsFor(seq[1]);
       at(500, function () { seq[2].classList.add('show'); scrollChatToBottom(); });
-      at(1100, function () { seq[3].classList.add('show'); scrollChatToBottom(); });
+      at(1100, function () { seq[3].classList.add('show'); scrollChatToBottom(); botLook(0.7, 1); });
       at(700, function () {
         botTypes(seq[4], typeMsFor(seq[4]), function () {
           if (ticks) ticks.setAttribute('data-state', 'sent');
@@ -348,7 +472,13 @@
       });
       t += typeMsFor(seq[4]);
       at(350, function () { if (ticks) ticks.setAttribute('data-state', 'delivered'); });
-      at(600, function () { if (ticks) ticks.setAttribute('data-state', 'read'); });
+      at(600, function () {
+        if (ticks) ticks.setAttribute('data-state', 'read');
+        if (bot) {
+          bot.setAttribute('data-happy', '');
+          setTimeout(function () { bot.removeAttribute('data-happy'); botLook(0, 0); }, 900);
+        }
+      });
     }
 
     if (reduceMotion || !('IntersectionObserver' in window)) {
